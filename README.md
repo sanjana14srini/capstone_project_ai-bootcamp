@@ -1,6 +1,6 @@
 # 🚀 Capstone Project - AI BOOTCAMP
 
-This capstone project is a full-stack AI appllication built as a part of the AI Bootcamp: From RAG to Agents. The primary utility of this project is to be able to query the arxiv research repository through natural language using AI agents. 
+This capstone project is a **full-stack AI appllication** built as a part of the AI Bootcamp: From RAG to Agents. The primary utility of this project is to be able to query the arxiv research repository through natural language using AI agents. 
 
 
 ## The project leverages:
@@ -25,7 +25,7 @@ This capstone project is a full-stack AI appllication built as a part of the AI 
 
 
 ## Architecture: 
-```markdown
+
 ```plaintext
 +----------------+       +-----------------+       +------------------+
 |                |       |                 |       |                  |
@@ -46,7 +46,7 @@ This capstone project is a full-stack AI appllication built as a part of the AI 
 ## Project Structure:
 <details>
 <summary>Click to expand</summary>
-```markdown
+
 ``` plaintext
 capstone_project_ai-bootcamp/
 ├── backend/
