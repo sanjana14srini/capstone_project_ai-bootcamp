@@ -15,7 +15,7 @@ docker run -it \
 # To delet the arxiv_chunks search index
 curl -X DELETE "http://localhost:9200/arxiv_chunks"
 
-
+# 
 
 
 

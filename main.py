@@ -3,7 +3,7 @@ from agents import create_agents, NamedCallback
 from toyaikit.chat.interface import StdOutputInterface
 from pydantic_ai.messages import ModelMessage
 from toyaikit.chat.runners import PydanticAIRunner
-from agent_logging import log_run, save_log, create_log_entry
+from monitoring.agent_logging import log_run, save_log, create_log_entry
 import asyncio
 
 class LoggingStdOutputInterface(StdOutputInterface):

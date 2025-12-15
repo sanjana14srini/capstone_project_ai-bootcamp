@@ -45,7 +45,7 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 ## Project Structure:
 <details>
-```plaintext
+
 
         capstone_project_ai-bootcamp/
         ├── backend/
@@ -61,7 +61,7 @@ This capstone project is a **full-stack AI appllication** built as a part of the
         ├── requirements.txt
         ├── evals
 
-```` ``` ````
+
 </details>
 
 ## Set-up Instructions:
@@ -106,3 +106,6 @@ docker.elastic.co/elasticsearch/elasticsearch:9.1.1
  ```streamlit run capstone_project/ui/app.py```
 
 
+## Self-evaluation using Agents:
+This is done within the evals.py script built on top of the groud truth data present in `questions_dataset.csv`
+The results can be found in `evals.csv` and `metrics. csv`
