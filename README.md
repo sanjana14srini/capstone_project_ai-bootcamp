@@ -45,7 +45,7 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 ## Project Structure:
 <details>
-<summary>Click to expand</summary>
+<!-- <summary>Click to expand</summary> -->
 
 ``` plaintext
 capstone_project_ai-bootcamp/
