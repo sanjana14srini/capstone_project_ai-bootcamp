@@ -33,21 +33,21 @@ This capstone project is a full-stack AI appllication built as a part of the AI 
 |  Frontend      |       |  (Uvicorn)      |       |  (Data storage)  |
 |                |       |                 |       |                  |
 +----------------+       +-----------------+       +------------------+
-
+```
 - **Frontend**: Provides user interface for inputting queries and displaying results.
 
 - **Backend**: Handles AI processing, structured output generation, and communication with Elasticsearch.
 
 - **Elasticsearch**: Stores document chunks and enables fast, full-text search.
 
-
+```` ``` ````
 
 
 ## Project Structure:
 <details>
 <summary>Click to expand</summary>
 ```markdown
-```plaintext
+``` plaintext
 capstone_project_ai-bootcamp/
 ├── backend/
 │    ├── app
@@ -64,7 +64,7 @@ capstone_project_ai-bootcamp/
 
 </details>
 
-
+```` ``` ````
 ## Set-up Instructions:
 ### Follow the below noted steps to run this application locally
 
