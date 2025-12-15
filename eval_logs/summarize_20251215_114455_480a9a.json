@@ -1,0 +1,223 @@
+{
+  "agent_name": "summarize",
+  "system_prompt": [
+    "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results."
+  ],
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "get_data_to_index",
+    "search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "what is the framework behind model context protocol",
+          "timestamp": "2025-12-15T11:44:54.141090+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"model context protocol framework\",\"paper_name\":\"model context protocol\"}",
+          "tool_call_id": "call_p83SwcXjHoQKP5YEijouvvgP",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 222,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 23,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:44:54+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1IUeNacwVQU1ICftnCwBH0gVjFH",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2111.10153v2",
+              "title": "Blockchain for Genomics: A Systematic Literature Review",
+              "authors": [
+                "Mohammed Alghazwi",
+                "Fatih Turkmen",
+                "Joeri van der Velde",
+                "Dimka Karastoyanova"
+              ],
+              "published": "2021-11-19T10:59:32Z",
+              "summary": "Human genomic data carry unique information about an individual and offer unprecedented opportunities for healthcare. The clinical interpretations derived from large genomic datasets can greatly improve healthcare and pave the way for personalized medicine. Sharing genomic datasets, however, pose major challenges, as genomic data is different from traditional medical data, indirectly revealing information about descendants and relatives of the data owner and carrying valid information even after the owner passes away. Therefore, stringent data ownership and control measures are required when dealing with genomic data. In order to provide secure and accountable infrastructure, blockchain technologies offer a promising alternative to traditional distributed systems. Indeed, the research on blockchain-based infrastructures tailored to genomics is on the rise. However, there is a lack of a comprehensive literature review that summarizes the current state-of-the-art methods in the applications of blockchain in genomics. In this paper, we systematically look at the existing work both commercial and academic, and discuss the major opportunities and challenges. Our study is driven by five research questions that we aim to answer in our review. We also present our projections of future research directions which we hope the researchers interested in the area can benefit from.",
+              "content": "ties that pave the way to\n\ngeneralization. In Figure 6, we present a generalized architecture for systems that use blockchain for genomic applications.\n\nThe design for this architecture is aimed at summarizing and covering a wide range of applications in genomics. The\n\narchitecture consists of 6 layers: data collection, data storage, network, consensus, contract (decentralized application),\n\nand presentation. The layers in this architecture are comparable to the one/s in the existing blockchain literature but\n\nwith some modifications to effectively illustrate the architectural components exploited in genomic applications.\n\nIn the first layer of the architecture, we assume that each node is responsible for collecting and sorting the genomic\n\ndata which can come in different formats such as BAM or FASTQ. These nodes in the systems can represent an individual,\n\nresearchers, or organizations that want to share genomic data. After the collection, the data is sent to the next layer for\n\nstorage. In the storage layer, the data can be stored in different ways depending on the requirements, which is discussed\n\nin section 4.4.3. The data is then broadcasted to the network using a specified network protocol. According to our\n\nfindings, the majority of the papers use a P2P network instead of the traditional client-server model. In the consensus\n\nlayer, the nodes in the network come to an agreement on the state of the blockchain using a consensus protocol such\n\n\f16\n\nAlghazwi et al.\n\nTable 5. Comparison of Blockchain implementations in genomics.\n\nPaper\n\nBlockchain\nType\n\nPlatform\n\nStorage\nmethod\n\nData type\n\nPrivacy\n\n[123]\n\nPrivate\n\nCustom-made\n\nOff-chain\n\n[86]\n\n[39]\n\nPrivate\n\nCustom-made\n\nPublic\n\nEthereum\n\nOn-chain\nOff-chain\n\nOff-chain\n(IPFS)\n\nGenotypes and pheno-\ntypes for GWAS\n\nA gene fragmentation\nframework\n\n&\n\nSomatic cancer varia-\ntion data\n\nHiding the germline vari-\nation\n\nClinical and genomic\ndata\n\nAnonymization\n\n[45, 60]\n\nPrivate\n\nEthereum\n\nOn-chain\n\nPharmacogenomics\n\naccess\n\nRestricted\nthe\nprivate\nAuthority blockchain\n\nto\nProof-of-\n\n&\n\n&\n\n&\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\n[75]\n\nPrivate / per-\nmissioned\n\nHyperledger\nFabric\n\nOn-chain\nOff-chain\n\n[124]\n\nPublic\n\nEthereum\n\nPatient consent\n\nUser and study data\nstored off-chain with ac-\ncess control mechanism\n\nGenetic and health\ndata\n\nTrusted execution envi-\nronment (SGX)\n\nPublic\n\nCustom-made\n\nFASTQ files\n\nPrivate\n\nMultiChain\n\nOn-chain\n\nRaw genomic data\n\nMixing reads from multi-\nple genomes and insert-\ning decoys\n\nAccess control to private\nblockchain\n\nPrivate / per-\nmissioned\n\nPrivate / per-\nmissioned\n\nCorda\n\nBigchainDB\n\n[59, 61, 62,\n64, 65]\n\nPrivate / per-\nmissioned\n\nMultiChain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\n&\n\n&\n\n&\n\nPharmacogenomics\n\nN/A\n\nDNA sequence data\n\nAnonymization\n\nAggregated data (the\nlearning\nmachine\nmodel)\n\nProtected health informa-\ntion are stored off-chain\n\n[43, 73, 85,\n90]\n\nPrivate\n\nMultiChain\n\nOn-chain\n\nAccess logs\n\nPrivate / per-\nmissioned\n\nHyperledger\nFabric\n\nOn-chain\n\nN/A\n\nN/A\n\nN/A\n\nPrivate / per-\nmissioned\n\ncustom-made\n\nPrivate / per-\nmissioned\n\nHyperledger\nFabric\n\nPrivate\n\nEthereum\n\nPrivate\n\nEthereum\n\nPrivate\n\nEthereum\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\n&\n\n&\n\n&\n\n&\n\n&\n\nAggregated data (the\nmachine\nlearning\nmodel)\n\nprivacy-preserving\nmachine learning\n\nhealth & genomic data\n\non-chain data hashing\n\npersonal genomic data\n\noff-chain data storage &\ncomputation\n\npersonal genomic data\n\nN/A\n\npersonal genomic data\n\nlocal differential privacy\n\n[48]\n\n[44]\n\n[50]\n\n[84]\n\n[87]\n\n[116]\n\n[72]\n\n[80]\n\n[6]\n\n[88]\n\nas Proof-of-Work (PoW). The contract layer is where smart contracts are written and deployed to facilitate various\n\napplication functions which serve as the backend of the application. The presentation layer is responsible for interacting\n\nwith smart contracts and blockchain in general.\n\n4.4.2 Blockchain Platforms. A critical step in designing a genomic blockchain system is the selection of a suitable\n\nblockchain platform that would deliver the required functionality for the intended application. In this section, we\n\npresent our analysis of the blockchain platforms used in the selected studies. Our results are only based on solutions that\n\n\fBlockchain for Genomics: A Systematic Literature Review\n\n17\n\nFig. 6. General architecture for blockchain-based genomic data sharing systems\n\nincluded a prototype, a proof of concept, or an implementation. We excluded studies that do not explicitly specify the\n\nblockchain platform and others that do not reveal their underlying platforms, especially in the context of commercial\n\napplications.\n\nTo identify the applicability or suitability of a blockchain platform, the requirements must be analyzed in the genomic\n\ndata-sharing scenario. Based on the selected literature on genomic blockchains, the criteria used to identify the suitability\n\nof a blockchain platform are the following:\n\n\u2022 Public verifiability: is public verifiabilit"
+            },
+            {
+              "id": "2111.10153v2",
+              "title": "Blockchain for Genomics: A Systematic Literature Review",
+              "authors": [
+                "Mohammed Alghazwi",
+                "Fatih Turkmen",
+                "Joeri van der Velde",
+                "Dimka Karastoyanova"
+              ],
+              "published": "2021-11-19T10:59:32Z",
+              "summary": "Human genomic data carry unique information about an individual and offer unprecedented opportunities for healthcare. The clinical interpretations derived from large genomic datasets can greatly improve healthcare and pave the way for personalized medicine. Sharing genomic datasets, however, pose major challenges, as genomic data is different from traditional medical data, indirectly revealing information about descendants and relatives of the data owner and carrying valid information even after the owner passes away. Therefore, stringent data ownership and control measures are required when dealing with genomic data. In order to provide secure and accountable infrastructure, blockchain technologies offer a promising alternative to traditional distributed systems. Indeed, the research on blockchain-based infrastructures tailored to genomics is on the rise. However, there is a lack of a comprehensive literature review that summarizes the current state-of-the-art methods in the applications of blockchain in genomics. In this paper, we systematically look at the existing work both commercial and academic, and discuss the major opportunities and challenges. Our study is driven by five research questions that we aim to answer in our review. We also present our projections of future research directions which we hope the researchers interested in the area can benefit from.",
+              "content": "age. In the storage layer, the data can be stored in different ways depending on the requirements, which is discussed\n\nin section 4.4.3. The data is then broadcasted to the network using a specified network protocol. According to our\n\nfindings, the majority of the papers use a P2P network instead of the traditional client-server model. In the consensus\n\nlayer, the nodes in the network come to an agreement on the state of the blockchain using a consensus protocol such\n\n\f16\n\nAlghazwi et al.\n\nTable 5. Comparison of Blockchain implementations in genomics.\n\nPaper\n\nBlockchain\nType\n\nPlatform\n\nStorage\nmethod\n\nData type\n\nPrivacy\n\n[123]\n\nPrivate\n\nCustom-made\n\nOff-chain\n\n[86]\n\n[39]\n\nPrivate\n\nCustom-made\n\nPublic\n\nEthereum\n\nOn-chain\nOff-chain\n\nOff-chain\n(IPFS)\n\nGenotypes and pheno-\ntypes for GWAS\n\nA gene fragmentation\nframework\n\n&\n\nSomatic cancer varia-\ntion data\n\nHiding the germline vari-\nation\n\nClinical and genomic\ndata\n\nAnonymization\n\n[45, 60]\n\nPrivate\n\nEthereum\n\nOn-chain\n\nPharmacogenomics\n\naccess\n\nRestricted\nthe\nprivate\nAuthority blockchain\n\nto\nProof-of-\n\n&\n\n&\n\n&\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\n[75]\n\nPrivate / per-\nmissioned\n\nHyperledger\nFabric\n\nOn-chain\nOff-chain\n\n[124]\n\nPublic\n\nEthereum\n\nPatient consent\n\nUser and study data\nstored off-chain with ac-\ncess control mechanism\n\nGenetic and health\ndata\n\nTrusted execution envi-\nronment (SGX)\n\nPublic\n\nCustom-made\n\nFASTQ files\n\nPrivate\n\nMultiChain\n\nOn-chain\n\nRaw genomic data\n\nMixing reads from multi-\nple genomes and insert-\ning decoys\n\nAccess control to private\nblockchain\n\nPrivate / per-\nmissioned\n\nPrivate / per-\nmissioned\n\nCorda\n\nBigchainDB\n\n[59, 61, 62,\n64, 65]\n\nPrivate / per-\nmissioned\n\nMultiChain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\n&\n\n&\n\n&\n\nPharmacogenomics\n\nN/A\n\nDNA sequence data\n\nAnonymization\n\nAggregated data (the\nlearning\nmachine\nmodel)\n\nProtected health informa-\ntion are stored off-chain\n\n[43, 73, 85,\n90]\n\nPrivate\n\nMultiChain\n\nOn-chain\n\nAccess logs\n\nPrivate / per-\nmissioned\n\nHyperledger\nFabric\n\nOn-chain\n\nN/A\n\nN/A\n\nN/A\n\nPrivate / per-\nmissioned\n\ncustom-made\n\nPrivate / per-\nmissioned\n\nHyperledger\nFabric\n\nPrivate\n\nEthereum\n\nPrivate\n\nEthereum\n\nPrivate\n\nEthereum\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\nOn-chain\nOff-chain\n\n&\n\n&\n\n&\n\n&\n\n&\n\nAggregated data (the\nmachine\nlearning\nmodel)\n\nprivacy-preserving\nmachine learning\n\nhealth & genomic data\n\non-chain data hashing\n\npersonal genomic data\n\noff-chain data storage &\ncomputation\n\npersonal genomic data\n\nN/A\n\npersonal genomic data\n\nlocal differential privacy\n\n[48]\n\n[44]\n\n[50]\n\n[84]\n\n[87]\n\n[116]\n\n[72]\n\n[80]\n\n[6]\n\n[88]\n\nas Proof-of-Work (PoW). The contract layer is where smart contracts are written and deployed to facilitate various\n\napplication functions which serve as the backend of the application. The presentation layer is responsible for interacting\n\nwith smart contracts and blockchain in general.\n\n4.4.2 Blockchain Platforms. A critical step in designing a genomic blockchain system is the selection of a suitable\n\nblockchain platform that would deliver the required functionality for the intended application. In this section, we\n\npresent our analysis of the blockchain platforms used in the selected studies. Our results are only based on solutions that\n\n\fBlockchain for Genomics: A Systematic Literature Review\n\n17\n\nFig. 6. General architecture for blockchain-based genomic data sharing systems\n\nincluded a prototype, a proof of concept, or an implementation. We excluded studies that do not explicitly specify the\n\nblockchain platform and others that do not reveal their underlying platforms, especially in the context of commercial\n\napplications.\n\nTo identify the applicability or suitability of a blockchain platform, the requirements must be analyzed in the genomic\n\ndata-sharing scenario. Based on the selected literature on genomic blockchains, the criteria used to identify the suitability\n\nof a blockchain platform are the following:\n\n\u2022 Public verifiability: is public verifiability required? Are the data contributors/users known in advance? The\nanswer to these questions can influence the choice of blockchain platforms and whether it would be appropriate\n\nto use a public or private blockchain.\n\n\u2022 The size and privacy of the data stored on-chain: is there a need to store large data on-chain? Is that data private\n\nor public? This can determine the type of consensus and block size that the platform provides.\n\n\u2022 Smart contracts: is there a need for smart contracts or on-chain computation? Since not all of the blockchain\nplatforms support smart contracts, it is necessary to determine if on-chain computation or tokenization is\n\nrequired?\n\n\f18\n\nAlghazwi et al.\n\nFigure 7 shows the blockchain platforms used in the selected studies. The majority of the papers proposed the use\n\nof either private or permissioned blockchains. Privacy, scalability, and cost are among the most cited reasons for this\n\nchoice. The use of private blockchains lowers the risk of information leakage"
+            },
+            {
+              "id": "2503.23249v1",
+              "title": "Context in object detection: a systematic literature review",
+              "authors": [
+                "Mahtab Jamali",
+                "Paul Davidsson",
+                "Reza Khoshkangini",
+                "Martin Georg Ljungqvist",
+                "Radu-Casian Mihailescu"
+              ],
+              "published": "2025-03-29T23:21:28Z",
+              "summary": "Context is an important factor in computer vision as it offers valuable information to clarify and analyze visual data. Utilizing the contextual information inherent in an image or a video can improve the precision and effectiveness of object detectors. For example, where recognizing an isolated object might be challenging, context information can improve comprehension of the scene. This study explores the impact of various context-based approaches to object detection. Initially, we investigate the role of context in object detection and survey it from several perspectives. We then review and discuss the most recent context-based object detection approaches and compare them. Finally, we conclude by addressing research questions and identifying gaps for further studies. More than 265 publications are included in this survey, covering different aspects of context in different categories of object detection, including general object detection, video object detection, small object detection, camouflaged object detection, zero-shot, one-shot, and few-shot object detection. This literature review presents a comprehensive overview of the latest advancements in context-based object detection, providing valuable contributions such as a thorough understanding of contextual information and effective methods for integrating various context types into object detection, thus benefiting researchers.",
+              "content": "ual data alone cannot \ncapture. For example, in surveillance systems, sound context can be used to detect gunshots \nor breaking glass, which can indicate potential security threats. In autonomous driving sys-\ntems, sound context can be used to detect and recognize different types of vehicles or to \ndetect and avoid obstacles that are not visible in the visual data. The integration of audio \ncontext  into  multimodal  models,  using  techniques  such  as  multimodal  fusion  (Gao  et  al. \n2020) and attention mechanisms (Lieskovsk\u00e1 et al. 2021) enables a comprehensive compre-\nhension of the scene by capturing the relationships between visual and audio data. Figure 25 \nprovides an example of leveraging audio context to detect objects alongside visual feature \nmaps.\n\nIn addition to the presence of objects, audio also determines distances and even direc-\ntions. For example, by hearing the sound of a bird, in addition to identifying the bird as an \nobject, the approximate distance and direction of the sound can also be identified. Figure 26 \nis  an  example  of  leveraging  sound  context  with  visual  features  to  create  an  audio-visual \nevent localization framework in unconstrained videos.\n\n2.4.12  Text context\n\nText context can provide important information about a scene or object. Text context can \nbe used to enhance the performance of computer vision tasks such as object recognition, \nscene understanding, and image retrieval (Mishra et al. 2013). Figure 27, for example, is an \n\nM. Jamali et al.1 3 \n \n\fPage 21 of 89 \n\n  175 \n\nFig. 26  Audio-visual event localiza-\ntion framework with audio-guided \nvisual attention and multimodal \nfusion (Tian et al. 2018)\n\nFig. 27  Visual context learning based \non textual knowledge for image-text \nretrieval (Qin et al. 2022)\n\nimage-text retrieval system, and text context can be used to search for images with specific \nlabels or descriptions. In a scene understanding system, text context can be used to identify \nspecific  objects  within  the  scene  or  to  infer  relationships  between  objects  based  on  their \nlabels or descriptions. To incorporate text context into computer vision algorithms, natu-\nral language processing (NLP) techniques are effective approaches to analyze and extract \ntextual information from various sources, such as image captions, object labels, or product \ndescriptions. Machine learning algorithms can then be trained on this data to recognize pat-\nterns and identify specific objects or scenes based on their textual context.\n\n2.4.13  Illumination context\n\nIllumination  context  refers  to  the  study  of  how  lighting  conditions  affect  the  appearance \nof  objects  in  a  scene  and  how  this  information  can  be  used  to  improve  computer  vision \nalgorithms. Illumination context involves information such as sun direction (Lalonde et al. \n2008), sky color, shadow contrast, and covered by clouds. Illumination context is important \nbecause the way light interacts with objects in a scene can dramatically affect their appear-\nance.  By  analyzing  the  illumination  context  of  a  scene,  computer  vision  algorithms  can \nadjust for variations in lighting conditions and make more accurate predictions about the \nappearance and behavior of objects in that scene.\n\n2.4.14  Weather context\n\nIn outdoor applications, there is no escape from \u201cbad\u201d weather. Ultimately, computer vision \nsystems need to leverage mechanisms that enable them to function in the presence of haze, \nfog, rain, hail, and snow (Narasimhan and Nayar 2002). The bad weather, however, turns \nout to have a positive side since it could serve as a powerful means for coding and convey-\ning scene structure (Narasimhan and Nayar 2002). Weather context would describe meteo-\n\nContext in object detection: a systematic literature review1 3 \n \n\f  175 \n\n  Page 22 of 89\n\nrological conditions such as temperature, wind speed, or direction, and weather conditions \nsuch as rain, snow, mist, and different seasons.\n\n3  Research method\n\nA review protocol is developed to guide the conduct of the literature survey. Research ques-\ntions (RQs) as mentioned in Sect. 1, and a set of criteria determine the topic and the objec-\ntive of this literature review.\n\n3.1  Identification of bibliographical databases\n\nTo  conduct  this  literature  review,  three  major  and  well-known  bibliographical  databases \nwith  good  coverage  of  computer  science  were  selected:  IEEE  Xplore,  Web  of  Science \n(WoS), and Scopus. According to (Stapic et al. 2012), it is important to determine the start-\ning and ending dates of a literature review; thus, in order to focus on the state-of-the-art \nmethods, the period from 2018 to 2023 is selected as the date range.\n\n3.2  Searching and selection of primary studies\n\nA  Boolean  search  criterion  was  utilized  to  search  the  databases.  \u201c(Title  ((Context) AND \n(Object detection)) OR Abstract ((Context) AND (object detection)))\u201d. Duplicate papers in \ndifferent databas"
+            },
+            {
+              "id": "2503.23249v1",
+              "title": "Context in object detection: a systematic literature review",
+              "authors": [
+                "Mahtab Jamali",
+                "Paul Davidsson",
+                "Reza Khoshkangini",
+                "Martin Georg Ljungqvist",
+                "Radu-Casian Mihailescu"
+              ],
+              "published": "2025-03-29T23:21:28Z",
+              "summary": "Context is an important factor in computer vision as it offers valuable information to clarify and analyze visual data. Utilizing the contextual information inherent in an image or a video can improve the precision and effectiveness of object detectors. For example, where recognizing an isolated object might be challenging, context information can improve comprehension of the scene. This study explores the impact of various context-based approaches to object detection. Initially, we investigate the role of context in object detection and survey it from several perspectives. We then review and discuss the most recent context-based object detection approaches and compare them. Finally, we conclude by addressing research questions and identifying gaps for further studies. More than 265 publications are included in this survey, covering different aspects of context in different categories of object detection, including general object detection, video object detection, small object detection, camouflaged object detection, zero-shot, one-shot, and few-shot object detection. This literature review presents a comprehensive overview of the latest advancements in context-based object detection, providing valuable contributions such as a thorough understanding of contextual information and effective methods for integrating various context types into object detection, thus benefiting researchers.",
+              "content": "tion of the sound can also be identified. Figure 26 \nis  an  example  of  leveraging  sound  context  with  visual  features  to  create  an  audio-visual \nevent localization framework in unconstrained videos.\n\n2.4.12  Text context\n\nText context can provide important information about a scene or object. Text context can \nbe used to enhance the performance of computer vision tasks such as object recognition, \nscene understanding, and image retrieval (Mishra et al. 2013). Figure 27, for example, is an \n\nM. Jamali et al.1 3 \n \n\fPage 21 of 89 \n\n  175 \n\nFig. 26  Audio-visual event localiza-\ntion framework with audio-guided \nvisual attention and multimodal \nfusion (Tian et al. 2018)\n\nFig. 27  Visual context learning based \non textual knowledge for image-text \nretrieval (Qin et al. 2022)\n\nimage-text retrieval system, and text context can be used to search for images with specific \nlabels or descriptions. In a scene understanding system, text context can be used to identify \nspecific  objects  within  the  scene  or  to  infer  relationships  between  objects  based  on  their \nlabels or descriptions. To incorporate text context into computer vision algorithms, natu-\nral language processing (NLP) techniques are effective approaches to analyze and extract \ntextual information from various sources, such as image captions, object labels, or product \ndescriptions. Machine learning algorithms can then be trained on this data to recognize pat-\nterns and identify specific objects or scenes based on their textual context.\n\n2.4.13  Illumination context\n\nIllumination  context  refers  to  the  study  of  how  lighting  conditions  affect  the  appearance \nof  objects  in  a  scene  and  how  this  information  can  be  used  to  improve  computer  vision \nalgorithms. Illumination context involves information such as sun direction (Lalonde et al. \n2008), sky color, shadow contrast, and covered by clouds. Illumination context is important \nbecause the way light interacts with objects in a scene can dramatically affect their appear-\nance.  By  analyzing  the  illumination  context  of  a  scene,  computer  vision  algorithms  can \nadjust for variations in lighting conditions and make more accurate predictions about the \nappearance and behavior of objects in that scene.\n\n2.4.14  Weather context\n\nIn outdoor applications, there is no escape from \u201cbad\u201d weather. Ultimately, computer vision \nsystems need to leverage mechanisms that enable them to function in the presence of haze, \nfog, rain, hail, and snow (Narasimhan and Nayar 2002). The bad weather, however, turns \nout to have a positive side since it could serve as a powerful means for coding and convey-\ning scene structure (Narasimhan and Nayar 2002). Weather context would describe meteo-\n\nContext in object detection: a systematic literature review1 3 \n \n\f  175 \n\n  Page 22 of 89\n\nrological conditions such as temperature, wind speed, or direction, and weather conditions \nsuch as rain, snow, mist, and different seasons.\n\n3  Research method\n\nA review protocol is developed to guide the conduct of the literature survey. Research ques-\ntions (RQs) as mentioned in Sect. 1, and a set of criteria determine the topic and the objec-\ntive of this literature review.\n\n3.1  Identification of bibliographical databases\n\nTo  conduct  this  literature  review,  three  major  and  well-known  bibliographical  databases \nwith  good  coverage  of  computer  science  were  selected:  IEEE  Xplore,  Web  of  Science \n(WoS), and Scopus. According to (Stapic et al. 2012), it is important to determine the start-\ning and ending dates of a literature review; thus, in order to focus on the state-of-the-art \nmethods, the period from 2018 to 2023 is selected as the date range.\n\n3.2  Searching and selection of primary studies\n\nA  Boolean  search  criterion  was  utilized  to  search  the  databases.  \u201c(Title  ((Context) AND \n(Object detection)) OR Abstract ((Context) AND (object detection)))\u201d. Duplicate papers in \ndifferent databases have been removed. The results are shown in Table 1.\n\n3.3  Inclusion and exclusion criteria\n\nAccording  to  (Kitchenham  2004),  inclusion  and  exclusion  criteria  should  be  based  on \nresearch  questions.  The  inclusion  and  exclusion  criteria  are  shown  in  Table  2.  It  should \nbe noted that categories such as salient, RGB-D, remote sensing, 3D, moving, and adver-\nsarial object detection were excluded due to their specialized nature, lower recent research \nvolume, and narrower practical applications. This allows for a more focused and relevant \nsurvey, ensuring thorough and detailed analysis of the most active and impactful areas in \nobject detection.\n\n3.4  Data extraction and validity control\n\nAn overview of the data extraction strategy is shown in Fig. 28. A total of 265 papers were \nretrieved from three academic databases. Papers that are duplicated in different databases \nare considered in only one of the sources. Out of 265 papers, 2 papers were rejected for \nbeing"
+            },
+            {
+              "id": "2503.23249v1",
+              "title": "Context in object detection: a systematic literature review",
+              "authors": [
+                "Mahtab Jamali",
+                "Paul Davidsson",
+                "Reza Khoshkangini",
+                "Martin Georg Ljungqvist",
+                "Radu-Casian Mihailescu"
+              ],
+              "published": "2025-03-29T23:21:28Z",
+              "summary": "Context is an important factor in computer vision as it offers valuable information to clarify and analyze visual data. Utilizing the contextual information inherent in an image or a video can improve the precision and effectiveness of object detectors. For example, where recognizing an isolated object might be challenging, context information can improve comprehension of the scene. This study explores the impact of various context-based approaches to object detection. Initially, we investigate the role of context in object detection and survey it from several perspectives. We then review and discuss the most recent context-based object detection approaches and compare them. Finally, we conclude by addressing research questions and identifying gaps for further studies. More than 265 publications are included in this survey, covering different aspects of context in different categories of object detection, including general object detection, video object detection, small object detection, camouflaged object detection, zero-shot, one-shot, and few-shot object detection. This literature review presents a comprehensive overview of the latest advancements in context-based object detection, providing valuable contributions such as a thorough understanding of contextual information and effective methods for integrating various context types into object detection, thus benefiting researchers.",
+              "content": " often provide vital clues for detection. Figure 32 illus-\ntrates this, showing how object relationships are captured as graph edges, facilitating scene \nunderstanding. For example, a person is next to a skateboard based on spatial context, and a \nhelmet and skateboard commonly appear together based on semantic context.\n\nM. Jamali et al.1 3 \n \n\fFig. 32  Visual relation detection and \nits scene graph representation\n\nPage 29 of 89 \n\n  175 \n\nFig. 33  Integrating spatial and semantic context into a graph-based model (Zhang et al. 2021)\n\nFigure 33 demonstrates how context can be integrated into a graph-based object detec-\ntion  framework.  The  object  detector  first  identifies  bounding  boxes  for  detected  objects. \nThen,  Visual  Region  Network  builds  a  graph  with  objects  as  nodes  and  relationships  as \nedges,  capturing  spatial  connections  like  \u2019above\u2019  or  \u2019next  to\u2019.  Spatial  Network  encodes \nspatial relationships, enhancing the model\u2019s understanding of object positioning. Semantic \nNetwork processes category relationships, identifying associations like \u2019person rides horse\u2019. \nBy combining these contextual layers, the model refines object detections, as seen in rela-\ntionships like \u2019horse above grass\u2019.\n\nIn this section, we explore five graph-based approaches, each leveraging context differ-\n\nently to enhance object detection.\n\n(1)  Distilling Knowledge Graph (Yang et al. 2023) seamlessly integrates spatial and seman-\ntic context into object detection using a knowledge graph and knowledge distillation \n(KD). By leveraging a teacher-student model, the method constructs both geometry and \nsemantic graphs through a transformer layer, capturing object interactions at both local \nand global levels. The edges in the graph encode relationships, which are incorporated \ninto the attention matrix to enable graph-level attention, enhancing contextual learning. \nAmong  graph-based  approaches  in  this  paper  tested  on  COCO  dataset,  this  method \nachieves the highest AP, APs, APm, and APl.\n\n(2)  Knowledge-guided Reasonable Object Detection (KROD) (Ji et al. 2022) focuses on \nglobal  context  and  category  relationships.  It  introduces  Global  Category  Knowledge \nMining (GKM) that integrates multi-label image-level classification results to provide \nglobal  category  knowledge  for  the  detector. Additionally,  the  raw  detection  outputs \n\nContext in object detection: a systematic literature review1 3 \n \n\f  175 \n\n  Page 30 of 89\n\nwere  inputted  by  the  Category  Relationship Knowledge  Mining  (CRM)  module  into \nthe object category co-occurrence-based knowledge graph to further refine the initial \nresults.\n\n(3)  The Structure Inference Network (SIN) (Liu et al. 2018) enhances object detection by \nintegrating both scene-level and instance-level contextual information within a graphi-\ncal model framework. In SIN, objects are represented as nodes in a graph, and their \nrelationships  form  the  edges,  allowing  the  model  to  capture  object  interactions  and \nscene context. Incorporated into a standard detection framework like Faster R-CNN, \nSIN  utilizes  this  structured  context  to  iteratively  update  each  object\u2019s  state,  refining \npredictions based on both local appearance and surrounding context, thus improving \naccuracy in complex scenes.\n\n(4)  Adaptive context-aware object detection (AdaCon) (Neseem and Reda 2021) uses the \nspatial co-occurrence probabilities of object categories to create an adaptive network. A \nbranch controller selects which sections of the network to execute during runtime based \non the spatial context of the input frame. AdaCon is the first detector to present an adap-\ntive algorithm for one-stage object detectors.\n\n(5)  JLWSOD (Lai et al. 2024) a method for weakly supervised object detection, integrates \ntwo types of contextual information: instance-wise correlation and semantic-wise cor-\nrelation.  The  framework  comprises  three  key  modules:  the  Instance-Wise  Detection \nBranch, which enhances object localization by capturing correlations among spatially \nadjacent  instances;  the  Semantic-Wise  Prediction  Branch,  which  addresses  semantic \nambiguity by modeling relationships between co-occurring object categories; and the \nInteractive Graph Contrastive Learning (iGCL) module, which facilitates the joint opti-\nmization  of  both  contextual  information  types.  This  interactive  learning  mechanism \nallows  for  effective  propagation  of  image-level  supervisory  signals  to  instance-level \npredictions.\n\nEach  of  the  reviewed  models  demonstrates  distinct  approaches  to  incorporating  context \nin  object  detection,  revealing  both  strengths  and  limitations  in  various  technical  aspects. \nThe Distilling Knowledge Graph approach is computationally efficient, benefiting from a \nknowledge graph that integrates spatial and semantic context, but relies heavily on a teacher-\nstudent framework, which can complicate training set"
+            }
+          ],
+          "tool_call_id": "call_p83SwcXjHoQKP5YEijouvvgP",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:44:55.721082+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "args": "{\"title\":\"Model Context Protocol Framework\",\"summary\":\"The concept of a Model Context Protocol (MCP) is pivotal in enhancing object detection systems by utilizing contextual information, improving accuracy and effectiveness across various applications. The framework typically involves various components that help integrate contextual data, like spatial relationships, semantic associations, and multimodal information. For instance, frameworks like the Distilling Knowledge Graph, Knowledge-guided Reasonable Object Detection (KROD), and Adaptive Context-aware Object Detection leverage graph representations and context-mining techniques to create more intelligent systems capable of processing complex visual data. These approaches collectively underscore the significance of deepening our understanding of context in object detection, leading to innovative solutions and enhancing performance in real-world applications.\",\"references\":[{\"title\":\"Context in object detection: a systematic literature review\",\"url\":\"https://arxiv.org/abs/2503.23249\"},{\"title\":\"Blockchain for Genomics: A Systematic Literature Review\",\"url\":\"https://arxiv.org/abs/2111.10153\"}]}",
+          "tool_call_id": "call_qbugO9g6fQenffkbfRusGXwk",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 8170,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 213,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:44:55+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1IVSHSymxrzFCD4M1CK4JGomxDm",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "content": "Final result processed.",
+          "tool_call_id": "call_qbugO9g6fQenffkbfRusGXwk",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:45:02.796169+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": null,
+      "kind": "request"
+    }
+  ],
+  "usage": {
+    "input_tokens": 8392,
+    "cache_write_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 236,
+    "input_audio_tokens": 0,
+    "cache_audio_read_tokens": 0,
+    "output_audio_tokens": 0,
+    "details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "requests": 2,
+    "tool_calls": 1
+  },
+  "output": {
+    "title": "Model Context Protocol Framework",
+    "summary": "The concept of a Model Context Protocol (MCP) is pivotal in enhancing object detection systems by utilizing contextual information, improving accuracy and effectiveness across various applications. The framework typically involves various components that help integrate contextual data, like spatial relationships, semantic associations, and multimodal information. For instance, frameworks like the Distilling Knowledge Graph, Knowledge-guided Reasonable Object Detection (KROD), and Adaptive Context-aware Object Detection leverage graph representations and context-mining techniques to create more intelligent systems capable of processing complex visual data. These approaches collectively underscore the significance of deepening our understanding of context in object detection, leading to innovative solutions and enhancing performance in real-world applications.",
+    "references": [
+      {
+        "title": "Context in object detection: a systematic literature review",
+        "url": "https://arxiv.org/abs/2503.23249"
+      },
+      {
+        "title": "Blockchain for Genomics: A Systematic Literature Review",
+        "url": "https://arxiv.org/abs/2111.10153"
+      }
+    ]
+  }
+}

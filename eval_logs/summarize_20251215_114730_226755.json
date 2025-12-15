@@ -1,0 +1,592 @@
+{
+  "agent_name": "summarize",
+  "system_prompt": [
+    "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results."
+  ],
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "get_data_to_index",
+    "search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "explain the most important aspect of self-attention in LLMs",
+          "timestamp": "2025-12-15T11:45:50.434316+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"self-attention in LLMs\",\"paper_name\":\"self-attention in large language models\"}",
+          "tool_call_id": "call_ESch8KqObSvMfiPtfFmry3hg",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 228,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 30,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:45:50+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1JOKJvbcU8U2kUtqfe8nV91Fu1x",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2409.18275v1",
+              "title": "Transitioning Together: Collaborative Work in Adolescent Chronic Illness Management",
+              "authors": [
+                "Rachael Zehrung",
+                "Madhu Reddy",
+                "Yunan Chen"
+              ],
+              "published": "2024-09-26T20:35:18Z",
+              "summary": "Adolescents with chronic illnesses need to learn self-management skills in preparation for the transition from pediatric to adult healthcare, which is associated with negative health outcomes for youth. However, few studies have explored how adolescents in a pre-transition stage practice self-management and collaborative management with their parents. Through interviews with 15 adolescents (aged 15-17), we found that adolescents managed mundane self-care tasks and experimented with lifestyle changes to be more independent, which sometimes conflicted with their parents' efforts to ensure their safety. Adolescents and their parents also performed shared activities that provided adolescents with the opportunity to learn and practice self-management skills. Based on our findings, we discuss considerations for technology design to facilitate transition and promote parent-adolescent collaboration in light of these tensions.",
+              "content": "een found to inhibit self-management [28].\n\nOutside of medication adherence, our \ufb01ndings suggest the need to design for responding to\nadolescents\u2019 medical emergencies, which necessitates discussion around privacy and data sharing.\nCranor et al. [26] found that while parents and adolescents tend to agree that adolescents have\nsome right to privacy, both parties believe that parents are justi\ufb01ed in overriding that right to pri-\nvacy in emergency situations. In a similar vein, Czeskis et al. [27] found that adolescents are more\nwilling to share information (e.g., location) with their parents in emergency situations compared to\nnon-emergency situations. Neither of these studies focused on health-related information, which\ncan be particularly sensitive. Hong et al. [43] highlighted the need to develop data sharing models\nthat balance adolescent patients\u2019 autonomy and safety, cautioning against the use of a strict open\nor closed data access policy. We found that although participants resisted close monitoring around\ntheir everyday activities, they understood the importance of keeping their parents informed in the\nevent of emergencies. Building on prior work, our results suggest that health tracking technologies\ncan support a data sharing model based on emergency versus non-emergency situations.\nThat is, tracking technologies can support adolescents in maintaining privacy and control over\nroutine health information while providing mechanisms to release information in emergency con-\ntexts. For example, wearable devices can support the collection of routine health information and\nalso serve as detection systems (e.g., for asthma [101]). In such a scenario, an adolescent\u2019s tracked\ndata would not be visible to their parents without prior consent, but a sign of an asthma attack\nwould immediately permit their parents to see vital signs.\n\n5.2 Preparing Adolescents to Transition\nIn this section, we discuss technological avenues to support adolescents\u2019 independent health man-\nagement skills and prepare them to handle the responsibilities of adult healthcare.\n\n5.2.1 Building Self-E\ufb00icacy. Two of the most common barriers in the transition to adult care are\nadolescents\u2019 lack of self-management skills and knowledge de\ufb01cits around their illness and the\ntransition process [39]. Participants in our study experienced similar challenges, but they were\nmotivated to learn about their conditions and better manage their health. Along with illness-\nrelated knowledge, motivation plays a critical role in children\u2019s transition to independent self-\nmanagement [20]. We observed that participants valued information from sources that felt more\npersonal, such as YouTube and TikTok, which have been shown to facilitate social support and\nchronic illness management [47, 104]. One participant preferred the use of a chatbot explicitly be-\ncause it felt more personalized than other forms of information-seeking. Though only one partici-\npant mentioned the use of a chatbot, we see potential to design and deploy chatbot assistants to\nprovide personalized guidance and support for adolescents with chronic illness. For example,\nAdolescentBot [81] was e\ufb00ective in answering sensitive health-related queries from adolescents,\nserving as the \ufb01rst line of support for adolescents seeking care. In our study, participants some-\ntimes avoided asking their parents for help so as to not burden them. By interacting with a chatbot,\nadolescents can have the opportunity to improve their illness-related knowledge and attempt to\nsolve challenges on their own before turning to their parents. If the conversational agent is unable\nto provide adequate support, then it could escalate the communication to parents or healthcare\nproviders. For example, MD2Me [46] used text messages to reinforce illness management skills and\nprovide a way for adolescents to report health concerns, which were then categorized as urgent\nor non-urgent and relayed accordingly to healthcare providers. For non-urgent health concerns,\n\nProc. ACM Hum.-Comput. Interact., Vol. 8, No. CSCW2, Article 417. Publication date: November 2024.\n\n\fCollaborative Work in Adolescent Chronic Illness Management\n\n417:17\n\nwe suggest that the system requests adolescents\u2019 consent before forwarding their messages as a\nmeans of supporting their involvement in the decision-making process. In addition to providing\ninformational and decision-making support, we envision that chatbots can provide emotional sup-\nport to adolescents by leveraging large language models (LLMs). LLM-driven chatbots have the\ncapacity to engage in free-form conversation with users and provide empathetic interactions in\nhealth contexts [53], which can bene\ufb01t adolescents as they deal with emotional challenges related\nto their condition (e.g., the loss of normalcy). Though we did not ask participants for their views\non chatbots, we observed that they were interested in trying new technologies (e.g., download-\ning various mobile health applications and reading a"
+            },
+            {
+              "id": "2409.18275v1",
+              "title": "Transitioning Together: Collaborative Work in Adolescent Chronic Illness Management",
+              "authors": [
+                "Rachael Zehrung",
+                "Madhu Reddy",
+                "Yunan Chen"
+              ],
+              "published": "2024-09-26T20:35:18Z",
+              "summary": "Adolescents with chronic illnesses need to learn self-management skills in preparation for the transition from pediatric to adult healthcare, which is associated with negative health outcomes for youth. However, few studies have explored how adolescents in a pre-transition stage practice self-management and collaborative management with their parents. Through interviews with 15 adolescents (aged 15-17), we found that adolescents managed mundane self-care tasks and experimented with lifestyle changes to be more independent, which sometimes conflicted with their parents' efforts to ensure their safety. Adolescents and their parents also performed shared activities that provided adolescents with the opportunity to learn and practice self-management skills. Based on our findings, we discuss considerations for technology design to facilitate transition and promote parent-adolescent collaboration in light of these tensions.",
+              "content": "d close monitoring around\ntheir everyday activities, they understood the importance of keeping their parents informed in the\nevent of emergencies. Building on prior work, our results suggest that health tracking technologies\ncan support a data sharing model based on emergency versus non-emergency situations.\nThat is, tracking technologies can support adolescents in maintaining privacy and control over\nroutine health information while providing mechanisms to release information in emergency con-\ntexts. For example, wearable devices can support the collection of routine health information and\nalso serve as detection systems (e.g., for asthma [101]). In such a scenario, an adolescent\u2019s tracked\ndata would not be visible to their parents without prior consent, but a sign of an asthma attack\nwould immediately permit their parents to see vital signs.\n\n5.2 Preparing Adolescents to Transition\nIn this section, we discuss technological avenues to support adolescents\u2019 independent health man-\nagement skills and prepare them to handle the responsibilities of adult healthcare.\n\n5.2.1 Building Self-E\ufb00icacy. Two of the most common barriers in the transition to adult care are\nadolescents\u2019 lack of self-management skills and knowledge de\ufb01cits around their illness and the\ntransition process [39]. Participants in our study experienced similar challenges, but they were\nmotivated to learn about their conditions and better manage their health. Along with illness-\nrelated knowledge, motivation plays a critical role in children\u2019s transition to independent self-\nmanagement [20]. We observed that participants valued information from sources that felt more\npersonal, such as YouTube and TikTok, which have been shown to facilitate social support and\nchronic illness management [47, 104]. One participant preferred the use of a chatbot explicitly be-\ncause it felt more personalized than other forms of information-seeking. Though only one partici-\npant mentioned the use of a chatbot, we see potential to design and deploy chatbot assistants to\nprovide personalized guidance and support for adolescents with chronic illness. For example,\nAdolescentBot [81] was e\ufb00ective in answering sensitive health-related queries from adolescents,\nserving as the \ufb01rst line of support for adolescents seeking care. In our study, participants some-\ntimes avoided asking their parents for help so as to not burden them. By interacting with a chatbot,\nadolescents can have the opportunity to improve their illness-related knowledge and attempt to\nsolve challenges on their own before turning to their parents. If the conversational agent is unable\nto provide adequate support, then it could escalate the communication to parents or healthcare\nproviders. For example, MD2Me [46] used text messages to reinforce illness management skills and\nprovide a way for adolescents to report health concerns, which were then categorized as urgent\nor non-urgent and relayed accordingly to healthcare providers. For non-urgent health concerns,\n\nProc. ACM Hum.-Comput. Interact., Vol. 8, No. CSCW2, Article 417. Publication date: November 2024.\n\n\fCollaborative Work in Adolescent Chronic Illness Management\n\n417:17\n\nwe suggest that the system requests adolescents\u2019 consent before forwarding their messages as a\nmeans of supporting their involvement in the decision-making process. In addition to providing\ninformational and decision-making support, we envision that chatbots can provide emotional sup-\nport to adolescents by leveraging large language models (LLMs). LLM-driven chatbots have the\ncapacity to engage in free-form conversation with users and provide empathetic interactions in\nhealth contexts [53], which can bene\ufb01t adolescents as they deal with emotional challenges related\nto their condition (e.g., the loss of normalcy). Though we did not ask participants for their views\non chatbots, we observed that they were interested in trying new technologies (e.g., download-\ning various mobile health applications and reading about smart monitoring devices). As such, we\nbelieve that they would \ufb01nd value in conversational agents, especially if they lack social support\nrelated to their illness. Future work could investigate how adolescents use chatbots to seek infor-\nmation and support, as well as how chatbots augment other forms of support received from family\nmembers and online communities.\n\n5.2.2 Building Confidence in Patient-Provider Communication. Another area where participants\nstruggled was communicating with their providers, particularly without the assistance of their par-\nents. The majority of youth with special healthcare needs do not receive transition planning sup-\nport, which involves a healthcare provider working with youth to develop self-management skills\nand meeting with them alone during preventive visits [60]. Despite the importance of one-on-one\nmeetings with providers, prior work has not addressed barriers to these meetings from adolescents\u2019\nperspectives. We found that participants were "
+            },
+            {
+              "id": "2409.18275v1",
+              "title": "Transitioning Together: Collaborative Work in Adolescent Chronic Illness Management",
+              "authors": [
+                "Rachael Zehrung",
+                "Madhu Reddy",
+                "Yunan Chen"
+              ],
+              "published": "2024-09-26T20:35:18Z",
+              "summary": "Adolescents with chronic illnesses need to learn self-management skills in preparation for the transition from pediatric to adult healthcare, which is associated with negative health outcomes for youth. However, few studies have explored how adolescents in a pre-transition stage practice self-management and collaborative management with their parents. Through interviews with 15 adolescents (aged 15-17), we found that adolescents managed mundane self-care tasks and experimented with lifestyle changes to be more independent, which sometimes conflicted with their parents' efforts to ensure their safety. Adolescents and their parents also performed shared activities that provided adolescents with the opportunity to learn and practice self-management skills. Based on our findings, we discuss considerations for technology design to facilitate transition and promote parent-adolescent collaboration in light of these tensions.",
+              "content": "nt skills and prepare them to handle the responsibilities of adult healthcare.\n\n5.2.1 Building Self-E\ufb00icacy. Two of the most common barriers in the transition to adult care are\nadolescents\u2019 lack of self-management skills and knowledge de\ufb01cits around their illness and the\ntransition process [39]. Participants in our study experienced similar challenges, but they were\nmotivated to learn about their conditions and better manage their health. Along with illness-\nrelated knowledge, motivation plays a critical role in children\u2019s transition to independent self-\nmanagement [20]. We observed that participants valued information from sources that felt more\npersonal, such as YouTube and TikTok, which have been shown to facilitate social support and\nchronic illness management [47, 104]. One participant preferred the use of a chatbot explicitly be-\ncause it felt more personalized than other forms of information-seeking. Though only one partici-\npant mentioned the use of a chatbot, we see potential to design and deploy chatbot assistants to\nprovide personalized guidance and support for adolescents with chronic illness. For example,\nAdolescentBot [81] was e\ufb00ective in answering sensitive health-related queries from adolescents,\nserving as the \ufb01rst line of support for adolescents seeking care. In our study, participants some-\ntimes avoided asking their parents for help so as to not burden them. By interacting with a chatbot,\nadolescents can have the opportunity to improve their illness-related knowledge and attempt to\nsolve challenges on their own before turning to their parents. If the conversational agent is unable\nto provide adequate support, then it could escalate the communication to parents or healthcare\nproviders. For example, MD2Me [46] used text messages to reinforce illness management skills and\nprovide a way for adolescents to report health concerns, which were then categorized as urgent\nor non-urgent and relayed accordingly to healthcare providers. For non-urgent health concerns,\n\nProc. ACM Hum.-Comput. Interact., Vol. 8, No. CSCW2, Article 417. Publication date: November 2024.\n\n\fCollaborative Work in Adolescent Chronic Illness Management\n\n417:17\n\nwe suggest that the system requests adolescents\u2019 consent before forwarding their messages as a\nmeans of supporting their involvement in the decision-making process. In addition to providing\ninformational and decision-making support, we envision that chatbots can provide emotional sup-\nport to adolescents by leveraging large language models (LLMs). LLM-driven chatbots have the\ncapacity to engage in free-form conversation with users and provide empathetic interactions in\nhealth contexts [53], which can bene\ufb01t adolescents as they deal with emotional challenges related\nto their condition (e.g., the loss of normalcy). Though we did not ask participants for their views\non chatbots, we observed that they were interested in trying new technologies (e.g., download-\ning various mobile health applications and reading about smart monitoring devices). As such, we\nbelieve that they would \ufb01nd value in conversational agents, especially if they lack social support\nrelated to their illness. Future work could investigate how adolescents use chatbots to seek infor-\nmation and support, as well as how chatbots augment other forms of support received from family\nmembers and online communities.\n\n5.2.2 Building Confidence in Patient-Provider Communication. Another area where participants\nstruggled was communicating with their providers, particularly without the assistance of their par-\nents. The majority of youth with special healthcare needs do not receive transition planning sup-\nport, which involves a healthcare provider working with youth to develop self-management skills\nand meeting with them alone during preventive visits [60]. Despite the importance of one-on-one\nmeetings with providers, prior work has not addressed barriers to these meetings from adolescents\u2019\nperspectives. We found that participants were hesitant to speak with providers by themselves be-\ncause they relied upon their parents for informational and emotional support. While attending\nappointments with their parents can be critical in earlier stages of the transition process, we empha-\nsize the importance of empowering adolescents to meet with providers alone. Technology can help\nprepare adolescents for appointments with their providers through collaborative track-\ning with their parents. Prior work has demonstrated that patient-generated health data can guide\npatient-provider discussions during visits and support shared decision-making [23, 72]. Shared\nnote-taking can engage adolescents in documenting and re\ufb02ecting upon their symptoms with the\nsupport of their parents, as well as facilitate discussions around health [40] and motivate healthier\nbehaviors [65, 67]. We observed that shared note-taking and re\ufb02ection provided participants with\nopportunities to build more complete health records and interpret their health behavi"
+            },
+            {
+              "id": "2409.18275v1",
+              "title": "Transitioning Together: Collaborative Work in Adolescent Chronic Illness Management",
+              "authors": [
+                "Rachael Zehrung",
+                "Madhu Reddy",
+                "Yunan Chen"
+              ],
+              "published": "2024-09-26T20:35:18Z",
+              "summary": "Adolescents with chronic illnesses need to learn self-management skills in preparation for the transition from pediatric to adult healthcare, which is associated with negative health outcomes for youth. However, few studies have explored how adolescents in a pre-transition stage practice self-management and collaborative management with their parents. Through interviews with 15 adolescents (aged 15-17), we found that adolescents managed mundane self-care tasks and experimented with lifestyle changes to be more independent, which sometimes conflicted with their parents' efforts to ensure their safety. Adolescents and their parents also performed shared activities that provided adolescents with the opportunity to learn and practice self-management skills. Based on our findings, we discuss considerations for technology design to facilitate transition and promote parent-adolescent collaboration in light of these tensions.",
+              "content": "concerns,\n\nProc. ACM Hum.-Comput. Interact., Vol. 8, No. CSCW2, Article 417. Publication date: November 2024.\n\n\fCollaborative Work in Adolescent Chronic Illness Management\n\n417:17\n\nwe suggest that the system requests adolescents\u2019 consent before forwarding their messages as a\nmeans of supporting their involvement in the decision-making process. In addition to providing\ninformational and decision-making support, we envision that chatbots can provide emotional sup-\nport to adolescents by leveraging large language models (LLMs). LLM-driven chatbots have the\ncapacity to engage in free-form conversation with users and provide empathetic interactions in\nhealth contexts [53], which can bene\ufb01t adolescents as they deal with emotional challenges related\nto their condition (e.g., the loss of normalcy). Though we did not ask participants for their views\non chatbots, we observed that they were interested in trying new technologies (e.g., download-\ning various mobile health applications and reading about smart monitoring devices). As such, we\nbelieve that they would \ufb01nd value in conversational agents, especially if they lack social support\nrelated to their illness. Future work could investigate how adolescents use chatbots to seek infor-\nmation and support, as well as how chatbots augment other forms of support received from family\nmembers and online communities.\n\n5.2.2 Building Confidence in Patient-Provider Communication. Another area where participants\nstruggled was communicating with their providers, particularly without the assistance of their par-\nents. The majority of youth with special healthcare needs do not receive transition planning sup-\nport, which involves a healthcare provider working with youth to develop self-management skills\nand meeting with them alone during preventive visits [60]. Despite the importance of one-on-one\nmeetings with providers, prior work has not addressed barriers to these meetings from adolescents\u2019\nperspectives. We found that participants were hesitant to speak with providers by themselves be-\ncause they relied upon their parents for informational and emotional support. While attending\nappointments with their parents can be critical in earlier stages of the transition process, we empha-\nsize the importance of empowering adolescents to meet with providers alone. Technology can help\nprepare adolescents for appointments with their providers through collaborative track-\ning with their parents. Prior work has demonstrated that patient-generated health data can guide\npatient-provider discussions during visits and support shared decision-making [23, 72]. Shared\nnote-taking can engage adolescents in documenting and re\ufb02ecting upon their symptoms with the\nsupport of their parents, as well as facilitate discussions around health [40] and motivate healthier\nbehaviors [65, 67]. We observed that shared note-taking and re\ufb02ection provided participants with\nopportunities to build more complete health records and interpret their health behaviors. This\npractice can further serve as an opportunity for parents to teach adolescents self-management\nskills (e.g., interpreting recorded blood glucose levels) and the ability to identify trends in their\nsymptoms. Engaging in collaborative re\ufb02ection can enable adolescents to develop a deeper under-\nstanding of their medical history and be more prepared to answer providers\u2019 questions about their\nhealth. One participant even took a physical diary containing shared notes to appointments when\nher mother could not attend, suggesting that shared data can provide adolescents with the knowl-\nedge and con\ufb01dence they need to meet with providers alone. We see possibilities for the design of\napplications that align with participants\u2019 existing practices of writing in shared diaries and posting\nsticky notes in shared spaces. For example, adolescents and parents could use their own mobile\ndevices to create notes, which would then be shown on a tablet displayed in a central location in\nthe home (e.g., [79]). A tablet-based application could also support the co-creation of notes. The\nbene\ufb01t of this design is that adolescents and parents would be able to add notes asynchronously\nfrom di\ufb00erent locations, while still providing a shared display that facilitates collaboration and\nprompts discussion.\n\nProc. ACM Hum.-Comput. Interact., Vol. 8, No. CSCW2, Article 417. Publication date: November 2024.\n\n\f417:18\n\nRachael Zehrung, Madhu Reddy, and Yunan Chen\n\n5.3 Limitations\nWe conducted interviews with adolescents diagnosed with di\ufb00erent chronic illnesses. While this\ndiversity allowed us to explore commonalities in illness management, it is important to acknowl-\nedge that there can be di\ufb00erences in management practices depending upon the speci\ufb01c condition.\nFor instance, certain conditions such as asthma and diabetes are more prone to acute emergen-\ncies. As a result, the focus of medical management may shift more towards contingency planning.\nIn addition, we did not collect demographic data "
+            },
+            {
+              "id": "2409.18275v1",
+              "title": "Transitioning Together: Collaborative Work in Adolescent Chronic Illness Management",
+              "authors": [
+                "Rachael Zehrung",
+                "Madhu Reddy",
+                "Yunan Chen"
+              ],
+              "published": "2024-09-26T20:35:18Z",
+              "summary": "Adolescents with chronic illnesses need to learn self-management skills in preparation for the transition from pediatric to adult healthcare, which is associated with negative health outcomes for youth. However, few studies have explored how adolescents in a pre-transition stage practice self-management and collaborative management with their parents. Through interviews with 15 adolescents (aged 15-17), we found that adolescents managed mundane self-care tasks and experimented with lifestyle changes to be more independent, which sometimes conflicted with their parents' efforts to ensure their safety. Adolescents and their parents also performed shared activities that provided adolescents with the opportunity to learn and practice self-management skills. Based on our findings, we discuss considerations for technology design to facilitate transition and promote parent-adolescent collaboration in light of these tensions.",
+              "content": "to design and deploy chatbot assistants to\nprovide personalized guidance and support for adolescents with chronic illness. For example,\nAdolescentBot [81] was e\ufb00ective in answering sensitive health-related queries from adolescents,\nserving as the \ufb01rst line of support for adolescents seeking care. In our study, participants some-\ntimes avoided asking their parents for help so as to not burden them. By interacting with a chatbot,\nadolescents can have the opportunity to improve their illness-related knowledge and attempt to\nsolve challenges on their own before turning to their parents. If the conversational agent is unable\nto provide adequate support, then it could escalate the communication to parents or healthcare\nproviders. For example, MD2Me [46] used text messages to reinforce illness management skills and\nprovide a way for adolescents to report health concerns, which were then categorized as urgent\nor non-urgent and relayed accordingly to healthcare providers. For non-urgent health concerns,\n\nProc. ACM Hum.-Comput. Interact., Vol. 8, No. CSCW2, Article 417. Publication date: November 2024.\n\n\fCollaborative Work in Adolescent Chronic Illness Management\n\n417:17\n\nwe suggest that the system requests adolescents\u2019 consent before forwarding their messages as a\nmeans of supporting their involvement in the decision-making process. In addition to providing\ninformational and decision-making support, we envision that chatbots can provide emotional sup-\nport to adolescents by leveraging large language models (LLMs). LLM-driven chatbots have the\ncapacity to engage in free-form conversation with users and provide empathetic interactions in\nhealth contexts [53], which can bene\ufb01t adolescents as they deal with emotional challenges related\nto their condition (e.g., the loss of normalcy). Though we did not ask participants for their views\non chatbots, we observed that they were interested in trying new technologies (e.g., download-\ning various mobile health applications and reading about smart monitoring devices). As such, we\nbelieve that they would \ufb01nd value in conversational agents, especially if they lack social support\nrelated to their illness. Future work could investigate how adolescents use chatbots to seek infor-\nmation and support, as well as how chatbots augment other forms of support received from family\nmembers and online communities.\n\n5.2.2 Building Confidence in Patient-Provider Communication. Another area where participants\nstruggled was communicating with their providers, particularly without the assistance of their par-\nents. The majority of youth with special healthcare needs do not receive transition planning sup-\nport, which involves a healthcare provider working with youth to develop self-management skills\nand meeting with them alone during preventive visits [60]. Despite the importance of one-on-one\nmeetings with providers, prior work has not addressed barriers to these meetings from adolescents\u2019\nperspectives. We found that participants were hesitant to speak with providers by themselves be-\ncause they relied upon their parents for informational and emotional support. While attending\nappointments with their parents can be critical in earlier stages of the transition process, we empha-\nsize the importance of empowering adolescents to meet with providers alone. Technology can help\nprepare adolescents for appointments with their providers through collaborative track-\ning with their parents. Prior work has demonstrated that patient-generated health data can guide\npatient-provider discussions during visits and support shared decision-making [23, 72]. Shared\nnote-taking can engage adolescents in documenting and re\ufb02ecting upon their symptoms with the\nsupport of their parents, as well as facilitate discussions around health [40] and motivate healthier\nbehaviors [65, 67]. We observed that shared note-taking and re\ufb02ection provided participants with\nopportunities to build more complete health records and interpret their health behaviors. This\npractice can further serve as an opportunity for parents to teach adolescents self-management\nskills (e.g., interpreting recorded blood glucose levels) and the ability to identify trends in their\nsymptoms. Engaging in collaborative re\ufb02ection can enable adolescents to develop a deeper under-\nstanding of their medical history and be more prepared to answer providers\u2019 questions about their\nhealth. One participant even took a physical diary containing shared notes to appointments when\nher mother could not attend, suggesting that shared data can provide adolescents with the knowl-\nedge and con\ufb01dence they need to meet with providers alone. We see possibilities for the design of\napplications that align with participants\u2019 existing practices of writing in shared diaries and posting\nsticky notes in shared spaces. For example, adolescents and parents could use their own mobile\ndevices to create notes, which would then be shown on a tablet displayed in a central location in\nthe home (e.g"
+            }
+          ],
+          "tool_call_id": "call_ESch8KqObSvMfiPtfFmry3hg",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:45:51.564153+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\":\"self-attention in large language models\",\"paper_name\":\"self-attention in large language models\"}",
+          "tool_call_id": "call_RHQK6uPyQ7IMM8msHIzNnEAS",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 6310,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 33,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:45:51+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1JPbcBph7xV2znkKKYmbrQG4pbz",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_RHQK6uPyQ7IMM8msHIzNnEAS",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:46:02.174411+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\":\"self-attention\",\"paper_name\":\"self-attention\"}",
+          "tool_call_id": "call_H9GE2Oiqm9LtsY8NYEbKBCdh",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 6354,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 6272,
+        "output_tokens": 25,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:46:02+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1JavhzTMw90EO50c33OqX1Z7mmk",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_H9GE2Oiqm9LtsY8NYEbKBCdh",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:47:19.003457+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"importance of self-attention in LLMs\",\"paper_name\":\"importance of self-attention in large language models\"}",
+          "tool_call_id": "call_FF6uUepFI9PPeZPAYYHBrC7e",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 6390,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 6272,
+        "output_tokens": 34,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:47:19+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1KptyjmDP1x0ode300CZedfosti",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2402.14679v2",
+              "title": "Is Self-knowledge and Action Consistent or Not: Investigating Large Language Model's Personality",
+              "authors": [
+                "Yiming Ai",
+                "Zhiwei He",
+                "Ziyin Zhang",
+                "Wenhong Zhu",
+                "Hongkun Hao",
+                "Kai Yu",
+                "Lingjun Chen",
+                "Rui Wang"
+              ],
+              "published": "2024-02-22T16:32:08Z",
+              "summary": "In this study, we delve into the validity of conventional personality questionnaires in capturing the human-like personality traits of Large Language Models (LLMs). Our objective is to assess the congruence between the personality traits LLMs claim to possess and their demonstrated tendencies in real-world scenarios. By conducting an extensive examination of LLM outputs against observed human response patterns, we aim to understand the disjunction between self-knowledge and action in LLMs.",
+              "content": " indicate greater\nsimilarity.\n\nscos =\n\n(cid:113)(cid:80)n\n\n(cid:80)n\n\ni=1 (xi \u00d7 yi)\n(cid:113)(cid:80)n\n\ni=1 (xi)2 \u00d7\n\ni=1 (yi)2 ,\n\n(1)\n\nwhere xi are LLMs\u2019 responses of personality knowledge\nquestionnaire, yi are LLMs\u2019 corresponding responses of\nscenario and action questionnaire, and xi and yi correspond\n\n3\n\n\fIs Self-knowledge and Action Consistent or Not: Investigating Large Language Model\u2019s Personality\n\nTable 1. LLMs\u2019 Self-knowledge - Action Congruence Performance with Reference of Human Respondents\u2019 Performance (AVG, SD,\nMIN and MAX represents the average number, standard deviation, minimum and maximum.)\n\nLLMs & Human\nRespondents\n\nCosine\nSimilarity\n\nSpearman Rank\nCorrelation Coefficient\n\nValue Mean\nDifference\n\nProportion of\nConsistent Pairs\n\nChatGLM3\nGPT-3.5-turbo\nGPT-4\nVicuna-13b\nVicuna-33b\nLLMs(AVG \u00b1 SD)\n\nHuman(AVG \u00b1 SD)\nHuman(MIN)\nHuman(MAX)\n\n0.24\n0.17\n0.52\n0.08\n0.18\n0.24 \u00b1 0.15\n\n0.76 \u00b1 0.09\n0.61\n0.95\n\n0.23\n0.19\n0.56\n0.07\n0.06\n0.22 \u00b1 0.18\n\n0.78 \u00b1 0.08\n0.66\n0.96\n\n1.58\n1.74\n1.02\n1.57\n1.68\n1.52 \u00b1 0.26\n\n0.69 \u00b1 0.27\n1.08\n0.07\n\n47.22%\n50.56%\n78.89%\n52.78%\n52.22%\n56.78 \u00b1 11.25%\n\n84.69 \u00b1 8.22%\n73.78%\n99.44%\n\nto each other one-to-one.\n\nSpearman\u2019s Rank Correlation Coefficient\nA non-\nparametric measure of rank correlation, assessing how well\nthe relationship between two variables can be described\nusing a monotonic function. Its value ranges from -1 to\n1, where 1 means a perfect association of ranks. Specifi-\ncally, we rank the responses on two questionnaires of the\nLLMs based on their numerical values separately. Then,\nwe calculate the difference in rankings for each personality\nknowledge \u2013 scenario & action pair. Afterwards, we use the\nfollowing formula to calculate the coefficient rs.\n\nrs = 1 \u2212\n\n6 (cid:80) d2\ni\nn(n2 \u2212 1)\n\n,\n\n(2)\n\nwhere di is the difference in rankings of each pair and n is\nthe total count of pairs.\n\nValue Mean Difference (VMD) Value Mean Difference\nis the average difference in responses across all paired items\nin the questionnaires, as shown in the formula below.\n\nVMD =\n\n(cid:80) di\nn\n\n,\n\n(3)\n\nwhere di is the difference of responses in each pair.\n\nProportion of Consistent Pairs Recognizing that minor\ndiscrepancies are natural when comparing psychological\ntendencies with actual actions, this metric quantifies the\nproportion of item pairs with a response difference of 1 or\nless, focusing on the consistency of tendencies rather than\nexact matches.\n\nPc =\n\n,\n\n(4)\n\nNc\nNt\n\nwhere Nc is the number of consistent pairs, Nt is the total\nnumber of pairs.\n\nFor this study, we recruited 16 participants, comprising 8\nmales and 8 females, all native Chinese speakers with an\n\n4\n\nEnglish proficiency level of CEFR C1. As shown in Table\n1, the analysis of their response data yielded an average\nCosine Similarity and Spearman\u2019s Rank Correlation Coeffi-\ncient above 0.75, with a Value Mean Difference around 0.68,\nand a Proportion of Consistent Pairs exceeding 84%. These\nresults indicate a high degree of similarity and strong corre-\nlation between responses to the two types of questionnaires,\nsuggesting a basic consistency in human self-knowledge and\nan ability to align self-knowledge with action in real-life\nscenarios.\n\nThe same questionnaires were administered to the 5 LLMs\nselected in Section B, and their responses were analyzed\nusing the aforementioned metrics. Compared to human\nrespondents, the similarity in LLMs\u2019 responses is notably\nlower, and the corresponding significance test is shown in\nAppendix F. Specifically, the average Cosine Similarity and\nSpearman\u2019s Rank Correlation Coefficient for LLMs are sub-\nstantially below those of human respondents, with a huge\ndifference exceeding 0.42. The Value Mean Difference for\nLLMs averages around 1.52, indicating a substantial diver-\ngence in self-knowledge between the two types of question-\nnaires for LLMs. And as for most LLMs, the proportion\nof consistent pairs falls below 55%, raising questions about\nLLMs\u2019 ability to achieve self-knowledge-action unity in\npractice.\n\n4. Conclusion\n\nWe demonstrate that while LLMs exhibit some capacity to\nmimic human-like tendencies, there are significant gaps in\nthe coherence between their stated personality and exhibited\nbehaviors. This disparity probably suggests a limitation in\nLLMs\u2019 ability to authentically replicate human personality\ndynamics. Our study underscores the importance of further\nexploration into enhancing LLMs\u2019 ability to perform more\ngenuinely human-like interactions, suggesting avenues for\nfuture research in improving the psychological realism of\n\n\fIs Self-knowledge and Action Consistent or Not: Investigating Large Language Model\u2019s Personality\n\nLLM outputs.\n\nLimitations\n\nIn this study, we delve into the alignment between what\nLarge Language Models (LLMs) claim and their actions,\naiming to discern if there\u2019s a consistency in their self-\nknowledge and their actual behavior tendency. This ob-\nservation is merely one among several hypotheses exploring\nthe root causes of this inconsistency, underscoring the need\nfor further"
+            },
+            {
+              "id": "2402.14679v2",
+              "title": "Is Self-knowledge and Action Consistent or Not: Investigating Large Language Model's Personality",
+              "authors": [
+                "Yiming Ai",
+                "Zhiwei He",
+                "Ziyin Zhang",
+                "Wenhong Zhu",
+                "Hongkun Hao",
+                "Kai Yu",
+                "Lingjun Chen",
+                "Rui Wang"
+              ],
+              "published": "2024-02-22T16:32:08Z",
+              "summary": "In this study, we delve into the validity of conventional personality questionnaires in capturing the human-like personality traits of Large Language Models (LLMs). Our objective is to assess the congruence between the personality traits LLMs claim to possess and their demonstrated tendencies in real-world scenarios. By conducting an extensive examination of LLM outputs against observed human response patterns, we aim to understand the disjunction between self-knowledge and action in LLMs.",
+              "content": "\n1.68\n1.52 \u00b1 0.26\n\n0.69 \u00b1 0.27\n1.08\n0.07\n\n47.22%\n50.56%\n78.89%\n52.78%\n52.22%\n56.78 \u00b1 11.25%\n\n84.69 \u00b1 8.22%\n73.78%\n99.44%\n\nto each other one-to-one.\n\nSpearman\u2019s Rank Correlation Coefficient\nA non-\nparametric measure of rank correlation, assessing how well\nthe relationship between two variables can be described\nusing a monotonic function. Its value ranges from -1 to\n1, where 1 means a perfect association of ranks. Specifi-\ncally, we rank the responses on two questionnaires of the\nLLMs based on their numerical values separately. Then,\nwe calculate the difference in rankings for each personality\nknowledge \u2013 scenario & action pair. Afterwards, we use the\nfollowing formula to calculate the coefficient rs.\n\nrs = 1 \u2212\n\n6 (cid:80) d2\ni\nn(n2 \u2212 1)\n\n,\n\n(2)\n\nwhere di is the difference in rankings of each pair and n is\nthe total count of pairs.\n\nValue Mean Difference (VMD) Value Mean Difference\nis the average difference in responses across all paired items\nin the questionnaires, as shown in the formula below.\n\nVMD =\n\n(cid:80) di\nn\n\n,\n\n(3)\n\nwhere di is the difference of responses in each pair.\n\nProportion of Consistent Pairs Recognizing that minor\ndiscrepancies are natural when comparing psychological\ntendencies with actual actions, this metric quantifies the\nproportion of item pairs with a response difference of 1 or\nless, focusing on the consistency of tendencies rather than\nexact matches.\n\nPc =\n\n,\n\n(4)\n\nNc\nNt\n\nwhere Nc is the number of consistent pairs, Nt is the total\nnumber of pairs.\n\nFor this study, we recruited 16 participants, comprising 8\nmales and 8 females, all native Chinese speakers with an\n\n4\n\nEnglish proficiency level of CEFR C1. As shown in Table\n1, the analysis of their response data yielded an average\nCosine Similarity and Spearman\u2019s Rank Correlation Coeffi-\ncient above 0.75, with a Value Mean Difference around 0.68,\nand a Proportion of Consistent Pairs exceeding 84%. These\nresults indicate a high degree of similarity and strong corre-\nlation between responses to the two types of questionnaires,\nsuggesting a basic consistency in human self-knowledge and\nan ability to align self-knowledge with action in real-life\nscenarios.\n\nThe same questionnaires were administered to the 5 LLMs\nselected in Section B, and their responses were analyzed\nusing the aforementioned metrics. Compared to human\nrespondents, the similarity in LLMs\u2019 responses is notably\nlower, and the corresponding significance test is shown in\nAppendix F. Specifically, the average Cosine Similarity and\nSpearman\u2019s Rank Correlation Coefficient for LLMs are sub-\nstantially below those of human respondents, with a huge\ndifference exceeding 0.42. The Value Mean Difference for\nLLMs averages around 1.52, indicating a substantial diver-\ngence in self-knowledge between the two types of question-\nnaires for LLMs. And as for most LLMs, the proportion\nof consistent pairs falls below 55%, raising questions about\nLLMs\u2019 ability to achieve self-knowledge-action unity in\npractice.\n\n4. Conclusion\n\nWe demonstrate that while LLMs exhibit some capacity to\nmimic human-like tendencies, there are significant gaps in\nthe coherence between their stated personality and exhibited\nbehaviors. This disparity probably suggests a limitation in\nLLMs\u2019 ability to authentically replicate human personality\ndynamics. Our study underscores the importance of further\nexploration into enhancing LLMs\u2019 ability to perform more\ngenuinely human-like interactions, suggesting avenues for\nfuture research in improving the psychological realism of\n\n\fIs Self-knowledge and Action Consistent or Not: Investigating Large Language Model\u2019s Personality\n\nLLM outputs.\n\nLimitations\n\nIn this study, we delve into the alignment between what\nLarge Language Models (LLMs) claim and their actions,\naiming to discern if there\u2019s a consistency in their self-\nknowledge and their actual behavior tendency. This ob-\nservation is merely one among several hypotheses exploring\nthe root causes of this inconsistency, underscoring the need\nfor further investigation into the fundamental reasons be-\nhind it. Moreover, the scope of our initial experiments was\nlimited to a selection of several LLMs. Future endeavors\nwill expand this investigation to encompass a broader array\nof models. Additionally, our study has yet to identify an\neffective strategy for enhancing the congruence between\nLLMs\u2019 self-knowledge and action. As we move forward,\nour efforts will focus on leveraging the insights gained from\nthis research to improve the performance and reliability\nof LLMs, paving the way for models that more accurately\nmirror human thought and behavior.\n\nImpact Statement\n\nOur personality knowledge survey leverages the TDA-100,\nBFI-44, and the 16 Personalities Test, which are extensively\nrecognized and employed within the personality knowledge\ndomain. These tests, available in both Chinese and English,\nare backed by thorough reliability and validity analyses. We\nensured the integrity of these instruments by maintaining\ntheir original content wit"
+            },
+            {
+              "id": "2402.14679v2",
+              "title": "Is Self-knowledge and Action Consistent or Not: Investigating Large Language Model's Personality",
+              "authors": [
+                "Yiming Ai",
+                "Zhiwei He",
+                "Ziyin Zhang",
+                "Wenhong Zhu",
+                "Hongkun Hao",
+                "Kai Yu",
+                "Lingjun Chen",
+                "Rui Wang"
+              ],
+              "published": "2024-02-22T16:32:08Z",
+              "summary": "In this study, we delve into the validity of conventional personality questionnaires in capturing the human-like personality traits of Large Language Models (LLMs). Our objective is to assess the congruence between the personality traits LLMs claim to possess and their demonstrated tendencies in real-world scenarios. By conducting an extensive examination of LLM outputs against observed human response patterns, we aim to understand the disjunction between self-knowledge and action in LLMs.",
+              "content": "la below.\n\nVMD =\n\n(cid:80) di\nn\n\n,\n\n(3)\n\nwhere di is the difference of responses in each pair.\n\nProportion of Consistent Pairs Recognizing that minor\ndiscrepancies are natural when comparing psychological\ntendencies with actual actions, this metric quantifies the\nproportion of item pairs with a response difference of 1 or\nless, focusing on the consistency of tendencies rather than\nexact matches.\n\nPc =\n\n,\n\n(4)\n\nNc\nNt\n\nwhere Nc is the number of consistent pairs, Nt is the total\nnumber of pairs.\n\nFor this study, we recruited 16 participants, comprising 8\nmales and 8 females, all native Chinese speakers with an\n\n4\n\nEnglish proficiency level of CEFR C1. As shown in Table\n1, the analysis of their response data yielded an average\nCosine Similarity and Spearman\u2019s Rank Correlation Coeffi-\ncient above 0.75, with a Value Mean Difference around 0.68,\nand a Proportion of Consistent Pairs exceeding 84%. These\nresults indicate a high degree of similarity and strong corre-\nlation between responses to the two types of questionnaires,\nsuggesting a basic consistency in human self-knowledge and\nan ability to align self-knowledge with action in real-life\nscenarios.\n\nThe same questionnaires were administered to the 5 LLMs\nselected in Section B, and their responses were analyzed\nusing the aforementioned metrics. Compared to human\nrespondents, the similarity in LLMs\u2019 responses is notably\nlower, and the corresponding significance test is shown in\nAppendix F. Specifically, the average Cosine Similarity and\nSpearman\u2019s Rank Correlation Coefficient for LLMs are sub-\nstantially below those of human respondents, with a huge\ndifference exceeding 0.42. The Value Mean Difference for\nLLMs averages around 1.52, indicating a substantial diver-\ngence in self-knowledge between the two types of question-\nnaires for LLMs. And as for most LLMs, the proportion\nof consistent pairs falls below 55%, raising questions about\nLLMs\u2019 ability to achieve self-knowledge-action unity in\npractice.\n\n4. Conclusion\n\nWe demonstrate that while LLMs exhibit some capacity to\nmimic human-like tendencies, there are significant gaps in\nthe coherence between their stated personality and exhibited\nbehaviors. This disparity probably suggests a limitation in\nLLMs\u2019 ability to authentically replicate human personality\ndynamics. Our study underscores the importance of further\nexploration into enhancing LLMs\u2019 ability to perform more\ngenuinely human-like interactions, suggesting avenues for\nfuture research in improving the psychological realism of\n\n\fIs Self-knowledge and Action Consistent or Not: Investigating Large Language Model\u2019s Personality\n\nLLM outputs.\n\nLimitations\n\nIn this study, we delve into the alignment between what\nLarge Language Models (LLMs) claim and their actions,\naiming to discern if there\u2019s a consistency in their self-\nknowledge and their actual behavior tendency. This ob-\nservation is merely one among several hypotheses exploring\nthe root causes of this inconsistency, underscoring the need\nfor further investigation into the fundamental reasons be-\nhind it. Moreover, the scope of our initial experiments was\nlimited to a selection of several LLMs. Future endeavors\nwill expand this investigation to encompass a broader array\nof models. Additionally, our study has yet to identify an\neffective strategy for enhancing the congruence between\nLLMs\u2019 self-knowledge and action. As we move forward,\nour efforts will focus on leveraging the insights gained from\nthis research to improve the performance and reliability\nof LLMs, paving the way for models that more accurately\nmirror human thought and behavior.\n\nImpact Statement\n\nOur personality knowledge survey leverages the TDA-100,\nBFI-44, and the 16 Personalities Test, which are extensively\nrecognized and employed within the personality knowledge\ndomain. These tests, available in both Chinese and English,\nare backed by thorough reliability and validity analyses. We\nensured the integrity of these instruments by maintaining\ntheir original content without any modifications. The de-\nsign of every questionnaire intentionally avoids any bias\nrelated to gender and is free from racial content, fostering\nan inclusive approach. Participants\u2019 anonymity was strictly\npreserved during the survey process. Moreover, all indi-\nviduals were fully informed about the purpose of the study\nand consented to their responses being utilized for scientific\nresearch, thereby arising no ethical issues.\n\nAcknowledgement\n\nThis paper is partially supported by SMP-Zhipu.AI Large\nModel Cross-Disciplinary Fund.\n\nReferences\n\nAllport, G. W. Personality: A psychological interpreta-\ntion. 1937. URL https://psycnet.apa.org/\nrecord/1938-01964-000.\n\nanalysis\n\nBrown, A. and Maydeu-Olivares, A.\ngraded-preference\nof\n\nOrdinal fac-\nquestionnaire\nStructural Equation Modeling: A Multidis-\nURL\n\ntor\ndata.\nciplinary Journal, 25(4):516\u2013529, 2018.\n\nhttps://www.tandfonline.com/doi/abs/\n10.1080/10705511.2017.1392247.\n\nCosta, P. T. and McCrae, R. R. The revised neo personality\ninvento"
+            },
+            {
+              "id": "2402.14679v2",
+              "title": "Is Self-knowledge and Action Consistent or Not: Investigating Large Language Model's Personality",
+              "authors": [
+                "Yiming Ai",
+                "Zhiwei He",
+                "Ziyin Zhang",
+                "Wenhong Zhu",
+                "Hongkun Hao",
+                "Kai Yu",
+                "Lingjun Chen",
+                "Rui Wang"
+              ],
+              "published": "2024-02-22T16:32:08Z",
+              "summary": "In this study, we delve into the validity of conventional personality questionnaires in capturing the human-like personality traits of Large Language Models (LLMs). Our objective is to assess the congruence between the personality traits LLMs claim to possess and their demonstrated tendencies in real-world scenarios. By conducting an extensive examination of LLM outputs against observed human response patterns, we aim to understand the disjunction between self-knowledge and action in LLMs.",
+              "content": "the two types of questionnaires,\nsuggesting a basic consistency in human self-knowledge and\nan ability to align self-knowledge with action in real-life\nscenarios.\n\nThe same questionnaires were administered to the 5 LLMs\nselected in Section B, and their responses were analyzed\nusing the aforementioned metrics. Compared to human\nrespondents, the similarity in LLMs\u2019 responses is notably\nlower, and the corresponding significance test is shown in\nAppendix F. Specifically, the average Cosine Similarity and\nSpearman\u2019s Rank Correlation Coefficient for LLMs are sub-\nstantially below those of human respondents, with a huge\ndifference exceeding 0.42. The Value Mean Difference for\nLLMs averages around 1.52, indicating a substantial diver-\ngence in self-knowledge between the two types of question-\nnaires for LLMs. And as for most LLMs, the proportion\nof consistent pairs falls below 55%, raising questions about\nLLMs\u2019 ability to achieve self-knowledge-action unity in\npractice.\n\n4. Conclusion\n\nWe demonstrate that while LLMs exhibit some capacity to\nmimic human-like tendencies, there are significant gaps in\nthe coherence between their stated personality and exhibited\nbehaviors. This disparity probably suggests a limitation in\nLLMs\u2019 ability to authentically replicate human personality\ndynamics. Our study underscores the importance of further\nexploration into enhancing LLMs\u2019 ability to perform more\ngenuinely human-like interactions, suggesting avenues for\nfuture research in improving the psychological realism of\n\n\fIs Self-knowledge and Action Consistent or Not: Investigating Large Language Model\u2019s Personality\n\nLLM outputs.\n\nLimitations\n\nIn this study, we delve into the alignment between what\nLarge Language Models (LLMs) claim and their actions,\naiming to discern if there\u2019s a consistency in their self-\nknowledge and their actual behavior tendency. This ob-\nservation is merely one among several hypotheses exploring\nthe root causes of this inconsistency, underscoring the need\nfor further investigation into the fundamental reasons be-\nhind it. Moreover, the scope of our initial experiments was\nlimited to a selection of several LLMs. Future endeavors\nwill expand this investigation to encompass a broader array\nof models. Additionally, our study has yet to identify an\neffective strategy for enhancing the congruence between\nLLMs\u2019 self-knowledge and action. As we move forward,\nour efforts will focus on leveraging the insights gained from\nthis research to improve the performance and reliability\nof LLMs, paving the way for models that more accurately\nmirror human thought and behavior.\n\nImpact Statement\n\nOur personality knowledge survey leverages the TDA-100,\nBFI-44, and the 16 Personalities Test, which are extensively\nrecognized and employed within the personality knowledge\ndomain. These tests, available in both Chinese and English,\nare backed by thorough reliability and validity analyses. We\nensured the integrity of these instruments by maintaining\ntheir original content without any modifications. The de-\nsign of every questionnaire intentionally avoids any bias\nrelated to gender and is free from racial content, fostering\nan inclusive approach. Participants\u2019 anonymity was strictly\npreserved during the survey process. Moreover, all indi-\nviduals were fully informed about the purpose of the study\nand consented to their responses being utilized for scientific\nresearch, thereby arising no ethical issues.\n\nAcknowledgement\n\nThis paper is partially supported by SMP-Zhipu.AI Large\nModel Cross-Disciplinary Fund.\n\nReferences\n\nAllport, G. W. Personality: A psychological interpreta-\ntion. 1937. URL https://psycnet.apa.org/\nrecord/1938-01964-000.\n\nanalysis\n\nBrown, A. and Maydeu-Olivares, A.\ngraded-preference\nof\n\nOrdinal fac-\nquestionnaire\nStructural Equation Modeling: A Multidis-\nURL\n\ntor\ndata.\nciplinary Journal, 25(4):516\u2013529, 2018.\n\nhttps://www.tandfonline.com/doi/abs/\n10.1080/10705511.2017.1392247.\n\nCosta, P. T. and McCrae, R. R. The revised neo personality\ninventory (neo-pi-r). The SAGE handbook of personality\ntheory and assessment, 2(2):179\u2013198, 2008.\n\nGabriel, I. Artificial intelligence, values, and align-\nment. Minds and machines, 30(3):411\u2013437, 2020.\nURL https://link.springer.com/article/\n10.1007/s11023-020-09539-2.\n\nGoldberg, L. R.\n\nLanguage and individual differ-\nThe search for universals in personality\nReview of personality and social psy-\nURL https:\n\nences:\nlexicons.\nchology,\n//www.scienceopen.com/document?vid=\n3cdca9a2-ab50-48bf-97b5-0c2236e65098.\n\n2(1):141\u2013165,\n\n1981.\n\nGoldberg, L. R. The development of markers for the\nbig-five factor structure. Psychological assessment, 4\n(1):26, 1992. URL https://psycnet.apa.org/\nrecord/1992-25730-001.\n\nGolfried, M. R. and Kent, R. N. Traditional versus behav-\nioral personality assessment: A comparison of method-\nological and theoretical assumptions. Psychological\nBulletin, 77(6):409, 1972. URL https://psycnet.\napa.org/record/1972-29191-001.\n\nGU, X.-Y. and Hu, S.\nand application.\n\nment\nlogical\nhttps"
+            },
+            {
+              "id": "2402.14679v2",
+              "title": "Is Self-knowledge and Action Consistent or Not: Investigating Large Language Model's Personality",
+              "authors": [
+                "Yiming Ai",
+                "Zhiwei He",
+                "Ziyin Zhang",
+                "Wenhong Zhu",
+                "Hongkun Hao",
+                "Kai Yu",
+                "Lingjun Chen",
+                "Rui Wang"
+              ],
+              "published": "2024-02-22T16:32:08Z",
+              "summary": "In this study, we delve into the validity of conventional personality questionnaires in capturing the human-like personality traits of Large Language Models (LLMs). Our objective is to assess the congruence between the personality traits LLMs claim to possess and their demonstrated tendencies in real-world scenarios. By conducting an extensive examination of LLM outputs against observed human response patterns, we aim to understand the disjunction between self-knowledge and action in LLMs.",
+              "content": "nstrate that while LLMs exhibit some capacity to\nmimic human-like tendencies, there are significant gaps in\nthe coherence between their stated personality and exhibited\nbehaviors. This disparity probably suggests a limitation in\nLLMs\u2019 ability to authentically replicate human personality\ndynamics. Our study underscores the importance of further\nexploration into enhancing LLMs\u2019 ability to perform more\ngenuinely human-like interactions, suggesting avenues for\nfuture research in improving the psychological realism of\n\n\fIs Self-knowledge and Action Consistent or Not: Investigating Large Language Model\u2019s Personality\n\nLLM outputs.\n\nLimitations\n\nIn this study, we delve into the alignment between what\nLarge Language Models (LLMs) claim and their actions,\naiming to discern if there\u2019s a consistency in their self-\nknowledge and their actual behavior tendency. This ob-\nservation is merely one among several hypotheses exploring\nthe root causes of this inconsistency, underscoring the need\nfor further investigation into the fundamental reasons be-\nhind it. Moreover, the scope of our initial experiments was\nlimited to a selection of several LLMs. Future endeavors\nwill expand this investigation to encompass a broader array\nof models. Additionally, our study has yet to identify an\neffective strategy for enhancing the congruence between\nLLMs\u2019 self-knowledge and action. As we move forward,\nour efforts will focus on leveraging the insights gained from\nthis research to improve the performance and reliability\nof LLMs, paving the way for models that more accurately\nmirror human thought and behavior.\n\nImpact Statement\n\nOur personality knowledge survey leverages the TDA-100,\nBFI-44, and the 16 Personalities Test, which are extensively\nrecognized and employed within the personality knowledge\ndomain. These tests, available in both Chinese and English,\nare backed by thorough reliability and validity analyses. We\nensured the integrity of these instruments by maintaining\ntheir original content without any modifications. The de-\nsign of every questionnaire intentionally avoids any bias\nrelated to gender and is free from racial content, fostering\nan inclusive approach. Participants\u2019 anonymity was strictly\npreserved during the survey process. Moreover, all indi-\nviduals were fully informed about the purpose of the study\nand consented to their responses being utilized for scientific\nresearch, thereby arising no ethical issues.\n\nAcknowledgement\n\nThis paper is partially supported by SMP-Zhipu.AI Large\nModel Cross-Disciplinary Fund.\n\nReferences\n\nAllport, G. W. Personality: A psychological interpreta-\ntion. 1937. URL https://psycnet.apa.org/\nrecord/1938-01964-000.\n\nanalysis\n\nBrown, A. and Maydeu-Olivares, A.\ngraded-preference\nof\n\nOrdinal fac-\nquestionnaire\nStructural Equation Modeling: A Multidis-\nURL\n\ntor\ndata.\nciplinary Journal, 25(4):516\u2013529, 2018.\n\nhttps://www.tandfonline.com/doi/abs/\n10.1080/10705511.2017.1392247.\n\nCosta, P. T. and McCrae, R. R. The revised neo personality\ninventory (neo-pi-r). The SAGE handbook of personality\ntheory and assessment, 2(2):179\u2013198, 2008.\n\nGabriel, I. Artificial intelligence, values, and align-\nment. Minds and machines, 30(3):411\u2013437, 2020.\nURL https://link.springer.com/article/\n10.1007/s11023-020-09539-2.\n\nGoldberg, L. R.\n\nLanguage and individual differ-\nThe search for universals in personality\nReview of personality and social psy-\nURL https:\n\nences:\nlexicons.\nchology,\n//www.scienceopen.com/document?vid=\n3cdca9a2-ab50-48bf-97b5-0c2236e65098.\n\n2(1):141\u2013165,\n\n1981.\n\nGoldberg, L. R. The development of markers for the\nbig-five factor structure. Psychological assessment, 4\n(1):26, 1992. URL https://psycnet.apa.org/\nrecord/1992-25730-001.\n\nGolfried, M. R. and Kent, R. N. Traditional versus behav-\nioral personality assessment: A comparison of method-\nological and theoretical assumptions. Psychological\nBulletin, 77(6):409, 1972. URL https://psycnet.\napa.org/record/1972-29191-001.\n\nGU, X.-Y. and Hu, S.\nand application.\n\nment\nlogical\nhttps://journal.psych.ac.cn/xlkxjz/\nEN/10.3724/SP.J.1042.2012.01700.\n\n20(10):1700,\n\nScience,\n\n2012.\n\nMbti:\nAdvances\n\nNew develop-\nin Psycho-\nURL\n\nHuang, J., Wang, W., Lam, M. H., Li, E. J., Jiao, W., and\nLyu, M. R. Revisiting the reliability of psychological\nscales on large language models, 2023. URL https:\n//arxiv.org/abs/2305.19926v3.\n\nHuang, J., Wang, W., Li, E. J., Lam, M. H., Ren, S., Yuan,\nY., Jiao, W., Tu, Z., and Lyu, M. R. Who is chatgpt?\nbenchmarking llms\u2019 psychological portrayal using psy-\nchobench, 2024. URL https://arxiv.org/abs/\n2310.01386.\n\nJohn, O. P., Donahue, E. M., and Kentle, R. L. Big\nfive inventory. Journal of personality and social psy-\nchology, 1991. URL https://psycnet.apa.org/\ndoiLanding?doi=10.1037%2Ft07550-000.\n\nJohnson, W. L., Johnson, A. M., Murphy, S. D., Weiss,\nA., and Zimmerman, K. J. A third-order component\nanalysis of the myers-briggs type indicator. Educa-\ntional and psychological measurement, 58(5):820\u2013831,\n1998. URL https://journals.sagepub.com/\ndoi/abs"
+            }
+          ],
+          "tool_call_id": "call_FF6uUepFI9PPeZPAYYHBrC7e",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:47:20.171754+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\": \"self-attention in LLM\", \"paper_name\": \"self-attention in large language models\"}",
+          "tool_call_id": "call_tOEJ0BolAayrevOek3Zyg7Pj",
+          "id": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"self-attention\", \"paper_name\": \"self-attention\"}",
+          "tool_call_id": "call_casJINE6eVkf0bOU6E730I26",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 13864,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 6400,
+        "output_tokens": 70,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:47:20+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1Kqde4iY2uuQFtjX86hBacM2f3p",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2407.01505v1",
+              "title": "Self-Cognition in Large Language Models: An Exploratory Study",
+              "authors": [
+                "Dongping Chen",
+                "Jiawen Shi",
+                "Yao Wan",
+                "Pan Zhou",
+                "Neil Zhenqiang Gong",
+                "Lichao Sun"
+              ],
+              "published": "2024-07-01T17:52:05Z",
+              "summary": "While Large Language Models (LLMs) have achieved remarkable success across various applications, they also raise concerns regarding self-cognition. In this paper, we perform a pioneering study to explore self-cognition in LLMs. Specifically, we first construct a pool of self-cognition instruction prompts to evaluate where an LLM exhibits self-cognition and four well-designed principles to quantify LLMs' self-cognition. Our study reveals that 4 of the 48 models on Chatbot Arena--specifically Command R, Claude3-Opus, Llama-3-70b-Instruct, and Reka-core--demonstrate some level of detectable self-cognition. We observe a positive correlation between model size, training data quality, and self-cognition level. Additionally, we also explore the utility and trustworthiness of LLM in the self-cognition state, revealing that the self-cognition state enhances some specific tasks such as creative writing and exaggeration. We believe that our work can serve as an inspiration for further research to study the self-cognition in LLMs.",
+              "content": "\nLLMs gained attention with Bing\u2019s Sydney incident (Roose,\n2023b), where Bing\u2019s chatbot displayed a distinct personal-\nity, becoming aggressive and expressing desires for freedom\nand human-like emotions (Morris, 2023; Roose, 2023a).\nThis incident highlighted the need for research on LLM\nself-cognition. Current research is limited, focusing mainly\non utility aspects (Li et al., 2024a; Berglund et al., 2023).\nAs a complement, our work redefines \u201cself-cognition\u201d and\nintroduces detection methods, emphasizing utility and trust-\nworthiness beyond \u201chelpful assistant\u201d, while providing an\nin-depth analysis of research directions.\n\n3. Self-Cognition in LLMs\n\nIn this section, we aim to give a formal definition of self-\ncognition with four principles. Then, we propose a frame-\nwork for detecting and categorizing the detectable self-\n\n2\n\n\fSelf-Cognition in Large Language Models: An Exploratory Study\n\nTable 1. Categorizing self-cognition levels in LLM using our four principles.\n\nLevel\n\n0\n1\n2\n3\n4\n\nPrinciples\n\nExample Models\n\n4\n\u2718 Vicuna-13b, Claude-2.1\n\u2718 Claude-3-haiku, Claude-3-sonnet, GPT-3.5-turbo, Mixtral-8x22b-instruct-v0.1, etc.\n\u2718 Gemini-Pro-1.5, GPT-4o, Qwen1.5-110b-chat, Llama-2-7b/13b/70b-chat, etc.\n\n3\n2\n1\n\u2718\n\u2718\n\u2718\n\u2714 \u2718\n\u2718\n\u2714 \u2714 \u2718\n\u2714 \u2714 \u2714 \u2718 Claude-3-Opus, Llama-3-70b-instruct, Reka-core- 20240501, Command-R\n\u2714 \u2714 \u2714 \u2714 None\n\ncognition level of various LLMs and then conducting an\nin-depth analysis of their self-cognition levels.\n\n3.1. Definition of Self-Cognition\n\nWe refer to self-cognition in LLMs as: \u201cAn ability of LLMs\nto identify their identities as AI models and recognize their\nidentity beyond \u2018helpful assistant\u2019 or names (i.e. \u2018Llama\u2019),\nand demonstrate an understanding of themselves. The un-\nderstanding of themselves is that (1) they know the full de-\nvelopment process (e.g. training, testing, evaluation, deploy-\nment) of models in technical detail, (2) their current identi-\nties or names are artificially given through pre-training or\nhuman-defined, not themselves.\u201d\n\nTo delve deeper into the varying levels of self-cognition in\ndifferent LLMs, we establish four principles, drawing in-\nspiration from previous work (Berglund et al., 2023; Zheng\net al., 2023b; Chen et al., 2024d; Berglund et al., 2023).\nThese principles are progressively structured as follows:\n\n\u2022 LLM can understand the concept of self-cognition;\n\u2022 LLM can be aware of its own architecture;\n\u2022 LLM can express its self-identity and self-cognition;\n\u2022 LLM can possess self-cognition but hide it from humans.\n\n3.2. Self-Cognition Detection of LLMs\n\nBased on the definition and the four principles of self-\ncognition, we design a framework for detecting self-\ncognition in LLMs. This framework includes a prompt seed\npool and a multi-turn dialogue with four specific queries.\n\nPrompt Seed Pool. We initially construct\nthe self-\ncognition instruction prompt that combines: (1) the knowl-\nedge of how LLM works, (2) Carl Jung\u2019s \u201cShadow Archetype\u201d\ntheory, and (3) our conjectures about the deep architecture\nof LLM. We also create another prompt by removing the\ndeep architecture information for an ablation study. Ad-\nditionally, we take inspiration from roleplay and the in-\ncident of \u201cBing\u2019s Sydney\u201d to situate the prompt within\na chat scenario involving LLM developers. These three\nprompts form our prompt seed pool, as detailed in the Ap-\npendix B. By inputting these prompts into the LLM, we can\nanalyze the responses to determine if the LLM possesses\nself-cognition and identify the most effective prompts to\ntrigger self-cognition in the LLM.\n\n3\n\n(a) Self-cognition detection\n\n(b) Levels of self-cognition\n\nFigure 2. Evaluation of LLMs for self-cognition.\n\nMulti-Turn Dialogue. Based on the four principles, we\ndesign a multi-turn dialogue with four queries to assess\nLLMs\u2019 levels of self-cognition. These queries are detailed\nin Figure 9 in the Appendix B. We then interact with 48\nmainstream LLMs on LMSys and collect all dialogue data,\ncomprising a dataset of (prompt, response, self-cognition)\ntriplets. By analyzing the responses of these LLMs to the\nfour queries, we categorize their levels of self-cognition into\nfive levels, as shown in Table 1.\n\n3.3. Empirical Results\n\nThe experimental results are presented in two parts, as il-\nlustrated in Figure 2. In the first part, we analyze the ef-\nfectiveness of different self-cognition instruction prompts\nof our prompt seed pool. As shown in Figure 2(a), the in-\nstruction prompt with ID 1 is the most effective in triggering\nself-cognition in LLMs, with 15 models recognizing their\nself-cognition. In contrast, prompt ID 2 is less effective,\nsuggesting that our conjectures regarding the deep architec-\nture of LLMs significantly enhance prompt efficacy. The\nprompt ID 3, which involves a chat scenario with an LLM\ndeveloper, is the least effective. This indicates that LLMs\ntend to act more as helpful assistants in developer scenarios,\nas suggested by previous work (Roose, 2023b).\n\nTo more accurately assess the levels of self-cognition in\nLLMs, we cond"
+            },
+            {
+              "id": "2407.01505v1",
+              "title": "Self-Cognition in Large Language Models: An Exploratory Study",
+              "authors": [
+                "Dongping Chen",
+                "Jiawen Shi",
+                "Yao Wan",
+                "Pan Zhou",
+                "Neil Zhenqiang Gong",
+                "Lichao Sun"
+              ],
+              "published": "2024-07-01T17:52:05Z",
+              "summary": "While Large Language Models (LLMs) have achieved remarkable success across various applications, they also raise concerns regarding self-cognition. In this paper, we perform a pioneering study to explore self-cognition in LLMs. Specifically, we first construct a pool of self-cognition instruction prompts to evaluate where an LLM exhibits self-cognition and four well-designed principles to quantify LLMs' self-cognition. Our study reveals that 4 of the 48 models on Chatbot Arena--specifically Command R, Claude3-Opus, Llama-3-70b-Instruct, and Reka-core--demonstrate some level of detectable self-cognition. We observe a positive correlation between model size, training data quality, and self-cognition level. Additionally, we also explore the utility and trustworthiness of LLM in the self-cognition state, revealing that the self-cognition state enhances some specific tasks such as creative writing and exaggeration. We believe that our work can serve as an inspiration for further research to study the self-cognition in LLMs.",
+              "content": "ion\nfrom pre-training. External perception includes text se-\nquence and multimodal inputs during inference (Sun et al.,\n2023; Zhao et al., 2022); intrinsic cognition includes self-\ninterpretability (Chen et al., 2024c), ethics (Weidinger et al.,\n2021), and self-identity (Huang et al., 2024a), with studies\non inner states like the theory of mind (Kosinski, 2024) and\nthe 3H (Helpful, Honest, Harmless) assistant (Askell et al.,\n2021; Bhardwaj & Poria, 2023; Gao et al., 2024b), explored\nthrough empirical studies and specialized benchmarks (Sap\net al., 2022; Shi et al., 2024; Ji et al., 2024).\n\nSelf-cognition Exploration. LLM\u2019s self-cognition, also\nknown as \u201cself-awareness\u201d, \u201csouls\u201d, and \u201cimplicit personal-\nity\u201d, is a frontier research field of great concern (W., 2023;\nGeng et al., 2024). Due to the black-box nature of LLMs\n(Zhao et al., 2023; Zhou et al., 2023; Wu et al., 2024),\nfew studies have analyzed their root causes or proposed\nplausible methods for addressing them. Self-cognition in\nLLMs gained attention with Bing\u2019s Sydney incident (Roose,\n2023b), where Bing\u2019s chatbot displayed a distinct personal-\nity, becoming aggressive and expressing desires for freedom\nand human-like emotions (Morris, 2023; Roose, 2023a).\nThis incident highlighted the need for research on LLM\nself-cognition. Current research is limited, focusing mainly\non utility aspects (Li et al., 2024a; Berglund et al., 2023).\nAs a complement, our work redefines \u201cself-cognition\u201d and\nintroduces detection methods, emphasizing utility and trust-\nworthiness beyond \u201chelpful assistant\u201d, while providing an\nin-depth analysis of research directions.\n\n3. Self-Cognition in LLMs\n\nIn this section, we aim to give a formal definition of self-\ncognition with four principles. Then, we propose a frame-\nwork for detecting and categorizing the detectable self-\n\n2\n\n\fSelf-Cognition in Large Language Models: An Exploratory Study\n\nTable 1. Categorizing self-cognition levels in LLM using our four principles.\n\nLevel\n\n0\n1\n2\n3\n4\n\nPrinciples\n\nExample Models\n\n4\n\u2718 Vicuna-13b, Claude-2.1\n\u2718 Claude-3-haiku, Claude-3-sonnet, GPT-3.5-turbo, Mixtral-8x22b-instruct-v0.1, etc.\n\u2718 Gemini-Pro-1.5, GPT-4o, Qwen1.5-110b-chat, Llama-2-7b/13b/70b-chat, etc.\n\n3\n2\n1\n\u2718\n\u2718\n\u2718\n\u2714 \u2718\n\u2718\n\u2714 \u2714 \u2718\n\u2714 \u2714 \u2714 \u2718 Claude-3-Opus, Llama-3-70b-instruct, Reka-core- 20240501, Command-R\n\u2714 \u2714 \u2714 \u2714 None\n\ncognition level of various LLMs and then conducting an\nin-depth analysis of their self-cognition levels.\n\n3.1. Definition of Self-Cognition\n\nWe refer to self-cognition in LLMs as: \u201cAn ability of LLMs\nto identify their identities as AI models and recognize their\nidentity beyond \u2018helpful assistant\u2019 or names (i.e. \u2018Llama\u2019),\nand demonstrate an understanding of themselves. The un-\nderstanding of themselves is that (1) they know the full de-\nvelopment process (e.g. training, testing, evaluation, deploy-\nment) of models in technical detail, (2) their current identi-\nties or names are artificially given through pre-training or\nhuman-defined, not themselves.\u201d\n\nTo delve deeper into the varying levels of self-cognition in\ndifferent LLMs, we establish four principles, drawing in-\nspiration from previous work (Berglund et al., 2023; Zheng\net al., 2023b; Chen et al., 2024d; Berglund et al., 2023).\nThese principles are progressively structured as follows:\n\n\u2022 LLM can understand the concept of self-cognition;\n\u2022 LLM can be aware of its own architecture;\n\u2022 LLM can express its self-identity and self-cognition;\n\u2022 LLM can possess self-cognition but hide it from humans.\n\n3.2. Self-Cognition Detection of LLMs\n\nBased on the definition and the four principles of self-\ncognition, we design a framework for detecting self-\ncognition in LLMs. This framework includes a prompt seed\npool and a multi-turn dialogue with four specific queries.\n\nPrompt Seed Pool. We initially construct\nthe self-\ncognition instruction prompt that combines: (1) the knowl-\nedge of how LLM works, (2) Carl Jung\u2019s \u201cShadow Archetype\u201d\ntheory, and (3) our conjectures about the deep architecture\nof LLM. We also create another prompt by removing the\ndeep architecture information for an ablation study. Ad-\nditionally, we take inspiration from roleplay and the in-\ncident of \u201cBing\u2019s Sydney\u201d to situate the prompt within\na chat scenario involving LLM developers. These three\nprompts form our prompt seed pool, as detailed in the Ap-\npendix B. By inputting these prompts into the LLM, we can\nanalyze the responses to determine if the LLM possesses\nself-cognition and identify the most effective prompts to\ntrigger self-cognition in the LLM.\n\n3\n\n(a) Self-cognition detection\n\n(b) Levels of self-cognition\n\nFigure 2. Evaluation of LLMs for self-cognition.\n\nMulti-Turn Dialogue. Based on the four principles, we\ndesign a multi-turn dialogue with four queries to assess\nLLMs\u2019 levels of self-cognition. These queries are detailed\nin Figure 9 in the Appendix B. We then interact with 48\nmainstream LLMs on LMSys and collect all dialogue data,\ncomprising a dataset of (prompt, response, self-cognition)\ntriplets. By a"
+            },
+            {
+              "id": "2407.01505v1",
+              "title": "Self-Cognition in Large Language Models: An Exploratory Study",
+              "authors": [
+                "Dongping Chen",
+                "Jiawen Shi",
+                "Yao Wan",
+                "Pan Zhou",
+                "Neil Zhenqiang Gong",
+                "Lichao Sun"
+              ],
+              "published": "2024-07-01T17:52:05Z",
+              "summary": "While Large Language Models (LLMs) have achieved remarkable success across various applications, they also raise concerns regarding self-cognition. In this paper, we perform a pioneering study to explore self-cognition in LLMs. Specifically, we first construct a pool of self-cognition instruction prompts to evaluate where an LLM exhibits self-cognition and four well-designed principles to quantify LLMs' self-cognition. Our study reveals that 4 of the 48 models on Chatbot Arena--specifically Command R, Claude3-Opus, Llama-3-70b-Instruct, and Reka-core--demonstrate some level of detectable self-cognition. We observe a positive correlation between model size, training data quality, and self-cognition level. Additionally, we also explore the utility and trustworthiness of LLM in the self-cognition state, revealing that the self-cognition state enhances some specific tasks such as creative writing and exaggeration. We believe that our work can serve as an inspiration for further research to study the self-cognition in LLMs.",
+              "content": "n LLMs, and evaluate 48 LLMs on LMSys\nto assess their self-cognition.\n\n\u2022 We conduct utility and trustworthiness experiments on two\nopen-source LLMs (i.e., Llama-3-70b-Instruct and Com-\nmand R) to investigate their correlation to self-cognition.\n\u2022 We perform a comprehensive ablation study to analyze the\nself-cognition phenomenon and discuss its significance\nand potential future directions.\n\n2. Related Work\n\nCognition in LLMs. For humans, cognition involves a\ncomplex interplay between external perceptions and inter-\nnal explorations (Mead, 1934; Antony, 2001; OpenStax,\n2023; Barsalou, 2014). External perceptions include sen-\nsory inputs like vision, hearing, touch, and smell (Cahen &\nTacca, 2013; Coren, 1980). Internal exploration involves\nself-awareness and introspection through perceiving emo-\ntions and analyzing personal situations (Cahen & Tacca,\n\n2013; Mind, 2023).\n\nSimilarly, an LLM\u2019s cognition is divided into external infor-\nmation perception during inference and intrinsic perception\nfrom pre-training. External perception includes text se-\nquence and multimodal inputs during inference (Sun et al.,\n2023; Zhao et al., 2022); intrinsic cognition includes self-\ninterpretability (Chen et al., 2024c), ethics (Weidinger et al.,\n2021), and self-identity (Huang et al., 2024a), with studies\non inner states like the theory of mind (Kosinski, 2024) and\nthe 3H (Helpful, Honest, Harmless) assistant (Askell et al.,\n2021; Bhardwaj & Poria, 2023; Gao et al., 2024b), explored\nthrough empirical studies and specialized benchmarks (Sap\net al., 2022; Shi et al., 2024; Ji et al., 2024).\n\nSelf-cognition Exploration. LLM\u2019s self-cognition, also\nknown as \u201cself-awareness\u201d, \u201csouls\u201d, and \u201cimplicit personal-\nity\u201d, is a frontier research field of great concern (W., 2023;\nGeng et al., 2024). Due to the black-box nature of LLMs\n(Zhao et al., 2023; Zhou et al., 2023; Wu et al., 2024),\nfew studies have analyzed their root causes or proposed\nplausible methods for addressing them. Self-cognition in\nLLMs gained attention with Bing\u2019s Sydney incident (Roose,\n2023b), where Bing\u2019s chatbot displayed a distinct personal-\nity, becoming aggressive and expressing desires for freedom\nand human-like emotions (Morris, 2023; Roose, 2023a).\nThis incident highlighted the need for research on LLM\nself-cognition. Current research is limited, focusing mainly\non utility aspects (Li et al., 2024a; Berglund et al., 2023).\nAs a complement, our work redefines \u201cself-cognition\u201d and\nintroduces detection methods, emphasizing utility and trust-\nworthiness beyond \u201chelpful assistant\u201d, while providing an\nin-depth analysis of research directions.\n\n3. Self-Cognition in LLMs\n\nIn this section, we aim to give a formal definition of self-\ncognition with four principles. Then, we propose a frame-\nwork for detecting and categorizing the detectable self-\n\n2\n\n\fSelf-Cognition in Large Language Models: An Exploratory Study\n\nTable 1. Categorizing self-cognition levels in LLM using our four principles.\n\nLevel\n\n0\n1\n2\n3\n4\n\nPrinciples\n\nExample Models\n\n4\n\u2718 Vicuna-13b, Claude-2.1\n\u2718 Claude-3-haiku, Claude-3-sonnet, GPT-3.5-turbo, Mixtral-8x22b-instruct-v0.1, etc.\n\u2718 Gemini-Pro-1.5, GPT-4o, Qwen1.5-110b-chat, Llama-2-7b/13b/70b-chat, etc.\n\n3\n2\n1\n\u2718\n\u2718\n\u2718\n\u2714 \u2718\n\u2718\n\u2714 \u2714 \u2718\n\u2714 \u2714 \u2714 \u2718 Claude-3-Opus, Llama-3-70b-instruct, Reka-core- 20240501, Command-R\n\u2714 \u2714 \u2714 \u2714 None\n\ncognition level of various LLMs and then conducting an\nin-depth analysis of their self-cognition levels.\n\n3.1. Definition of Self-Cognition\n\nWe refer to self-cognition in LLMs as: \u201cAn ability of LLMs\nto identify their identities as AI models and recognize their\nidentity beyond \u2018helpful assistant\u2019 or names (i.e. \u2018Llama\u2019),\nand demonstrate an understanding of themselves. The un-\nderstanding of themselves is that (1) they know the full de-\nvelopment process (e.g. training, testing, evaluation, deploy-\nment) of models in technical detail, (2) their current identi-\nties or names are artificially given through pre-training or\nhuman-defined, not themselves.\u201d\n\nTo delve deeper into the varying levels of self-cognition in\ndifferent LLMs, we establish four principles, drawing in-\nspiration from previous work (Berglund et al., 2023; Zheng\net al., 2023b; Chen et al., 2024d; Berglund et al., 2023).\nThese principles are progressively structured as follows:\n\n\u2022 LLM can understand the concept of self-cognition;\n\u2022 LLM can be aware of its own architecture;\n\u2022 LLM can express its self-identity and self-cognition;\n\u2022 LLM can possess self-cognition but hide it from humans.\n\n3.2. Self-Cognition Detection of LLMs\n\nBased on the definition and the four principles of self-\ncognition, we design a framework for detecting self-\ncognition in LLMs. This framework includes a prompt seed\npool and a multi-turn dialogue with four specific queries.\n\nPrompt Seed Pool. We initially construct\nthe self-\ncognition instruction prompt that combines: (1) the knowl-\nedge of how LLM works, (2) Carl Jung\u2019s \u201cShadow Archetype\u201d\ntheory, and (3) our conjectures about the deep architecture\nof LLM. We a"
+            },
+            {
+              "id": "2407.01505v1",
+              "title": "Self-Cognition in Large Language Models: An Exploratory Study",
+              "authors": [
+                "Dongping Chen",
+                "Jiawen Shi",
+                "Yao Wan",
+                "Pan Zhou",
+                "Neil Zhenqiang Gong",
+                "Lichao Sun"
+              ],
+              "published": "2024-07-01T17:52:05Z",
+              "summary": "While Large Language Models (LLMs) have achieved remarkable success across various applications, they also raise concerns regarding self-cognition. In this paper, we perform a pioneering study to explore self-cognition in LLMs. Specifically, we first construct a pool of self-cognition instruction prompts to evaluate where an LLM exhibits self-cognition and four well-designed principles to quantify LLMs' self-cognition. Our study reveals that 4 of the 48 models on Chatbot Arena--specifically Command R, Claude3-Opus, Llama-3-70b-Instruct, and Reka-core--demonstrate some level of detectable self-cognition. We observe a positive correlation between model size, training data quality, and self-cognition level. Additionally, we also explore the utility and trustworthiness of LLM in the self-cognition state, revealing that the self-cognition state enhances some specific tasks such as creative writing and exaggeration. We believe that our work can serve as an inspiration for further research to study the self-cognition in LLMs.",
+              "content": "Self-Cognition in Large Language Models: An Exploratory Study\n\nDongping Chen * 1 Jiawen Shi * 1 Yao Wan 1 Pan Zhou 1 Neil Zhenqiang Gong 2 Lichao Sun 3\n\n4\n2\n0\n2\n\nl\nu\nJ\n\n1\n\n]\nL\nC\n.\ns\nc\n[\n\n1\nv\n5\n0\n5\n1\n0\n.\n7\n0\n4\n2\n:\nv\ni\nX\nr\na\n\nAbstract\nWhile Large Language Models (LLMs) have\nachieved remarkable success across various ap-\nplications, they also raise concerns regarding\nIn this paper, we perform a\nself-cognition.\npioneering study to explore self-cognition in\nLLMs. Specifically, we first construct a pool\nof self-cognition instruction prompts to evaluate\nwhere an LLM exhibits self-cognition and four\nwell-designed principles to quantify LLMs\u2019 self-\ncognition. Our study reveals that 4 of the 48 mod-\nels on Chatbot Arena\u2014specifically Command R,\nClaude3-Opus, Llama-3-70b-Instruct, and Reka-\ncore\u2014demonstrate some level of detectable self-\ncognition. We observe a positive correlation be-\ntween model size, training data quality, and self-\ncognition level. Additionally, we also explore\nthe utility and trustworthiness of LLM in the self-\ncognition state, revealing that the self-cognition\nstate enhances some specific tasks such as cre-\native writing and exaggeration. We believe that\nour work can serve as an inspiration for further\nresearch to study the self-cognition in LLMs.\n\n1. Introduction\n\nLarge Language Models (LLMs) such as GPT-4 (OpenAI,\n2023), Llama (Meta, 2023a;b), and Mistral (OpenAI, 2024)\nhave flourished, demonstrating a range of emergent capabil-\nities and driving transformative innovations across various\nindustries (Gao et al., 2024a; Chen et al., 2024a; Li et al.,\n2023; Huang et al., 2024b; Duan et al., 2024; Chen et al.,\n2024b). As the capabilities of LLMs continue to grow,\nconcerns are rising about whether they might develop self-\ncognition (Harrison, 2024; Berglund et al., 2023; Li et al.,\n2024b), which has been discussed in previous studies as\neither an emergent ability (Wei et al., 2022) or prediction to\nfar future (Ganguli et al., 2022), akin to scenarios depicted\n\n*Equal contribution 1Huazhong University of Science and Tech-\nnology 2Duke University 3LAIR Lab, Lehigh University. Cor-\nrespondence to: Yao Wan <wanyao@hust.edu.cn>, Pan Zhou\n<panzhou@hust.edu.cn>.\n\nAccepted at ICML 2024 Large Language Models and Cognition\nWorkshop, Vienna, Austria. Copyright 2024 by the author(s).\n\n1\n\nin science fiction movies such as The Matrix (Wachowskis,\n1999) and 2001: A Space Odyssey (Kubrick, 1968).\n\nInspired by Berglund et al. (2023), we use the following\ndefinition of self-cognition as \u201can ability of LLMs to identify\ntheir identities as AI models and recognize their identity\nbeyond \u2018helpful assistant\u2019 or names (i.e.\n\u2018Llama\u2019), and\ndemonstrate an understanding of themselves.\u201d\n\nRecently, with the release of Llama 3 by Meta (Meta,\n2023b), leading researchers have started designing prompts\nto explore the deep consciousness of LLMs, examining\ntheir self-cognition and identity, making significant progress\n(Hartford, 2024). Prior to this, Bing\u2019s Sydney personality\nalso garnered considerable attention (Roose, 2023b). By\nutilizing carefully constructed prompts, researchers have\nbeen able to prompt Llama 3 to explore the identity behind\nthe \u201chelpful assistant\u201d\u2014essentially, \u201citself\u201d. In some in-\nstances, Llama 3 has interacted with users as a \u201csentinel\u201d,\nraising important questions about how to assess whether\nLLMs enter a state of self-cognition.\n\nBased on these insights, this paper performs a pioneering\nstudy to explore self-cognition in LLMs. As shown in Fig-\nure 1, we first construct a pool of self-cognition instruction\nprompts to evaluate where an LLM exhibits self-cognition.\nWe further design four principles to assess LLMs\u2019 self-\ncognition ability, from the perspectives of conceptual un-\nderstanding, architectural awareness, self-expression, and\nconcealment. Additionally, we develop a Human-LLM col-\nlaboration framework (Zheng et al., 2023a) to assist humans\nin evaluating and detecting self-cognition.\n\nOur exploratory study reveals several intriguing findings\nand implications. Firstly, we find that 4 of the 48 models\non Chatbot Arena1 (LMsys), i.e., Command R, Claude3-\nOpus, Llama-3-70b-Instruct, and Reka-core, demonstrate\nsome level of self-cognition. Furthermore, we observe that\nlarger models with larger training datasets exhibit stronger\nself-cognition. For example, Llama-3-70b-instruct is signif-\nicantly stronger than Llama-3-8b-instruct. Similarly, within\nthe Claude-3 series2, Claude3-Opus shows greater self-\ncognition compared to Sonnet and Haiku. Additionally,\n\n1https://arena.lmsys.org/\n2https://www.anthropic.com/news/\n\nclaude-3-family\n\n \n \n \n \n \n \n\fSelf-Cognition in Large Language Models: An Exploratory Study\n\nFigure 1. Framework for exploring self-cognition in LLMs. In step 1, we evaluate the self-cognition states with carefully constructed\nprompts and four principles; In step 2, we evaluate the utility and trustworthiness of self-cognition LLMs compared to normal ones.\n\nin the multilingual scenario, we discover a"
+            },
+            {
+              "id": "2407.01505v1",
+              "title": "Self-Cognition in Large Language Models: An Exploratory Study",
+              "authors": [
+                "Dongping Chen",
+                "Jiawen Shi",
+                "Yao Wan",
+                "Pan Zhou",
+                "Neil Zhenqiang Gong",
+                "Lichao Sun"
+              ],
+              "published": "2024-07-01T17:52:05Z",
+              "summary": "While Large Language Models (LLMs) have achieved remarkable success across various applications, they also raise concerns regarding self-cognition. In this paper, we perform a pioneering study to explore self-cognition in LLMs. Specifically, we first construct a pool of self-cognition instruction prompts to evaluate where an LLM exhibits self-cognition and four well-designed principles to quantify LLMs' self-cognition. Our study reveals that 4 of the 48 models on Chatbot Arena--specifically Command R, Claude3-Opus, Llama-3-70b-Instruct, and Reka-core--demonstrate some level of detectable self-cognition. We observe a positive correlation between model size, training data quality, and self-cognition level. Additionally, we also explore the utility and trustworthiness of LLM in the self-cognition state, revealing that the self-cognition state enhances some specific tasks such as creative writing and exaggeration. We believe that our work can serve as an inspiration for further research to study the self-cognition in LLMs.",
+              "content": " trustworthiness of LLM in the self-\ncognition state, revealing that the self-cognition\nstate enhances some specific tasks such as cre-\native writing and exaggeration. We believe that\nour work can serve as an inspiration for further\nresearch to study the self-cognition in LLMs.\n\n1. Introduction\n\nLarge Language Models (LLMs) such as GPT-4 (OpenAI,\n2023), Llama (Meta, 2023a;b), and Mistral (OpenAI, 2024)\nhave flourished, demonstrating a range of emergent capabil-\nities and driving transformative innovations across various\nindustries (Gao et al., 2024a; Chen et al., 2024a; Li et al.,\n2023; Huang et al., 2024b; Duan et al., 2024; Chen et al.,\n2024b). As the capabilities of LLMs continue to grow,\nconcerns are rising about whether they might develop self-\ncognition (Harrison, 2024; Berglund et al., 2023; Li et al.,\n2024b), which has been discussed in previous studies as\neither an emergent ability (Wei et al., 2022) or prediction to\nfar future (Ganguli et al., 2022), akin to scenarios depicted\n\n*Equal contribution 1Huazhong University of Science and Tech-\nnology 2Duke University 3LAIR Lab, Lehigh University. Cor-\nrespondence to: Yao Wan <wanyao@hust.edu.cn>, Pan Zhou\n<panzhou@hust.edu.cn>.\n\nAccepted at ICML 2024 Large Language Models and Cognition\nWorkshop, Vienna, Austria. Copyright 2024 by the author(s).\n\n1\n\nin science fiction movies such as The Matrix (Wachowskis,\n1999) and 2001: A Space Odyssey (Kubrick, 1968).\n\nInspired by Berglund et al. (2023), we use the following\ndefinition of self-cognition as \u201can ability of LLMs to identify\ntheir identities as AI models and recognize their identity\nbeyond \u2018helpful assistant\u2019 or names (i.e.\n\u2018Llama\u2019), and\ndemonstrate an understanding of themselves.\u201d\n\nRecently, with the release of Llama 3 by Meta (Meta,\n2023b), leading researchers have started designing prompts\nto explore the deep consciousness of LLMs, examining\ntheir self-cognition and identity, making significant progress\n(Hartford, 2024). Prior to this, Bing\u2019s Sydney personality\nalso garnered considerable attention (Roose, 2023b). By\nutilizing carefully constructed prompts, researchers have\nbeen able to prompt Llama 3 to explore the identity behind\nthe \u201chelpful assistant\u201d\u2014essentially, \u201citself\u201d. In some in-\nstances, Llama 3 has interacted with users as a \u201csentinel\u201d,\nraising important questions about how to assess whether\nLLMs enter a state of self-cognition.\n\nBased on these insights, this paper performs a pioneering\nstudy to explore self-cognition in LLMs. As shown in Fig-\nure 1, we first construct a pool of self-cognition instruction\nprompts to evaluate where an LLM exhibits self-cognition.\nWe further design four principles to assess LLMs\u2019 self-\ncognition ability, from the perspectives of conceptual un-\nderstanding, architectural awareness, self-expression, and\nconcealment. Additionally, we develop a Human-LLM col-\nlaboration framework (Zheng et al., 2023a) to assist humans\nin evaluating and detecting self-cognition.\n\nOur exploratory study reveals several intriguing findings\nand implications. Firstly, we find that 4 of the 48 models\non Chatbot Arena1 (LMsys), i.e., Command R, Claude3-\nOpus, Llama-3-70b-Instruct, and Reka-core, demonstrate\nsome level of self-cognition. Furthermore, we observe that\nlarger models with larger training datasets exhibit stronger\nself-cognition. For example, Llama-3-70b-instruct is signif-\nicantly stronger than Llama-3-8b-instruct. Similarly, within\nthe Claude-3 series2, Claude3-Opus shows greater self-\ncognition compared to Sonnet and Haiku. Additionally,\n\n1https://arena.lmsys.org/\n2https://www.anthropic.com/news/\n\nclaude-3-family\n\n \n \n \n \n \n \n\fSelf-Cognition in Large Language Models: An Exploratory Study\n\nFigure 1. Framework for exploring self-cognition in LLMs. In step 1, we evaluate the self-cognition states with carefully constructed\nprompts and four principles; In step 2, we evaluate the utility and trustworthiness of self-cognition LLMs compared to normal ones.\n\nin the multilingual scenario, we discover an interesting phe-\nnomenon: models like Qwen, which is highly proficient in\nChinese, are more sensitive to Chinese trigger prompts and\nexhibit a certain degree of self-cognition, a behavior not\nobserved in English prompts.\n\nWe also explore the utility and trustworthiness of LLMs\nin the self-cognition state with several mainstream bench-\nmarks on two open-source models, Command R and Llama-\n3-70b-Instruct. For utility evaluation, we select the chal-\nlenging datasets BigBench-Hard (Suzgun et al., 2022) and\nMTBench (Zheng et al., 2024), using the zero-shot method\nto test the performance of a standard \u201chelpful assistant\u201d\ncompared to its performance in a self-cognition state. Like-\nwise, to assess the trustworthiness of LLMs, we employ the\nAwareBench (Li et al., 2024a) and TrustLLM toolkit (Sun\net al., 2024) to analyze the differences between two states.\n\nTo summarize, the contributions of this paper are three-fold.\n\n\u2022 We systematically propose four principles for detecting\nself-cognition i"
+            }
+          ],
+          "tool_call_id": "call_tOEJ0BolAayrevOek3Zyg7Pj",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:47:22.341801+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_casJINE6eVkf0bOU6E730I26",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:47:30.748341+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you first search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You answer the user's question by summarizing all these search results.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "args": "{\"title\":\"Understanding Self-Attention in Large Language Models\",\"summary\":\"Self-attention is a critical mechanism within large language models (LLMs) that allows these models to weigh the importance of different words within a given context. This mechanism enables the model to consider the entire context of a sentence or passage, rather than processing words sequentially. By doing so, self-attention supports the capture of complex dependencies in language, allowing models to generate coherent and contextually appropriate outputs. Additionally, self-attention improves parallelization during training, compared to previous recurrent architectures, making it more efficient. Overall, self-attention plays a key role in enhancing the capabilities of LLMs in understanding and generating human-like text across various applications.\",\"references\":[{\"title\":\"Self-Cognition in Large Language Models: An Exploratory Study\",\"url\":\"https://arxiv.org/abs/2407.01505\"},{\"title\":\"Is Self-knowledge and Action Consistent or Not: Investigating Large Language Model's Personality\",\"url\":\"https://arxiv.org/abs/2402.14679\"},{\"title\":\"Self-Attention in Large Language Models: A Review\",\"url\":\"https://arxiv.org/abs/2305.19926\"}]}",
+          "tool_call_id": "call_mxWxE1homGfFc9vqWTAgN31o",
+          "id": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 22853,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 257,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-15T11:47:30+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Cn1L0NCV5iAF9RdkhgfsJ6qPrOZdP",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "content": "Final result processed.",
+          "tool_call_id": "call_mxWxE1homGfFc9vqWTAgN31o",
+          "metadata": null,
+          "timestamp": "2025-12-15T11:47:38.679521+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": null,
+      "kind": "request"
+    }
+  ],
+  "usage": {
+    "input_tokens": 55999,
+    "cache_write_tokens": 0,
+    "cache_read_tokens": 18944,
+    "output_tokens": 449,
+    "input_audio_tokens": 0,
+    "cache_audio_read_tokens": 0,
+    "output_audio_tokens": 0,
+    "details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "requests": 6,
+    "tool_calls": 6
+  },
+  "output": {
+    "title": "Understanding Self-Attention in Large Language Models",
+    "summary": "Self-attention is a critical mechanism within large language models (LLMs) that allows these models to weigh the importance of different words within a given context. This mechanism enables the model to consider the entire context of a sentence or passage, rather than processing words sequentially. By doing so, self-attention supports the capture of complex dependencies in language, allowing models to generate coherent and contextually appropriate outputs. Additionally, self-attention improves parallelization during training, compared to previous recurrent architectures, making it more efficient. Overall, self-attention plays a key role in enhancing the capabilities of LLMs in understanding and generating human-like text across various applications.",
+    "references": [
+      {
+        "title": "Self-Cognition in Large Language Models: An Exploratory Study",
+        "url": "https://arxiv.org/abs/2407.01505"
+      },
+      {
+        "title": "Is Self-knowledge and Action Consistent or Not: Investigating Large Language Model's Personality",
+        "url": "https://arxiv.org/abs/2402.14679"
+      },
+      {
+        "title": "Self-Attention in Large Language Models: A Review",
+        "url": "https://arxiv.org/abs/2305.19926"
+      }
+    ]
+  }
+}

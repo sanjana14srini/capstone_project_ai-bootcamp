@@ -1,0 +1,8 @@
+,0
+instructions_follow,0.1
+instructions_avoid,0.5
+answer_relevant,0.7
+answer_clear,0.4
+answer_citations,0.0
+completeness,0.0
+tool_call_search,1.0
