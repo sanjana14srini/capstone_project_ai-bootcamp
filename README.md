@@ -44,8 +44,6 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 
 ## Project Structure:
-<details>
-<!-- <summary>Click to expand</summary> -->
 
 ``` plaintext
 capstone_project_ai-bootcamp/
@@ -61,8 +59,6 @@ capstone_project_ai-bootcamp/
 ├── main
 ├── requirements.txt
 ├── evals
-
-</details>
 
 ```` ``` ````
 ## Set-up Instructions:
