@@ -74,7 +74,7 @@ def find_last_timestamp(messages):
         
 
 def save_log(entry: dict):
-    logs_folder = Path('logs')
+    logs_folder = Path('montioring/logs')
     logs_folder.mkdir(exist_ok=True)
 
     ts = find_last_timestamp(entry['messages'])

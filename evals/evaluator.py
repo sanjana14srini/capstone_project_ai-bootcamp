@@ -146,7 +146,7 @@ async def main():
       
 
  
-    all_metrics = pd.DataFrame(df_eval[eval_columns].mean())
+    all_metrics = pd.DataFrame(df_eval[eval_columns].mean(), columns=['metric', 'score'])
     all_metrics.to_csv("all_metrics.csv")
     
     df_eval.to_csv("evals.csv")

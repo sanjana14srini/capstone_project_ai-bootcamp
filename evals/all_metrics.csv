@@ -1,4 +1,4 @@
-,0
+metric,score
 instructions_follow,0.1
 instructions_avoid,0.5
 answer_relevant,0.7

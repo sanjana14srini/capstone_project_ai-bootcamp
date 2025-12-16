@@ -1,6 +1,6 @@
 # 🚀 Capstone Project - AI BOOTCAMP
 
-This capstone project is a **full-stack AI appllication** built as a part of the AI Bootcamp: From RAG to Agents. The primary utility of this project is to be able to query the arxiv research repository through natural language using AI agents. 
+This capstone project is a **full-stack AI appllication** built as a part of the AI Bootcamp: From RAG to Agents. The primary utility of this project is to be able to interact with the arxiv research repository through natural language using AI agents. The project succesfully **searches**, **indexes**, and **summarizes** its findings based on the user's query. 
 
 
 ## The project leverages:
@@ -11,7 +11,7 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 **Elasticsearch**: Stores and indexes textual data for efficient retrieval and search.
 
-**OpenAI GPT models**: Powers text summarization, question-answering, and structured output generation.
+**OpenAI GPT models**: Powers text summarization, question-answering, and structured output generation. We work with gpt-40-mini for summarizing, whereas got-5-nano for evaluation.
 
 
 
@@ -74,7 +74,7 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 ### 4. install uv, set up the virtual environment and activate it
 - `python3 -m pip install uv`
 - ```uv init```
-- ```uv add -r requirements.txt```
+- ```uv add openai messages pydantic pydantic_ai toyaikit jaxn elasticsearch streamlit feedparser```
 - ```source .venv/bin/activate (MacOS)```
 
 ### 5. To run elasticsearch
@@ -103,9 +103,20 @@ docker.elastic.co/elasticsearch/elasticsearch:9.1.1
 
 
 ### 6. To run the streamlit frontend
- ```streamlit run capstone_project/ui/app.py```
+ ```streamlit run ui/app.py```
 
 
 ## Self-evaluation using Agents:
 This is done within the evals.py script built on top of the groud truth data present in `questions_dataset.csv`
 The results can be found in `evals.csv` and `metrics. csv`
+
+- How you can run your own evaluations:
+To run your own evaluations, you can do as follows:
+- Run elasticsearch, backend and the streamlit frontend
+- Have conversations with the chat interface. These conversations will be logged as json files inside monitoring/logs folder
+- You can move your desired logs into the evals/eval_logs folder and run the evaluator.py script
+- This will generate evals.csv and metrics.csv where you get metadata and scores for various model performance metrics of your logs
+- You can then play around with the agent prompts, chunking strategy or model preference using these scores as benchmarks
+
+This is exactly how the model prompts were tuned and chunking strategy were adopted for this project
+The evals/questions_dataset.csv consists of the ground_truth questions set against which evals were set-up. 

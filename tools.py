@@ -68,7 +68,7 @@ class Agent_Tools():
     def __init__(self, es_index, max_results=None):
         self.index_name = "arxiv_chunks"
         if max_results is None:
-            self.max_results = 5
+            self.max_results = 8
         else:
             self.max_results = max_results
         self.index = es_index
