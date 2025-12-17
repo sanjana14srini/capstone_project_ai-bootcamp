@@ -77,9 +77,10 @@ Tool calls:
 async def test_no_judicial_terms_in_search_queries():
     criteria = [
         "agent makes at least 1 search call",
+        "agent makes a search_Quality_check call after every search call"
         "there are at least 3 references provided"
         "the references are appropriate and relevant to the topic",
-        "the summary contains broader intrdocution before describing finer details",
+        "the summary contains broader introduction before describing finer details",
     ]
 
     result = await run_agent("recent research in transformer models")
