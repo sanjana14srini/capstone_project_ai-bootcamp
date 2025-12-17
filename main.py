@@ -5,6 +5,7 @@ from pydantic_ai.messages import ModelMessage
 from toyaikit.chat.runners import PydanticAIRunner
 from monitoring.agent_logging import log_run, save_log, create_log_entry
 import asyncio
+from openai import BadRequestError
 
 class LoggingStdOutputInterface(StdOutputInterface):
     """
@@ -87,7 +88,15 @@ async def main():
         chat_interface=chat_interface,
         agent=agent
     )
-    result = await run_agent_with_logging(agent, runner);
+
+    try:
+        result = await run_agent_with_logging(agent, runner);
+    except BadRequestError as e:
+        if "context length" in str(e).lower():
+            agent.reset_history()
+            summarized = summarize_context()
+            return agent.run_sync(summarized)
+        raise
     output = result.output
 
     # print(output)
