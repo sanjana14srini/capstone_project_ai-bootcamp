@@ -93,9 +93,7 @@ async def main():
         result = await run_agent_with_logging(agent, runner);
     except BadRequestError as e:
         if "context length" in str(e).lower():
-            agent.reset_history()
-            summarized = summarize_context()
-            return agent.run_sync(summarized)
+            return agent.run_sync(result.new_messages())
         raise
     output = result.output
 

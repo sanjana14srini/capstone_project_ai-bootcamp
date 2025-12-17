@@ -63,7 +63,7 @@ def serializer(obj):
     if isinstance(obj, datetime):
         return obj.isoformat()
     if isinstance(obj, BaseModel):
-        return obj.model_dump()
+        return obj.model_dump_json()
     raise TypeError(f"Type {type(obj)} not serializable")
 
 
@@ -74,7 +74,7 @@ def find_last_timestamp(messages):
         
 
 def save_log(entry: dict):
-    logs_folder = Path('montioring/logs')
+    logs_folder = Path('monitoring/logs')
     logs_folder.mkdir(exist_ok=True)
 
     ts = find_last_timestamp(entry['messages'])

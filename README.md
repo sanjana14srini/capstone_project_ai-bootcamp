@@ -82,7 +82,7 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 docker run -it \
 --rm \
 --name elasticsearch \
--m 4GB \
+-m 2GB \
 -p 9200:9200 \
 -p 9300:9300 \
 -e "discovery.type=single-node" \

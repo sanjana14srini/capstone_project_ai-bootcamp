@@ -68,7 +68,7 @@ class Agent_Tools():
     def __init__(self, es_index, max_results=None):
         self.index_name = "arxiv_chunks"
         if max_results is None:
-            self.max_results = 8
+            self.max_results = 3
         else:
             self.max_results = max_results
         self.index = es_index
@@ -145,7 +145,7 @@ class Agent_Tools():
    
 
     def get_data_to_index(self, param: FetchQuery):
-        feed = self.get_metadata(param.paper_name)
+        feed = self.get_metadata(param.query)
         doc = self.extract_data(feed)
         self.create_elasticsearch_index(doc)
 

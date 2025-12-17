@@ -79,10 +79,18 @@ async def agent_stream(messages):
 
         previous_text = ""
 
-        user_input = messages[-1]["content"]
+        latest_query = messages[-1]["content"] if messages else ""
+        context = " ".join([m["content"] for m in messages[:-1]])
+        agent_state = {"user_query": latest_query, "conversation_history": messages}
+        user_input = f"""
+            Answer the user's query based on the following conversation history:
+            Context: {context}
+            Current query: {latest_query}
+        """
         result = await agent.run(
             user_input, event_stream_handler=agent_callback
         ) 
+        
 
         # Assuming result.output is a SearchResultSummary object
         summary: SearchResultSummary = result.output
@@ -90,7 +98,7 @@ async def agent_stream(messages):
         # Keep the if logic by checking attributes on the final object
         # Process text attribute if it exists
         if hasattr(summary, "text") and summary.text:
-            yield {"type": "token", "content": summary.text}
+            yield {"type": "token", "content": summary.text, "latest_query": latest_query}
 
         # Process final_result tool (full output now)
         # Apply format_article on the structured object
@@ -105,7 +113,8 @@ async def agent_stream(messages):
         while start < length:
             yield {
                 "type": "token",
-                "content": formatted_article[start:end]
+                "content": formatted_article[start:end],
+                "latest_query": latest_query
             }
             start = end
             end = min(end + chunk_size, length)

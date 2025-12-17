@@ -2,6 +2,7 @@ import logging
 from typing import List
 
 from openai import BadRequestError
+from pydantic_ai.messages import ModelMessage
 import tiktoken
 
 logger = logging.getLogger(__name__)
@@ -60,61 +61,18 @@ def ensure_context_within_limit(
 
     return [summarize_context(history)]
 
-def handle_context_overflow(
-    agent,
-    system_prompt: str,
-    user_prompt: str,
-    history: List[str],
+async def handle_context_overflow_runner(
+    runner,
+    messages: list[ModelMessage],
 ):
-    """
-    Last-resort recovery when model rejects request.
-    """
-    logger.warning("Context length exceeded — resetting history")
+    logging.warning("Context length exceeded — retrying with reduced context")
 
-    history.clear()
+    # Reduce to a summarized system message
+    reduced_messages = summarize_context(messages)
 
-    trimmed_prompt = trim_to_tokens(user_prompt, 2000)
+    # Runner expects messages to already be in the interface
+    runner.chat_interface.messages = reduced_messages
 
-    return agent.run_sync(
-        trimmed_prompt,
-        system_prompt=system_prompt,
-    )
+    return await runner.run()
 
-def run_agent_safe(
-    agent,
-    system_prompt: str,
-    user_prompt: str,
-    history: List[str],
-):
-    """
-    Runs the agent safely with:
-    - token pre-check
-    - context trimming
-    - overflow recovery
-    """
-
-    history[:] = ensure_context_within_limit(
-        system_prompt,
-        user_prompt,
-        history,
-    )
-
-    try:
-        result = agent.run_agent_with_logging(
-            user_prompt,
-            system_prompt=system_prompt,
-        )
-        history.append(user_prompt)
-        history.append(str(result))
-        return result
-
-    except BadRequestError as e:
-        if "context length" in str(e).lower():
-            return handle_context_overflow(
-                agent,
-                system_prompt,
-                user_prompt,
-                history,
-            )
-        raise
 

@@ -39,7 +39,7 @@ class SearchQualityCheckInput(BaseModel):
 
 class SearchResultEvaluation(BaseModel):
     title: str
-    url: HttpUrl
+    url: str
     relevance: float  # 0.0 to 1.0
     completeness: float  # 0.0 to 1.0
     credibility: float  # 0.0 to 1.0
@@ -51,6 +51,15 @@ class SearchEvaluationOutput(BaseModel):
     overall_quality_score: float  # 0.0 to 1.0
     decision: str  # "Good enough" or "Fetch more data"
     suggested_search_terms: list[str]  # optional if decision is "Fetch more data"
+
+
+class Message(BaseModel):
+    role: str
+    content: str
+    latest_query: str
+
+class OrchestratorInput(BaseModel):
+    messages: list[Message]
 
 
 class NamedCallback:
@@ -129,7 +138,7 @@ def create_agents():
 
         if params is None:
             params = SearchQualityCheckInput(
-                user_query=ctx.state["user_query"],
+                user_query=ctx.state["latest_query"],
                 search_results=[
                     SearchResultInput(**r)
                     for r in ctx.state["search_results"]
@@ -141,34 +150,73 @@ def create_agents():
         )
         return result.output
     
+    # fetch more data using the get_data_to_index tool and 
     # Summarizing agent
     summarizing_instructions = """
+        Based on the following conversation history:
+        Context: {context}
+        Current query: {latest_query}
+
+        Provide a concise summary of what the user is asking.
+    """
+
+    summarize_agent = Agent(
+        name="summarize",
+        instructions=summarizing_instructions,
+        # tools= summarize_tool,
+        model='gpt-4o-mini'
+    )
+
+    def format_summarizing_instructions(context, latest_query):
+
+        return summarizing_instructions.format(
+            context=context,
+            latest_query=latest_query
+        )
+
+    async def generate_summary(ctx: RunContext, user_prompt):
+        """
+        Runs the summarizing agent to summarize conversation history
+
+        Args:
+            query: raw user request.
+
+        Returns:
+            A short text summarizing the answer to user's query
+        """
+
+        callback = NamedCallback(summarize_agent)
+        results = await summarize_agent.run(user_prompt=user_prompt, event_stream_handler=callback)
+
+        return results.output
+
+
+     # You repeat this process at least 3 times or until the search_quality_check agent has overall_quality_score of at least 0.4.
+    orchestrator_instructions = """
         You are a helpful assistant that answers user questions only based on arxiv research articles.
 
-        When a user asks a query, you first search the index to find relevant results. 
+        When a user asks a query, you always summarize the query using the generate_summary tool.
+        Then you search the index to find relevant results. 
         If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.
         Then you perfrom a search using the search tool again.
 
         You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.
+        If the search_quality_check tool indicates "More data is needed", then you may perform additional search using the suggested_search_terms.
 
-        If the search_quality_check tool indicates "More data is needed", then you fetch more data using the get_data_to_index tool and perform additional search. 
-        You repeat this process until the search_quality_check agent indicates "Good enough".
-
-        You provide a complete and correct answer to the user's question by summarizing all these search results.
+        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.
         You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.
     """.strip()
 
-    summarizing_tools = [agent_class.get_data_to_index, agent_class.search, search_quality_check]
+    orchestrator_tools = [agent_class.get_data_to_index, agent_class.search, search_quality_check]
 
-    summarize_agent = Agent(
-        name="summarize",
-        tools=summarizing_tools,
-        instructions=summarizing_instructions,
+    orchestrator_agent = Agent(
+        name="orchestrator",
+        tools=orchestrator_tools,
+        instructions=orchestrator_instructions,
         model='openai:gpt-4o-mini',
         output_type=SearchResultSummary
     )
     
 
-
-    return summarize_agent
+    return orchestrator_agent
 

@@ -48,9 +48,8 @@ user_input = st.chat_input("Say something...")
 
 if user_input:
     # Add user message
-    print(user_input)
-    st.session_state.messages.append({"role": "user", "content": user_input})
-    print(st.session_state.messages)
+    
+    st.session_state.messages.append({"role": "user", "content": user_input, "latest_query": user_input})
     with st.chat_message("user"):
         st.write(user_input)
 
@@ -58,11 +57,11 @@ if user_input:
     with st.chat_message("assistant"):
         text_box = st.empty()
         tool_box = st.empty()
-
+        
         streamed_text = ""
         streamed_tool_calls = []
-
-        # Call your backend agent
+        
+        
         # Call your backend agent
         for event in send_to_backend(st.session_state.messages):
 
@@ -81,6 +80,7 @@ if user_input:
         msg_record = {
             "role": "assistant",
             "content": streamed_text,
+            "latest_query": user_input
         }
         if streamed_tool_calls:
             msg_record["tool_call"] = streamed_tool_calls
