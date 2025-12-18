@@ -105,6 +105,15 @@ docker.elastic.co/elasticsearch/elasticsearch:9.1.1
 ### 6. To run the streamlit frontend
  ```streamlit run ui/app.py```
 
+## Testing Agents
+There are pytests present inside the tests folder. 
+The `test_agent.py` contains tests to check for proper tool calls and ooutput formats
+The `test_llm_judge.py` evaluates other difficult to catch edge cases such as if search_quality_check tool gets called everytime the search tool is called. 
+
+To test them you can run: ```uv run pytest```
+
+## Monitoring
+All interactions with the tool are automatically monitored. The logs are stored within the logs folder.
 
 ## Self-evaluation using Agents:
 This is done within the evals.py script built on top of the groud truth data present in `questions_dataset.csv`
@@ -132,7 +141,7 @@ Further improvements that can be considered for the furture could be:
 - Experiment further with the chunking strategy to indirectly improve search and retreival quality
 - Experiment with other openai models 
 
-## Ground Truth Eval Scores 
+### Ground Truth Eval Scores 
 
 | Metric | Score |
 |------|------|
@@ -144,7 +153,7 @@ Further improvements that can be considered for the furture could be:
 | completeness | 0.0 |
 | tool_call_search | 1.0 |                       
 
-## Latest Eval Scores
+### Latest Eval Scores
 
 | Metric | Score |
 |------|------|
@@ -155,3 +164,5 @@ Further improvements that can be considered for the furture could be:
 | answer_citations | 0.2 |
 | completeness | 0.1 |
 | tool_call_search | 1.0 |
+
+
