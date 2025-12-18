@@ -126,6 +126,11 @@ This prompted me to dive deeper into the methodology and add an extra agent/tool
 quality of the final answers, which can be observed in the scores in `evals/latest_evals/all_metrics.csv`
 
 The `questions_dataset.csv` also contains a more direct comparison of the final answers under both scenarios for direct human verification. 
+Although the evaluation scores have improved with the addition of the search_quality_check tool, it is not a monumental improvement in the completeness of the final result. 
+Further improvements that can be considered for the furture could be:
+- Look deeper into the quality of searching the index, perhaps experiment with others search indices like Qdrant for better search and retreival quality
+- Experiment further with the chunking strategy to indirectly improve search and retreival quality
+- Experiment with other openai models 
 
 ## Ground Truth Eval Scores 
 
@@ -139,7 +144,8 @@ The `questions_dataset.csv` also contains a more direct comparison of the final 
 | completeness | 0.0 |
 | tool_call_search | 1.0 |                       
 
-Latest Eval Scores
+## Latest Eval Scores
+
 | Metric | Score |
 |------|------|
 | instructions_follow | 0.2 |
