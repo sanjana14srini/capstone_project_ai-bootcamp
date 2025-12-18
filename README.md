@@ -68,10 +68,10 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 ### Follow the below noted steps to run this application locally
 
-### 1. make sure you have an openai account with an api key set up and accessible for this code
-### 2. install python 3.12 or higher
-### 3. install docker https://docs.docker.com/desktop/
-### 4. install uv, set up the virtual environment and activate it
+### 1. Make sure you have an openai account with an api key set up and accessible for this code. This project has access to openai credentials through git hub codespace secrets. You can attempt to do the same. 
+### 2. Install python 3.12 or higher
+### 3. Install docker https://docs.docker.com/desktop/
+### 4. Install uv, set up the virtual environment and activate it
 - `python3 -m pip install uv`
 - ```uv init```
 - ```uv add openai messages pydantic pydantic_ai toyaikit jaxn elasticsearch streamlit feedparser```
@@ -99,7 +99,7 @@ docker.elastic.co/elasticsearch/elasticsearch:9.1.1
 ```uvicorn backend.app:app --reload --port 8001```
 
 ### Testing the fastapi
-```curl -X POST http://localhost:8001/chat      -H "Content-Type: application/json"      -d '{"messages":[{"role":"user","content":"top 10 research articles on archaeological findings in the harrapan civilization"}]}'```
+```curl -X POST http://localhost:8001/chat      -H "Content-Type: application/json"      -d '{"messages":[{"role":"user","content":"pre-puberty associated stress disorders"}]}'```
 
 
 ### 6. To run the streamlit frontend
@@ -108,15 +108,24 @@ docker.elastic.co/elasticsearch/elasticsearch:9.1.1
 
 ## Self-evaluation using Agents:
 This is done within the evals.py script built on top of the groud truth data present in `questions_dataset.csv`
-The results can be found in `evals.csv` and `metrics. csv`
+The results can be found in `evals.csv` and `metrics. csv` under latest_evals or ground_truth folders.
 
 - How you can run your own evaluations:
 To run your own evaluations, you can do as follows:
 - Run elasticsearch, backend and the streamlit frontend
-- Have conversations with the chat interface. These conversations will be logged as json files inside monitoring/logs folder
-- You can move your desired logs into the evals/eval_logs folder and run the evaluator.py script
+- Have conversations with the chat interface. These conversations will be logged as json files inside `monitoring/logs` folder
+- You can move your desired logs into the `evals/<your-folder-name>/eval_logs` folder and run the evaluator.py script by updating the directory names
 - This will generate evals.csv and metrics.csv where you get metadata and scores for various model performance metrics of your logs
 - You can then play around with the agent prompts, chunking strategy or model preference using these scores as benchmarks
 
 This is exactly how the model prompts were tuned and chunking strategy were adopted for this project
-The evals/questions_dataset.csv consists of the ground_truth questions set against which evals were set-up. 
+The `evals/questions_dataset.csv` consists of the ground_truth questions set against which evals were set-up. 
+
+Originally when running evals over the ground truth data, the evals were pretty bad. This can be noticed from the scores inside the `evals/ground_truth/ground_truth_all_metrics.csv`
+This prompted me to dive deeper into the methodology and add an extra agent/tool to check the quality of search once search results were retreived. The addition of this tool improved the
+quality of the final answers, which can be observed in the scores in `evals/latest_evals/all_metrics.csv`
+
+The `questions_dataset.csv` also contains a more direct comparison of the final answers under both scenarios for direct human verification. 
+
+Ground Truth Eval Scores                        Latest Eval Scores
+![alt text](image.png)                          ![alt text](image-1.png)
