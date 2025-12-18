@@ -127,5 +127,25 @@ quality of the final answers, which can be observed in the scores in `evals/late
 
 The `questions_dataset.csv` also contains a more direct comparison of the final answers under both scenarios for direct human verification. 
 
-Ground Truth Eval Scores                        Latest Eval Scores
-![alt text](image.png)                          ![alt text](image-1.png)
+## Ground Truth Eval Scores 
+
+| Metric | Score |
+|------|------|
+| instructions_follow | 0.1 |
+| instructions_avoid | 0.5 |
+| answer_relevant | 0.7 |
+| answer_clear | 0.4 |
+| answer_citations | 0.0 |
+| completeness | 0.0 |
+| tool_call_search | 1.0 |                       
+
+Latest Eval Scores
+| Metric | Score |
+|------|------|
+| instructions_follow | 0.2 |
+| instructions_avoid | 0.9 |
+| answer_relevant | 0.7 |
+| answer_clear | 0.5 |
+| answer_citations | 0.2 |
+| completeness | 0.1 |
+| tool_call_search | 1.0 |
