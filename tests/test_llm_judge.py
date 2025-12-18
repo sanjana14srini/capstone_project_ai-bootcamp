@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai import AgentRunResult
-from capstone_project.main import run_agent
+from main import run_agent
 from tests.utils import get_tool_calls
 import pytest
-from capstone_project.agents import SearchResultSummary
+from agents import SearchResultSummary
 
 judge_instructions = """
 you are an expert judge evaluating the performance of an AI search agent.

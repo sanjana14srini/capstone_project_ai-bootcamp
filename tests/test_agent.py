@@ -1,6 +1,6 @@
-from capstone_project.main import run_sync_agent
+from main import run_sync_agent
 from tests.utils import get_tool_calls
-from capstone_project.agents import SearchResultSummary
+from agents import SearchResultSummary
 
 
 def test_agent_tool_calls_present():

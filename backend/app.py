@@ -92,9 +92,13 @@ async def agent_stream(messages):
         ) 
         
 
+        log_entry = log_run(agent, result)
+        save_log(log_entry)
+        
         # Assuming result.output is a SearchResultSummary object
         summary: SearchResultSummary = result.output
 
+        
         # Keep the if logic by checking attributes on the final object
         # Process text attribute if it exists
         if hasattr(summary, "text") and summary.text:
@@ -121,8 +125,6 @@ async def agent_stream(messages):
             await asyncio.sleep(0.1)
 
 
-        log_entry = log_run(agent, result)
-        save_log(log_entry)
     
     except Exception as e:
         yield {"type": "error", "message": str(e)}

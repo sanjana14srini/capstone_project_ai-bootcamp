@@ -12,19 +12,27 @@ from pydantic_ai.run import AgentRunResult
 from pydantic_ai.result import StreamedRunResult
 from pydantic_ai.messages import ModelMessagesTypeAdapter
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
+from agents import SearchResultSummary
 
 UsageTypeAdapter = pydantic.TypeAdapter(RunUsage)
 
+
+def serializer(obj):
+    if isinstance(obj, BaseModel):
+        return obj.model_dump(mode="json")  # ✅ dict, NOT string
+    if isinstance(obj, HttpUrl):
+        return str(obj)
+    raise TypeError(f"Type {type(obj)} not serializable")
 
 def create_log_entry(
     agent: Agent,
     messages: List[ModelMessage],
     usage: RunUsage,
-    output: str
+    output: SearchResultSummary
 ):
     tools = []
-
+    
     for ts in agent.toolsets:
         tools.extend(ts.tools.keys())
 
@@ -46,7 +54,7 @@ def log_run(
     agent: Agent,
     result: AgentRunResult
 ):
-    output = result.output
+    output: SearchResultSummary = result.output
     usage = result.usage()
     messages = result.all_messages()
 
@@ -80,7 +88,7 @@ def save_log(entry: dict):
     ts = find_last_timestamp(entry['messages'])
     ts_str = ts.strftime("%Y%m%d_%H%M%S")
     rand_hex = secrets.token_hex(3)
-
+    print("DEBUG output type:", type(entry["output"]))
     agent_name = entry['agent_name'].replace(" ", "_").lower()
 
     filename = f"{agent_name}_{ts_str}_{rand_hex}.json"
