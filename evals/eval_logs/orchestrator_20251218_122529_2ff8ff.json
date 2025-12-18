@@ -1,0 +1,700 @@
+{
+  "agent_name": "orchestrator",
+  "system_prompt": [
+    "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results."
+  ],
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "get_data_to_index",
+    "search",
+    "search_quality_check"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "\n            Answer the user's query based on the following conversation history:\n            Context: give me a summary of the latest research in LoRA? # Summary of Latest Research in LoRA\n\n## Summary \n Recent research on Low-Rank Adaptation (LoRA) focuses on enhancing its efficiency and applicability in various tasks, particularly in the context of fine-tuning large models. Here are three notable contributions:\n\n1. **LoRA-FAIR**: This paper introduces a novel method that integrates LoRA with federated learning (FL) to address the challenges of Server-Side Aggregation Bias and Client-Side Initialization Lag. By refining the aggregation process and ensuring consistent initialization across rounds, LoRA-FAIR significantly improves performance in FL settings, demonstrating effective fine-tuning on models like ViT and MLP-Mixer while maintaining computational efficiency. [Read more](https://arxiv.org/abs/2411.14961v3)\n\n2. **LoRA Done RITE**: This work addresses the lack of transformation invariance in current LoRA optimizers, which leads to inefficient learning. The authors propose LoRA-RITE, a novel adaptive matrix preconditioning method that ensures invariant weight updates regardless of how LoRA factors are scaled or rotated. Extensive experiments show that this approach yields consistent accuracy gains across various large language model tasks. [Read more](https://arxiv.org/abs/2410.20625v2)\n\n3. **PLoP**: This paper presents PLoP (Precise LoRA Placement), which focuses on the adapter placement strategy when using LoRA. By automating the identification of optimal module types for placing LoRA adapters, PLoP enhances the finetuning process for large models. The method demonstrates superior performance compared to traditional placement strategies through comprehensive testing across various tasks. [Read more](https://arxiv.org/abs/2506.20629v1) \n\n## References\n- [LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement](https://arxiv.org/abs/2411.14961v3)\n- [LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization](https://arxiv.org/abs/2410.20625v2)\n- [PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models](https://arxiv.org/abs/2506.20629v1)\n explain the most important aspect of self-attention in LLMs # Key Aspects of Self-Attention in Large Language Models\n\n## Summary \n Self-attention is fundamental to the operation of transformer models, particularly in large language models (LLMs). Its most important aspects include:\n\n1. **Dynamic Attention Weighing**: Self-attention mechanisms weigh input tokens' influence on each other dynamically, based on their contextual embeddings. This adaptability enhances the model's ability to focus on relevant parts of the input sequence, which is crucial for capturing dependencies over long contexts.\n\n2. **Representation of Long-Distance Dependencies**: Self-attention effectively models long-range relationships in sequential data, which is vital for understanding context in natural language processing. This capability has been shown to significantly outperform traditional recurrent neural networks (RNNs), especially in handling complex sequences.\n\n3. **Primal Attention Mechanism**: Recent advancements propose adopting a primal representation in self-attention using Kernel Singular Value Decomposition (KSVD). This approach optimizes the self-attention process by enhancing efficiency and regularizing attention outputs, resulting in improved performance without the need for extensive computational resources.\n\nUnderstanding these components enhances the design and application of transformer-based models, especially as they are deployed in increasingly complex NLP tasks. \n\n## References\n- [Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation](https://arxiv.org/abs/2305.19798v2)\n- [D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation](https://arxiv.org/abs/2002.00741v1)\n what is the framework behind model context protocol # MCP4EDA: LLM-Powered Model Context Protocol\n\n## Summary \n MCP4EDA introduces the Model Context Protocol, a framework enabling Large Language Models (LLMs) to control and optimize the RTL-to-GDSII design flow through natural language interfaces. This system integrates multiple EDA tools, allowing designers to execute complex workflows conversationally. Key features include a backend-aware synthesis optimization methodology that utilizes real performance data from post-layout results to refine synthesis processes, enabling significant improvements in timing closure and area reduction. The structured framework consists of an MCP Server and Clients that facilitate dynamic tool orchestration and stateful workflow management, making it adaptable to design needs. \n\n## References\n- [MCP4EDA: LLM-Powered Model Context Protocol RTL-to-GDSII Automation with Backend Aware Synthesis Optimization](https://arxiv.org/abs/2507.19570v1)\n when is sub-game perfect equilibria also a nash equilibria in an infinite game? # Sub-game Perfect Equilibria and Nash Equilibria in Infinite Games\n\n## Summary \n In infinite games, sub-game perfect equilibria can also be Nash equilibria under certain conditions related to time-inconsistency and player preferences. Recent research explores these aspects by investigating time-inconsistent, non-Markovian finite-player games, proposing that sub-game perfect equilibria maintain their properties through convergence to mean-field counterparts in large player settings. This ensures that players' strategies remain optimal even as the game evolves over time, capturing both intra-personal and inter-personal strategic dynamics effectively through specialized mathematical frameworks including backward stochastic differential equations. The convergence of these equilibria illustrates the maintainability of Nash properties over infinite games, suggesting foundational implications in game theory and strategy development. \n\n## References\n- [Variance strikes back: sub-game--perfect Nash equilibria in time-inconsistent $N$-player games, and their mean-field sequel](https://arxiv.org/abs/2512.08745v1)\n summary of classical vision models # Classical Vision Models: A Summary\n\n## Summary \n Classical vision models have evolved significantly, particularly with the rise of new technologies such as action cameras and smart glasses, which have introduced First Person Vision (FPV) into the landscape of computer vision. Recent research has highlighted the following key aspects of FPV and its methods:\n\n1. **FPV Video Analysis**: This approach captures videos from the user's perspective, allowing for better context in tasks such as object detection and activity recognition. It has shifted the focus towards understanding user interactions and behaviors.\n\n2. **Emergence of Wearable Devices**: Smart glasses and action cameras have become vital tools. They include multiple sensing capabilities that can enhance real-time analysis and interaction, offering significant advantages over traditional systems.\n\n3. **Methodological Advances**: Various image features and computational techniques are combined in innovative ways to address challenges unique to FPV, making it a rich area for both research and commercial applications.\n\n4. **Future Directions**: Continuous advances in technology suggest that the field will further develop, with smart wearable devices poised to play a crucial role in the next generation of vision systems. Current and future research includes tackling challenges related to processing efficiency and user engagement. \n\n## References\n- [The Evolution of First Person Vision Methods: A Survey](https://arxiv.org/abs/1409.1484v3)\n literature review on histories of childhoods and media in colonial era # Literature Review on Histories of Childhoods and Media in the Colonial Era\n\n## Summary \n While there is a gap in literature directly addressing childhoods and media during the colonial era, recent studies touch on aspects related to childhood narratives, media influences, and collective memory. The following articles may provide insights into the thematic areas relevant to this review:\n\n1. **Collective Memory and Narrative Cohesion** - This study uses the Palestinian Oral History Archive to explore how narratives shape collective memory, specifically examining the influence of shared gender and community dynamics on childhood experiences. This framework can be contextualized in colonial media discussions, focusing on how narratives are formed and influenced during colonial times. [Read more](https://arxiv.org/abs/2501.13682v1)\n\n2. **Semi-Supervised Image-Based Narrative Extraction** - This paper investigates extracting narratives from historical photographs, showcasing how visual narratives can represent historical events. Although it does not directly address childhood, it illustrates the potential of visual media in narrating experiences within a historical context, including childhood. [Read more](https://arxiv.org/abs/2501.09884v1)\n\n3. **Current Research on Media and Politicization** - While not centered on childhood, studies on the politicization of media provide indirect insights, particularly into how themes in media influence children's perceptions and narratives during colonial times. The analysis methodologies from this study could be applied to understanding media's impact on children in colonial contexts. [Read more](https://arxiv.org/abs/2312.11326v2) \n\n## References\n- [Collective Memory and Narrative Cohesion: A Computational Study of Palestinian Refugee Oral Histories in Lebanon](https://arxiv.org/abs/2501.13682v1)\n- [Semi-Supervised Image-Based Narrative Extraction: A Case Study with Historical Photographic Records](https://arxiv.org/abs/2501.09884v1)\n- [Topic Shifts as a Proxy for Assessing Politicization in Social Media](https://arxiv.org/abs/2312.11326v2)\n top 10 research articles on archaeological findings in the harrapan civilization # Top Research Articles on Archaeological Findings in the Harappan Civilization\n\n## Summary \n Recent studies on the Harappan civilization illuminate various aspects of its advanced societal structure and cultural practices, notably through archaeological findings. Here are two significant contributions:\n\n1. **A Possible Harappan Astronomical Observatory at Dholavira**: This study suggests that Dholavira, a major trading port during the Harappan Civilization, may have housed an astronomical observatory. The research reveals an unusual structure with circular rooms that could have functioned to track solar movements, indicating a sophisticated understanding of astronomy among the Harappans. [Read more](https://arxiv.org/abs/1310.6474v1)\n\n2. **Technological and Urban Planning Insights**: Other emerging research focuses extensively on the sophisticated urban planning and technological advancements seen in urban centers like Dholavira, showcasing intricate city layouts and infrastructure that reflect a high level of engineering skill. This emphasizes not only the civilization's architectural achievements but its organizational capabilities as well. \n\n## References\n- [A possible Harappan Astronomical Observatory at Dholavira](https://arxiv.org/abs/1310.6474v1)\n\n            Current query: lifestyle disorders in pre-adolescent and adolescent children\n        ",
+          "timestamp": "2025-12-18T12:24:53.105957+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"lifestyle disorders in pre-adolescent and adolescent children\",\"paper_name\":\"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_f11vf3IUU1XETlYC4AqOqVXR",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2599,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 1792,
+        "output_tokens": 36,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:24:53+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7Lpm97MUQ9szsvK72rkoGd8lNCh",
+      "finish_reason": "tool_call",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [],
+          "tool_call_id": "call_f11vf3IUU1XETlYC4AqOqVXR",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:24:54.374404+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\":\"lifestyle disorders in pre-adolescent and adolescent children\",\"paper_name\":\"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_aC5BzbWAm8YiER6dmsMxsl5F",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2643,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 2560,
+        "output_tokens": 39,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:24:54+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7LqFsadE7iCPp8KW8pHE3rCpdv8",
+      "finish_reason": "tool_call",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_aC5BzbWAm8YiER6dmsMxsl5F",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:01.605254+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"lifestyle factors pre-adolescent adolescent health\",\"paper_name\":\"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_9y4aXjyBj9yNYqUzy98wYB2G",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2693,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 2560,
+        "output_tokens": 34,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:25:01+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7LxLQFG6fmz9bjQQXhS3csB4ZMF",
+      "finish_reason": "tool_call",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2205.09055v1",
+              "title": "Exploring Children's Preferences for Taking Care of a Social Robot",
+              "authors": [
+                "Bengisu Cagiltay",
+                "Joseph Michaelis",
+                "Sarah Sebo",
+                "Bilge Mutlu"
+              ],
+              "published": "2022-05-18T16:39:56Z",
+              "summary": "Research in child-robot interactions suggests that engaging in \"care-taking\" of a social robot, such as tucking the robot in at night, can strengthen relationships formed between children and robots. In this work, we aim to better understand and explore the design space of caretaking activities with 10 children, aged 8--12 from eight families, involving an exploratory design session followed by a preliminary feasibility testing of robot caretaking activities. The design sessions provided insight into children's current caretaking tasks, how they would take care of a social robot, and how these new caretaking activities could be integrated into their daily routines. The feasibility study tested two different types of robot caretaking tasks, which we call connection and utility, and measured their short term effects on children's perceptions of and closeness to the social robot. We discuss the themes and present interaction design guidelines of robot caretaking activities for children.",
+              "content": "rior research has shown that caring for\nan interactive toy, robot, or chatbot by comforting [18], teaching\n[23], or touching [34] it can help form stronger connections and\nfacilitate positive outcomes such as improvements in mental health\nin adults [18], learning gains in children [23], and the amount of\ntime adults spent on a monotonous task [34]. Building on these\nfindings, we posit that the key to developing a social companion\nrobot for families, particularly for children, that overcomes barriers\nto successful long-term human-robot interaction is the formation of\nlasting interpersonal connections between the robot and its users.\nWe explore how designing a robot that is capable of receiving care\nfrom its users might facilitate the forming of such relationships.\nOur work aims to address the following questions:\n\n \n \n \n \n \n \n\fIDC \u201922, June 27\u201330, 2022, Braga, Portugal\n\nBengisu Cagiltay, Joseph Michaelis, Sarah Sebo, and Bilge Mutlu\n\nFigure 1: Children reading to the robot for a bedtime care routine: In this study we explored children\u2019s preferences for taking\ncare of a social robot and conducted a feasibility study to evaluate children\u2019s experience of taking care of a robot. Our findings\nprovide insight into designing social robot caretaking activities for children.\n\nRQ1. What types of in-home robot caretaking tasks will be\n\nperformed regularly by children?\n\nRQ2. How can we design robot caretaking tasks with children\nto foster interpersonal connections and long-term use of\nthe robot?\n\nAs a first step toward addressing these questions, we conducted\nan exploratory design study that explored what types of caretaking\ntasks children would prefer and how these care obligations would\nfit in their daily routines. We then conducted a brief feasibility\nstudy that tested two types of caretaking tasks and measured how\nchildren perceived the robot and how close they felt to the robot\nafter completing the care tasks. This work makes the following\ncontributions.\n\n(1) A characterization of caretaking as a design space for child-\n\nrobot interaction design;\n\n(2) An understanding of children\u2019s preferences for robot caretak-\n\ning activities;\n\n(3) A preliminary understanding of children\u2019s perceptions of\n\ndesigned caretaking interactions.\n\n2 BACKGROUND\n\nCaretaking in Child-Robot Interactions. Limited work shows how\npeople can benefit from expressing care towards non-robot applica-\ntions, such as chatbots. For example, people whom interacted with a\ncare-receiving chatbot by comforting it had increased positive men-\ntal health outcomes in self-compassion [18]. In another study [32], a\nsocial robot deployed in the workspace for 10 work days was found\nmore effective in helping users better manage their breaks. The\nsocial robot responded to \u201cpetting,\u201d displayed agitation for succes-\nsive break alerts, and needed to be \u201cfed\u201d fruits represented by RFID\ncards. Research focused on caretaking in child-robot interactions\nis limited, however some studies reported children spontaneously\ndemonstrating robot care behaviors. For example, a social robot was\ndeployed in an early childhood education center for five months,\nand toddlers showed more caretaking behaviors for the robot (such\nas putting a blanket on the robot while saying \u201cnight-night\u201d) than\nother objects such as an immobile robotic toy, treating the care-\nreceiving robot as a peer [36]. As part of their findings, Tanaka et al.\n[36] reported a set of factors that impacted the quality of children\u2019s\ninteraction with the robot, including caretaking, rough-housing,\nhugging, touching the robot with objects, or touching the robot\u2019s\nhead, face, trunk, arm, hand, leg, or foot. These factors manifested\n\nin children\u2019s behaviors differently depending on the robot, for ex-\nample, violent rough-housing was observed only for the immobile\nrobotic toy, while children frequently hugged the care-receiving ro-\nbot. Tanaka and Kimura [37] explains that such care activities are a\npart of children\u2019s development of learning by teaching. They argued\nthat, the robot being a \u201cweaker\u201d entity than the children, in size\nand sophistication, motivated children\u2019s care interactions with the\nrobot in the classroom. However, research exploring caretaking in\nchild-robot interactions are typically limited to a classroom context\nand the literature lacks insight into how robot caretaking might\nbe formed in children\u2019s homes. While our work is also situated in\na laboratory context, we aim to extract initial design factors for\nchildren\u2019s robot caretaking tasks that would later be transferable\nto the home setting.\n\nLong Term Child-Robot Interactions. The design of social robots\nthat can sustain long-term interactions with children is key for\nexploring how children would take care of a robot in their homes.\nHowever, human-robot interaction (HRI) researchers [9, 10, 41]\nas well as companies that have developed social robots (e.g., Jibo,\nAnki, Kuri) have continued to face barriers to sustaining long-term\nhuman-robot interactions. W"
+            },
+            {
+              "id": "2205.09055v1",
+              "title": "Exploring Children's Preferences for Taking Care of a Social Robot",
+              "authors": [
+                "Bengisu Cagiltay",
+                "Joseph Michaelis",
+                "Sarah Sebo",
+                "Bilge Mutlu"
+              ],
+              "published": "2022-05-18T16:39:56Z",
+              "summary": "Research in child-robot interactions suggests that engaging in \"care-taking\" of a social robot, such as tucking the robot in at night, can strengthen relationships formed between children and robots. In this work, we aim to better understand and explore the design space of caretaking activities with 10 children, aged 8--12 from eight families, involving an exploratory design session followed by a preliminary feasibility testing of robot caretaking activities. The design sessions provided insight into children's current caretaking tasks, how they would take care of a social robot, and how these new caretaking activities could be integrated into their daily routines. The feasibility study tested two different types of robot caretaking tasks, which we call connection and utility, and measured their short term effects on children's perceptions of and closeness to the social robot. We discuss the themes and present interaction design guidelines of robot caretaking activities for children.",
+              "content": "ties that are unique to the intimacy, routines, and\nexpectations of such a setting. In this paper, we explore the activity\nof caretaking of a social robot as a new and unique responsibility\nintroduced by in-home, long-term interactions with a robot. Care-\ntaking might range from maintaining the robot by charging and\ncleaning, protecting it by providing a shelter and a safe space, or\nproviding companionship by chatting, playing games, or reading\ntogether. It also serves as a new and exciting design space with\nthe potential to craft a positive user experience that facilitates the\nforming of lasting bond between the child and the robot.\n\nSimilar to a friendship between two people or the connection\nbetween a person and a real or artificial pet (e.g., the Tamagotchi in\na key-chain form[22]), we aim to explore how meaningful, lasting\ninterpersonal connections might be formed between children and\nrobots by designing a robot capable of also receiving care [37] rather\nthan simply giving care. Prior research has shown that caring for\nan interactive toy, robot, or chatbot by comforting [18], teaching\n[23], or touching [34] it can help form stronger connections and\nfacilitate positive outcomes such as improvements in mental health\nin adults [18], learning gains in children [23], and the amount of\ntime adults spent on a monotonous task [34]. Building on these\nfindings, we posit that the key to developing a social companion\nrobot for families, particularly for children, that overcomes barriers\nto successful long-term human-robot interaction is the formation of\nlasting interpersonal connections between the robot and its users.\nWe explore how designing a robot that is capable of receiving care\nfrom its users might facilitate the forming of such relationships.\nOur work aims to address the following questions:\n\n \n \n \n \n \n \n\fIDC \u201922, June 27\u201330, 2022, Braga, Portugal\n\nBengisu Cagiltay, Joseph Michaelis, Sarah Sebo, and Bilge Mutlu\n\nFigure 1: Children reading to the robot for a bedtime care routine: In this study we explored children\u2019s preferences for taking\ncare of a social robot and conducted a feasibility study to evaluate children\u2019s experience of taking care of a robot. Our findings\nprovide insight into designing social robot caretaking activities for children.\n\nRQ1. What types of in-home robot caretaking tasks will be\n\nperformed regularly by children?\n\nRQ2. How can we design robot caretaking tasks with children\nto foster interpersonal connections and long-term use of\nthe robot?\n\nAs a first step toward addressing these questions, we conducted\nan exploratory design study that explored what types of caretaking\ntasks children would prefer and how these care obligations would\nfit in their daily routines. We then conducted a brief feasibility\nstudy that tested two types of caretaking tasks and measured how\nchildren perceived the robot and how close they felt to the robot\nafter completing the care tasks. This work makes the following\ncontributions.\n\n(1) A characterization of caretaking as a design space for child-\n\nrobot interaction design;\n\n(2) An understanding of children\u2019s preferences for robot caretak-\n\ning activities;\n\n(3) A preliminary understanding of children\u2019s perceptions of\n\ndesigned caretaking interactions.\n\n2 BACKGROUND\n\nCaretaking in Child-Robot Interactions. Limited work shows how\npeople can benefit from expressing care towards non-robot applica-\ntions, such as chatbots. For example, people whom interacted with a\ncare-receiving chatbot by comforting it had increased positive men-\ntal health outcomes in self-compassion [18]. In another study [32], a\nsocial robot deployed in the workspace for 10 work days was found\nmore effective in helping users better manage their breaks. The\nsocial robot responded to \u201cpetting,\u201d displayed agitation for succes-\nsive break alerts, and needed to be \u201cfed\u201d fruits represented by RFID\ncards. Research focused on caretaking in child-robot interactions\nis limited, however some studies reported children spontaneously\ndemonstrating robot care behaviors. For example, a social robot was\ndeployed in an early childhood education center for five months,\nand toddlers showed more caretaking behaviors for the robot (such\nas putting a blanket on the robot while saying \u201cnight-night\u201d) than\nother objects such as an immobile robotic toy, treating the care-\nreceiving robot as a peer [36]. As part of their findings, Tanaka et al.\n[36] reported a set of factors that impacted the quality of children\u2019s\ninteraction with the robot, including caretaking, rough-housing,\nhugging, touching the robot with objects, or touching the robot\u2019s\nhead, face, trunk, arm, hand, leg, or foot. These factors manifested\n\nin children\u2019s behaviors differently depending on the robot, for ex-\nample, violent rough-housing was observed only for the immobile\nrobotic toy, while children frequently hugged the care-receiving ro-\nbot. Tanaka and Kimura [37] explains that such care activities are a\npart of children\u2019s development of learning by t"
+            },
+            {
+              "id": "2205.09055v1",
+              "title": "Exploring Children's Preferences for Taking Care of a Social Robot",
+              "authors": [
+                "Bengisu Cagiltay",
+                "Joseph Michaelis",
+                "Sarah Sebo",
+                "Bilge Mutlu"
+              ],
+              "published": "2022-05-18T16:39:56Z",
+              "summary": "Research in child-robot interactions suggests that engaging in \"care-taking\" of a social robot, such as tucking the robot in at night, can strengthen relationships formed between children and robots. In this work, we aim to better understand and explore the design space of caretaking activities with 10 children, aged 8--12 from eight families, involving an exploratory design session followed by a preliminary feasibility testing of robot caretaking activities. The design sessions provided insight into children's current caretaking tasks, how they would take care of a social robot, and how these new caretaking activities could be integrated into their daily routines. The feasibility study tested two different types of robot caretaking tasks, which we call connection and utility, and measured their short term effects on children's perceptions of and closeness to the social robot. We discuss the themes and present interaction design guidelines of robot caretaking activities for children.",
+              "content": "ew. Science robotics 3,\n21 (2018).\n\n[2] Elin A Bj\u00f6rling, Emma Rose, Andrew Davidson, Rachel Ren, and Dorothy Wong.\n2020. Can we keep him forever? Teens\u2019 engagement and desire for emotional\nconnection with a social robot. International Journal of Social Robotics 12, 1 (2020),\n65\u201377.\n\n[3] Virginia Braun and Victoria Clarke. 2019. Reflecting on reflexive thematic analysis.\n\nQualitative Research in Sport, Exercise and Health 11, 4 (2019), 589\u2013597.\n\n[4] Cynthia Breazeal. 2011. Social robots for health applications. In 2011 Annual\ninternational conference of the IEEE engineering in medicine and biology society.\nIEEE, 5368\u20135371.\n\n[5] Catherine Caudwell, Cherie Lacey, and Eduardo B. Sandoval. 2019. The\n(Ir)relevance of Robot Cuteness: An Exploratory Study of Emotionally Durable Ro-\nbot Design. In Proceedings of the 31st Australian Conference on Human-Computer-\nInteraction (OZCHI\u201919). Association for Computing Machinery, New York, NY,\nUSA, 64\u201372. https://doi.org/10.1145/3369457.3369463\n\n[6] Caitlyn Clabaugh, David Becerra, Eric Deng, Gisele Ragusa, and Maja Matari\u0107.\n2018. Month-long, in-home case study of a socially assistive robot for children\nwith autism spectrum disorder. In Companion of the 2018 ACM/IEEE International\nConference on Human-Robot Interaction. 87\u201388.\n\n[7] Filipa Correia, Patr\u00edcia Alves-Oliveira, Tiago Ribeiro, Francisco S Melo, and\nAna Paiva. 2017. A social robot as a card game player. In Thirteenth Artificial\nIntelligence and Interactive Digital Entertainment Conference.\n\n[8] Maartje MA de Graaf, Somaya Ben Allouch, and Jan AGM van Dijk. 2016. Long-\nterm evaluation of a social robot in real homes. Interaction studies 17, 3 (2016),\n462\u2013491.\n\n[9] Maartje M. A. de Graaf, Somaya B. Allouch, and Jan A. G. M. van Dijk. 2017. Why\ndo they refuse to use my robot?: Reasons for non-use derived from a long-term\nhome study. In 2017 12th ACM/IEEE International Conference on Human-Robot\nInteraction (HRI). IEEE, 224\u2013233.\n\n[10] Ylva Fernaeus, Maria H\u00e5kansson, Mattias Jacobsson, and Sara Ljungblad. 2010.\nHow do you play with a robotic toy animal? A long-term study of Pleo. In\nProceedings of the 9th international Conference on interaction Design and Children.\n39\u201348.\n\n[11] Simon G\u00e4chter, Chris Starmer, and Fabio Tufano. 2015. Measuring the closeness\nof relationships: a comprehensive evaluation of the\u2019inclusion of the other in the\nself\u2019scale. PloS one 10, 6 (2015), e0129478.\n\n[12] Goren Gordon, Samuel Spaulding, Jacqueline K. Westlund, Jin J. Lee, Luke Plum-\nmer, Marayna Martinez, Madhurima Das, and Cynthia Breazeal. 2016. Affective\npersonalization of a social robot tutor for children\u2019s second language skills. In\nProceedings of the AAAI conference on artificial intelligence, Vol. 30.\n\n[13] Arzu Guneysu and Bert Arnrich. 2017. Socially assistive child-robot interaction\nin physical exercise coaching. In 2017 26th IEEE international symposium on robot\nand human interactive communication (RO-MAN). IEEE, 670\u2013675.\n\n[14] Guy Hoffman. 2019. Anki, Jibo, and Kuri: What We Can Learn from Social Robots\nThat Didn\u2019t Make It. https://spectrum.ieee.org/anki-jibo-and-kuri-what-we-\ncan-learn-from-social-robotics-failures\n\n[15] Sooyeon Jeong, Deirdre E Logan, Matthew S Goodwin, Suzanne Graca, Brianna\nO\u2019Connell, Honey Goodenough, Laurel Anderson, Nicole Stenquist, Katie Fitz-\npatrick, Miriam Zisook, et al. 2015. A social robot to mitigate stress, anxiety,\nand pain in hospital pediatric care. In Proceedings of the Tenth Annual ACM/IEEE\nInternational Conference on Human-Robot Interaction Extended Abstracts. 103\u2013104.\n[16] Rachel Kirby, Jodi Forlizzi, and Reid Simmons. 2010. Affective social robots.\n\nRobotics and Autonomous Systems 58, 3 (2010), 322\u2013332.\n\n[17] Tsuyoshi Komatsubara, Masahiro Shiomi, Takayuki Kanda, Hiroshi Ishiguro,\nand Norihiro Hagita. 2014. Can a social robot help children\u2019s understanding of\nscience in classrooms?. In Proceedings of the second international conference on\nHuman-agent interaction. 83\u201390.\n\n[18] Minha Lee, Sander Ackermans, Nena van As, Hanwen Chang, Enzo Lucas, and\nWijnand IJsselsteijn. 2019. Caring for Vincent: A chatbot for self-compassion. In\nProceedings of the 2019 CHI Conference on Human Factors in Computing Systems.\n1\u201313.\n\n[19] Min Kyung Lee, Sara Kiesler, Jodi Forlizzi, and Paul Rybski. 2012. Ripple effects\nof an embedded social agent: a field study of a social robot in the workplace. In\nProceedings of the SIGCHI Conference on Human Factors in Computing Systems.\n695\u2013704.\n\n[20] Iolanda Leite, Carlos Martinho, and Ana Paiva. 2013. Social robots for long-term\ninteraction: A survey. International Journal of Social Robotics 5, 2 (2013), 291\u2013308.\n\n[21] Iolanda Leite, Carlos Martinho, Andre Pereira, and Ana Paiva. 2009. As time goes\nby: Long-term evaluation of social presence in robotic companions. In RO-MAN\n2009-The 18th IEEE International Symposium on Robot and Human Interactive\nCommunication. IEEE, 669\u2013674.\n\n[22] Patrizia Marti, Alessandro Pollini, Alessia Rullo, and Takanori Shibata. 2005.\nEngaging with art"
+            }
+          ],
+          "tool_call_id": "call_9y4aXjyBj9yNYqUzy98wYB2G",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:02.555716+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "args": "{\"params\":{\"user_query\":\"lifestyle disorders in pre-adolescent and adolescent children\",\"search_results\":[{\"title\":\"Exploring Children's Preferences for Taking Care of a Social Robot\",\"snippet\":\"Research in child-robot interactions suggests that engaging in \\\"care-taking\\\" of a social robot, such as tucking the robot in at night, can strengthen relationships formed between children and robots. In this work, we aim to better understand...\",\"url\":\"https://arxiv.org/abs/2205.09055v1\"}]}}",
+          "tool_call_id": "call_K3iog2K0FED2Dmq9cSGGAKPM",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 7163,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 2688,
+        "output_tokens": 116,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:25:02+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7Lyld2X2vD5ndzOl1ndFO2DOXkz",
+      "finish_reason": "tool_call",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "content": {
+            "results_evaluation": [
+              {
+                "title": "Exploring Children's Preferences for Taking Care of a Social Robot",
+                "url": "https://arxiv.org/abs/2205.09055v1",
+                "relevance": 0.1,
+                "completeness": 0.1,
+                "credibility": 0.8,
+                "currency": 0.9
+              }
+            ],
+            "overall_quality_score": 0.35,
+            "decision": "more data is needed",
+            "suggested_search_terms": [
+              "lifestyles and health in children",
+              "mental health issues in adolescents",
+              "childhood obesity and lifestyle disorders"
+            ]
+          },
+          "tool_call_id": "call_K3iog2K0FED2Dmq9cSGGAKPM",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:07.370154+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"lifestyles and health in children\", \"paper_name\": \"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_XLpQhAoYUVtafonat8esvDzV",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"mental health issues in adolescents\", \"paper_name\": \"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_QPFzHR4rCRJev88qjgNI7LSl",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"childhood obesity and lifestyle disorders\", \"paper_name\": \"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_iaYNVnfaOAVPHXVPppyzV4iq",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 7396,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 7168,
+        "output_tokens": 120,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:25:07+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7M3XtZrf9CDw95dizGyrgtvtndg",
+      "finish_reason": "tool_call",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_XLpQhAoYUVtafonat8esvDzV",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:27.266681+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_QPFzHR4rCRJev88qjgNI7LSl",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:23.766488+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_iaYNVnfaOAVPHXVPppyzV4iq",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:22.507423+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\": \"lifestyles and health in children\", \"paper_name\": \"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_nTbkupwEbh5bPIOOmmghd5n0",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "search",
+          "args": "{\"query\": \"mental health issues in adolescents\", \"paper_name\": \"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_1afbqU8HMo8i1iPmkvIaeIDJ",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "search",
+          "args": "{\"query\": \"childhood obesity and lifestyle disorders\", \"paper_name\": \"lifestyle disorders in pre-adolescent and adolescent children\"}",
+          "tool_call_id": "call_18Hf8D9GYVIy9DuFTT8RRSAT",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 7533,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 7424,
+        "output_tokens": 111,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:25:27+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7MNkZILbXHc39EcnWgEcOnXkOZK",
+      "finish_reason": "tool_call",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2308.15944v1",
+              "title": "WUDI: A Human Involved Self-Adaptive Framework to Prevent Childhood Obesity in Internet of Things Environment",
+              "authors": [
+                "Euijong Lee",
+                "Jaemin Jung",
+                "Gee-Myung Moon",
+                "Seong-Whan Lee",
+                "Ji-Hoon Jeong"
+              ],
+              "published": "2023-08-30T10:52:00Z",
+              "summary": "The Internet of Things (IoT) connects people, devices, and information resources, in various domains to improve efficiency. The healthcare domain has been transformed by the integration of the IoT, leading to the development of digital healthcare solutions such as health monitoring, emergency detection, and remote operation. This integration has led to an increase in the health data collected from a variety of IoT sources. Consequently, advanced technologies are required to analyze health data, and artificial intelligence has been employed to extract meaningful insights from the data. Childhood overweight and obesity have emerged as some of the most serious global public health challenges, as they can lead to a variety of health-related problems and the early development of chronic diseases. To address this, a self-adaptive framework is proposed to prevent childhood obesity by using lifelog data from IoT environments, with human involvement being an important consideration in the framework. The framework uses an ensemble-based learning model to predict obesity using the lifelog data. Empirical experiments using lifelog data from smartphone applications were conducted to validate the effectiveness of human involvement and obesity prediction. The results demonstrated the efficiency of the proposed framework with human involvement in obesity prediction. The proposed framework can be applied in real-world healthcare services for childhood obesity.",
+              "content": "ariety of health-\nrelated problems and the early development of chronic diseases.\nTo address this, a self-adaptive framework is proposed to prevent\nchildhood obesity by using lifelog data from IoT environments,\nwith human involvement being an important consideration in\nthe framework. The framework uses an ensemble-based learning\nmodel to predict obesity using the lifelog data. Empirical ex-\nperiments using lifelog data from smartphone applications were\nconducted to validate the effectiveness of human involvement\nand obesity prediction. The results demonstrated the efficiency\nof the proposed framework with human involvement in obesity\nprediction. The proposed framework can be applied in real-world\nhealthcare services for childhood obesity.\n\nIndex Terms\u2014Self-adaptive software, healthcare, internet of\n\nthings, artificial intelligence\n\nI. INTRODUCTION\n\nT HE Internet of Things (IoT) interconnects various entities\n\nhaving a distinct existence including physical or non-\nphysical (e.g., sensor, actuator, digital user, and human user).\nWith various advantages of interconnection, IoT is applied\nto various fields such as smart farming, automobiles, smart\nhomes, and smart factories. Especially, the healthcare field\nhas been revolutionized by the integration of IoT technologies,\nleading to the development of connected health, which refers\nto any digital healthcare solution such as remote operation,\ncontinuous health monitoring, and emergency detection. The\napplication of IoT in the healthcare field helps to improve the\nquality of personalized healthcare because traditional health-\ncare is unable to accommodate everyone\u2019s requirements [1],\n\n(*Corresponding author: Seong-Whan Lee and Ji-Hoon Jeong)\nEuijong Lee,\n\nJaemin Jeong, and Ji-Hoon Jeong with School of\nComputer Science, Chungbuk National University, Cheongju-si 28644,\nSouth Korea (e-mail: kongjjagae@cbnu.ac.kr,\njmjung@cbnu.ac.kr, and\njh.jeong@chungbuk.ac.kr)\n\nGee-Myung Moon with the Injewelme corporation, Seoul 02841, South\n\nKorea. E-mail: gmmoon@injewelme.com\n\nSeong-Whan Lee is affiliated with the Department of Artificial Intelli-\ngence, Korea University, Seongbuk-gu, Seoul 02841, South Korea. E-mail:\nsw.lee@korea.ac.kr.\n\n[2]. The increasing volume of health data generated from\nvarious sources, such as electronic health records, wearable\ndevices, and mobile applications, has created the need for ad-\nvanced technologies to process and analyze the data. This has\nled to the integration of artificial intelligence (AI) to extract\nmeaningful insights from health data and provide personalized\nhealthcare services [3]\u2013[6]. Various studies have applied AI to\nIoT in healthcare, including COVID-19 identification, diabetes\nprediction, fall detection, remote healthcare monitoring, and\nheart disease diagnosis [5]\u2013[7].\n\nChildhood overweight and obesity have increased over the\nlast few decades globally [8], and they can cause early de-\nvelopment of diabetes, cardiovascular diseases, fatty liver, and\nprecocious puberty [9], [10]. Therefore, this is one of the most\nserious global public health challenges [9], and healthcare\nservice is required to prevent child obesity.\n\nWe propose a self-adaptive framework for personalized\nchild healthcare to prevent obesity using IoT environments.\nthus, adaptive\nChild lifestyles are diverse and dynamic;\nhealthcare services are required for each child. Self-adaptive\nsoftware satisfies the requirements in dynamic environments;\nthus, self-adaptive software is applicable to healthcare services\nfor children. Such services also need to encourage the par-\nticipation of children; thus, effective human involvement is\ninevitable [11]. Therefore, the proposed framework focused on\nhuman involvement by using monitoring, analysis, planning,\nand executing (MAPE) loop, which is a prominent control\nto develop self-adaptive software. Rewards concepts\nloop,\nwere implemented to incentivize human participation within\nthe loop. Furthermore, the proposed framework incorporated\nan ensemble-based learning model to predict obesity based\non the lifelog data of children. Empirical experiments were\nconducted using smartphone applications to evaluate the ef-\nfectiveness of reward-based human involvement and obesity\nprediction. The results demonstrated that appropriate rewards\ncould motivate children and reduce body mass index (BMI)\nwhich is an obesity metric. The prediction results were rea-\nsonable, implying that the proposed approach can be applied\nin healthcare services to address childhood obesity.\n\nThe remainder of this article is organized as follows.\nSection II provides background and related work. Section III\nintroduces the proposed IoT self-adaptive framework for child\nhealthcare. Section IV presents the results of the empirical\nexperiments. Section V discusses the limitation and future\nwork, and Section VI concludes this paper.\n\n \n \n \n \n \n \n\fII. BACKGROUND AND RELATED WORK\nIn this section, the background and related work are de-\nscribed. Self-adaptive software is intro"
+            },
+            {
+              "id": "2308.15944v1",
+              "title": "WUDI: A Human Involved Self-Adaptive Framework to Prevent Childhood Obesity in Internet of Things Environment",
+              "authors": [
+                "Euijong Lee",
+                "Jaemin Jung",
+                "Gee-Myung Moon",
+                "Seong-Whan Lee",
+                "Ji-Hoon Jeong"
+              ],
+              "published": "2023-08-30T10:52:00Z",
+              "summary": "The Internet of Things (IoT) connects people, devices, and information resources, in various domains to improve efficiency. The healthcare domain has been transformed by the integration of the IoT, leading to the development of digital healthcare solutions such as health monitoring, emergency detection, and remote operation. This integration has led to an increase in the health data collected from a variety of IoT sources. Consequently, advanced technologies are required to analyze health data, and artificial intelligence has been employed to extract meaningful insights from the data. Childhood overweight and obesity have emerged as some of the most serious global public health challenges, as they can lead to a variety of health-related problems and the early development of chronic diseases. To address this, a self-adaptive framework is proposed to prevent childhood obesity by using lifelog data from IoT environments, with human involvement being an important consideration in the framework. The framework uses an ensemble-based learning model to predict obesity using the lifelog data. Empirical experiments using lifelog data from smartphone applications were conducted to validate the effectiveness of human involvement and obesity prediction. The results demonstrated the efficiency of the proposed framework with human involvement in obesity prediction. The proposed framework can be applied in real-world healthcare services for childhood obesity.",
+              "content": "\nKorea. E-mail: gmmoon@injewelme.com\n\nSeong-Whan Lee is affiliated with the Department of Artificial Intelli-\ngence, Korea University, Seongbuk-gu, Seoul 02841, South Korea. E-mail:\nsw.lee@korea.ac.kr.\n\n[2]. The increasing volume of health data generated from\nvarious sources, such as electronic health records, wearable\ndevices, and mobile applications, has created the need for ad-\nvanced technologies to process and analyze the data. This has\nled to the integration of artificial intelligence (AI) to extract\nmeaningful insights from health data and provide personalized\nhealthcare services [3]\u2013[6]. Various studies have applied AI to\nIoT in healthcare, including COVID-19 identification, diabetes\nprediction, fall detection, remote healthcare monitoring, and\nheart disease diagnosis [5]\u2013[7].\n\nChildhood overweight and obesity have increased over the\nlast few decades globally [8], and they can cause early de-\nvelopment of diabetes, cardiovascular diseases, fatty liver, and\nprecocious puberty [9], [10]. Therefore, this is one of the most\nserious global public health challenges [9], and healthcare\nservice is required to prevent child obesity.\n\nWe propose a self-adaptive framework for personalized\nchild healthcare to prevent obesity using IoT environments.\nthus, adaptive\nChild lifestyles are diverse and dynamic;\nhealthcare services are required for each child. Self-adaptive\nsoftware satisfies the requirements in dynamic environments;\nthus, self-adaptive software is applicable to healthcare services\nfor children. Such services also need to encourage the par-\nticipation of children; thus, effective human involvement is\ninevitable [11]. Therefore, the proposed framework focused on\nhuman involvement by using monitoring, analysis, planning,\nand executing (MAPE) loop, which is a prominent control\nto develop self-adaptive software. Rewards concepts\nloop,\nwere implemented to incentivize human participation within\nthe loop. Furthermore, the proposed framework incorporated\nan ensemble-based learning model to predict obesity based\non the lifelog data of children. Empirical experiments were\nconducted using smartphone applications to evaluate the ef-\nfectiveness of reward-based human involvement and obesity\nprediction. The results demonstrated that appropriate rewards\ncould motivate children and reduce body mass index (BMI)\nwhich is an obesity metric. The prediction results were rea-\nsonable, implying that the proposed approach can be applied\nin healthcare services to address childhood obesity.\n\nThe remainder of this article is organized as follows.\nSection II provides background and related work. Section III\nintroduces the proposed IoT self-adaptive framework for child\nhealthcare. Section IV presents the results of the empirical\nexperiments. Section V discusses the limitation and future\nwork, and Section VI concludes this paper.\n\n \n \n \n \n \n \n\fII. BACKGROUND AND RELATED WORK\nIn this section, the background and related work are de-\nscribed. Self-adaptive software is introduced in Section II-A.\nSection II-B briefly gives an overview of ICT technologies\napplied in healthcare fields, and IoT and AI-related healthcare\nstudies for childhood obesity are introduced.\n\nA. Self-Adaptive Software\n\nSelf-adaptive software aims to autonomously adjust its vari-\nous attributes in response to the detected context [12]. Context\nrefers to various environmental factors that can potentially\naffect the software. Self-adaptive software requires continuous\nmonitoring and adaptation to the context changes; thus, an\nadaptation cycle is required, and the cycle is called MAPE\nloop. MAPE loop is generally applied in self-adaptive software\nand consists of four processes [12]:\n\n\u2022 Monitoring, which is responsible for collecting data from\n\nthe software and operating environment.\n\n\u2022 Analyzing (detecting), which is responsible for analyzing\nthe symptoms using data from the monitoring process.\n\u2022 Planning (deciding), which is responsible for deciding\nhow to change artifacts or attributes to improve perfor-\nmance.\n\n\u2022 Executing (acting), which is responsible for applying\n\nchanges.\n\nThe concept of self-adaptive software is applied in various\nfields such as healthcare [13], smart farming [14], smart homes\n[15], and smart buildings [16]. In this study, it is assumed that\nhealth conditions of children can be continuously changed\nand require adaptation to respond to these health changes.\nTherefore, the concept of self-adaptive software was applied\nto manage childhood healthcare.\n\nB. AI and IoT Applied in Healthcare Domain\n\nThe integration of AI and IoT is revolutionizing healthcare\n[4], [17]. In several studies, IoT sensors including medical de-\nvices (e.g., force, heart rate, pulse oximetry, pressure, glucose,\ntemperature, electromyogram, electrocardiogram, and elec-\ntroencephalogram), smartphones (e.g., gyroscope, accelerom-\neter, and microphone), and wearable devices were developed\nand used to collect healthcare-related data via the Internet\n[6], [17]. Various AI algorithm"
+            },
+            {
+              "id": "2308.15944v1",
+              "title": "WUDI: A Human Involved Self-Adaptive Framework to Prevent Childhood Obesity in Internet of Things Environment",
+              "authors": [
+                "Euijong Lee",
+                "Jaemin Jung",
+                "Gee-Myung Moon",
+                "Seong-Whan Lee",
+                "Ji-Hoon Jeong"
+              ],
+              "published": "2023-08-30T10:52:00Z",
+              "summary": "The Internet of Things (IoT) connects people, devices, and information resources, in various domains to improve efficiency. The healthcare domain has been transformed by the integration of the IoT, leading to the development of digital healthcare solutions such as health monitoring, emergency detection, and remote operation. This integration has led to an increase in the health data collected from a variety of IoT sources. Consequently, advanced technologies are required to analyze health data, and artificial intelligence has been employed to extract meaningful insights from the data. Childhood overweight and obesity have emerged as some of the most serious global public health challenges, as they can lead to a variety of health-related problems and the early development of chronic diseases. To address this, a self-adaptive framework is proposed to prevent childhood obesity by using lifelog data from IoT environments, with human involvement being an important consideration in the framework. The framework uses an ensemble-based learning model to predict obesity using the lifelog data. Empirical experiments using lifelog data from smartphone applications were conducted to validate the effectiveness of human involvement and obesity prediction. The results demonstrated the efficiency of the proposed framework with human involvement in obesity prediction. The proposed framework can be applied in real-world healthcare services for childhood obesity.",
+              "content": ", actuator, digital user, and human user).\nWith various advantages of interconnection, IoT is applied\nto various fields such as smart farming, automobiles, smart\nhomes, and smart factories. Especially, the healthcare field\nhas been revolutionized by the integration of IoT technologies,\nleading to the development of connected health, which refers\nto any digital healthcare solution such as remote operation,\ncontinuous health monitoring, and emergency detection. The\napplication of IoT in the healthcare field helps to improve the\nquality of personalized healthcare because traditional health-\ncare is unable to accommodate everyone\u2019s requirements [1],\n\n(*Corresponding author: Seong-Whan Lee and Ji-Hoon Jeong)\nEuijong Lee,\n\nJaemin Jeong, and Ji-Hoon Jeong with School of\nComputer Science, Chungbuk National University, Cheongju-si 28644,\nSouth Korea (e-mail: kongjjagae@cbnu.ac.kr,\njmjung@cbnu.ac.kr, and\njh.jeong@chungbuk.ac.kr)\n\nGee-Myung Moon with the Injewelme corporation, Seoul 02841, South\n\nKorea. E-mail: gmmoon@injewelme.com\n\nSeong-Whan Lee is affiliated with the Department of Artificial Intelli-\ngence, Korea University, Seongbuk-gu, Seoul 02841, South Korea. E-mail:\nsw.lee@korea.ac.kr.\n\n[2]. The increasing volume of health data generated from\nvarious sources, such as electronic health records, wearable\ndevices, and mobile applications, has created the need for ad-\nvanced technologies to process and analyze the data. This has\nled to the integration of artificial intelligence (AI) to extract\nmeaningful insights from health data and provide personalized\nhealthcare services [3]\u2013[6]. Various studies have applied AI to\nIoT in healthcare, including COVID-19 identification, diabetes\nprediction, fall detection, remote healthcare monitoring, and\nheart disease diagnosis [5]\u2013[7].\n\nChildhood overweight and obesity have increased over the\nlast few decades globally [8], and they can cause early de-\nvelopment of diabetes, cardiovascular diseases, fatty liver, and\nprecocious puberty [9], [10]. Therefore, this is one of the most\nserious global public health challenges [9], and healthcare\nservice is required to prevent child obesity.\n\nWe propose a self-adaptive framework for personalized\nchild healthcare to prevent obesity using IoT environments.\nthus, adaptive\nChild lifestyles are diverse and dynamic;\nhealthcare services are required for each child. Self-adaptive\nsoftware satisfies the requirements in dynamic environments;\nthus, self-adaptive software is applicable to healthcare services\nfor children. Such services also need to encourage the par-\nticipation of children; thus, effective human involvement is\ninevitable [11]. Therefore, the proposed framework focused on\nhuman involvement by using monitoring, analysis, planning,\nand executing (MAPE) loop, which is a prominent control\nto develop self-adaptive software. Rewards concepts\nloop,\nwere implemented to incentivize human participation within\nthe loop. Furthermore, the proposed framework incorporated\nan ensemble-based learning model to predict obesity based\non the lifelog data of children. Empirical experiments were\nconducted using smartphone applications to evaluate the ef-\nfectiveness of reward-based human involvement and obesity\nprediction. The results demonstrated that appropriate rewards\ncould motivate children and reduce body mass index (BMI)\nwhich is an obesity metric. The prediction results were rea-\nsonable, implying that the proposed approach can be applied\nin healthcare services to address childhood obesity.\n\nThe remainder of this article is organized as follows.\nSection II provides background and related work. Section III\nintroduces the proposed IoT self-adaptive framework for child\nhealthcare. Section IV presents the results of the empirical\nexperiments. Section V discusses the limitation and future\nwork, and Section VI concludes this paper.\n\n \n \n \n \n \n \n\fII. BACKGROUND AND RELATED WORK\nIn this section, the background and related work are de-\nscribed. Self-adaptive software is introduced in Section II-A.\nSection II-B briefly gives an overview of ICT technologies\napplied in healthcare fields, and IoT and AI-related healthcare\nstudies for childhood obesity are introduced.\n\nA. Self-Adaptive Software\n\nSelf-adaptive software aims to autonomously adjust its vari-\nous attributes in response to the detected context [12]. Context\nrefers to various environmental factors that can potentially\naffect the software. Self-adaptive software requires continuous\nmonitoring and adaptation to the context changes; thus, an\nadaptation cycle is required, and the cycle is called MAPE\nloop. MAPE loop is generally applied in self-adaptive software\nand consists of four processes [12]:\n\n\u2022 Monitoring, which is responsible for collecting data from\n\nthe software and operating environment.\n\n\u2022 Analyzing (detecting), which is responsible for analyzing\nthe symptoms using data from the monitoring process.\n\u2022 Planning (deciding), which is responsible for deciding\nhow to change artifacts or attributes "
+            }
+          ],
+          "tool_call_id": "call_nTbkupwEbh5bPIOOmmghd5n0",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:29.005107+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2307.10513v2",
+              "title": "Technology in Association With Mental Health: Meta-ethnography",
+              "authors": [
+                "Hamza Mohammed"
+              ],
+              "published": "2023-07-20T01:25:08Z",
+              "summary": "This research paper presents a meta-analysis of the multifaceted role of technology in mental health. The pervasive influence of technology on daily lives necessitates a deep understanding of its impact on mental health services. This study synthesizes literature covering Behavioral Intervention Technologies (BITs), digital mental health interventions during COVID-19, young men's attitudes toward mental health technologies, technology-based interventions for university students, and the applicability of mobile health technologies for individuals with serious mental illnesses. BITs are recognized for their potential to provide evidence-based interventions for mental health conditions, especially anxiety disorders. The COVID-19 pandemic acted as a catalyst for the adoption of digital mental health services, underscoring their crucial role in providing accessible and quality care; however, their efficacy needs to be reinforced by workforce training, high-quality evidence, and digital equity. A nuanced understanding of young men's attitudes toward mental health is imperative for devising effective online services. Technology-based interventions for university students are promising, although variable in effectiveness; their deployment must be evidence-based and tailored to individual needs. Mobile health technologies, particularly activity tracking, hold promise for individuals with serious mental illnesses. Collectively, technology has immense potential to revolutionize mental health care. However, the implementation must be evidence-based, ethical, and equitable, with continued research focusing on experiences across diverse populations, ensuring accessibility and efficacy for all.",
+              "content": " need. Many clinicians and \n\npatients are now realizing the full potential of these digital tools as they are forced to, for the first \n\ntime, utilize them to connect at a time when in-person and face-to-face visits are impossible \n\n(Torous et al., 2020). Digital therapy programs that offer courses of evidence-based therapies \n\nalso have a role in the crisis, given their unique potential for scalability. However, issues of real-\n\nworld engagement with these programs warrant caution in ensuring that plans for encouraging \n\n\fand maintaining meaningful engagement are in place before purchasing these programs or \n\nservices (Torous et al., 2020). \n\nThe authors also discuss the role of mobile apps in augmenting and extending care. They \n\nsuggest that the most effective apps are the ones that can be customized to each patient and fit \n\nwith their personal care goals and needs, as well as apps for peer support (Torous et al., 2020). \n\nThe authors also highlight the importance of training medical professionals, trainees, and peer \n\nsupport specialists on how to use digital and mobile technologies for delivering care. They argue \n\nthat ensuring all patients, especially the most vulnerable ones, have the digital literacy and \n\ncompetency to partake in digital care is a matter of equity and social justice (Torous et al., 2020). \n\nFurthermore, the paper suggests that the COVID-19 crisis may be the defining moment \n\nfor digital mental health due to its extensive and expansive impact on . They argue that ensuring \n\nthe right use of telehealth and app tools today and investing in people and training to support \n\nthem tomorrow, can cement the future of digital mental health as simply mental health. They \n\nbelieve that bending the curve in the right direction will require funding, research, policy \n\nchanges, training, and equity, but these investments will continue to yield higher returns at every \n\nstep (Torous et al., 2020). \n\nIV. Technology-Based Interventions for Mental Health in Tertiary Students \n\nThe study \"Technology-Based Interventions for Mental Health in Tertiary Students: \n\nSystematic Review\" by Louise Farrer et al., published in the Journal of Medical Internet \n\nResearch in 2013, provides a comprehensive review of the effectiveness of technology-based \n\ninterventions for mental health in university students. The study systematically reviewed \n\n \n\fpublished randomized trials of technology-based interventions evaluated in a university setting \n\nfor disorders other than substance use and eating disorders (Farrer et al., 2013). \n\nThe study identified 27 relevant studies, most of which targeted anxiety symptoms or \n\ndisorders or stress. Of the 51 technology-based interventions employed across the studies, \n\napproximately half were associated with at least one significant positive outcome compared with \n\nthe control at post-intervention. However, 29% failed to find a significant effect. The median \n\neffect size was 0.54 for interventions targeting depression and anxiety symptoms and 0.84 for \n\ninterventions targeting anxiety symptoms and disorders (Farrer et al., 2013). \n\nInternet-based technology, typically involving cognitive behavioral therapy (CBT), was \n\nthe most commonly employed medium, being used in 16 of the 27 studies and approximately \n\nhalf of the 51 technology-based interventions. Distal and universal preventive interventions were \n\nthe most common type of intervention (Farrer et al., 2013). The findings of this review indicate \n\nthat technology-based interventions targeting certain mental health and related problems offer \n\npromise for students in university settings. However, more high-quality trials that fully report \n\nrandomization methods, outcome data, and data analysis methods are needed (Farrer et al., \n\n2013). The use of technology, particularly internet-based interventions, in addressing mental \n\nhealth issues among university students is promising. These interventions are easily accessible, \n\ncost-effective, and may be perceived as less stigmatizing than traditional approaches to care. \n\nFurthermore, they can be tailored to the individual needs of students, providing a more \n\npersonalized approach to mental health care (Farrer et al., 2013). However, the effectiveness of \n\nthese interventions varies. While some studies found significant positive outcomes, others did \n\nnot. This suggests that more research is needed to identify the factors that contribute to the \n\n\feffectiveness of technology-based interventions for mental health in university students (Farrer et \n\nal., 2013). \n\nTechnology-based interventions have the potential to significantly improve mental health \n\noutcomes for university students. However, more research is needed to optimize these \n\ninterventions and ensure they are effectively implemented in university settings. As technology \n\ncontinues to evolve, it is crucial that mental health services leverage these advancements to \n\nprovide the best possible care for university studen"
+            },
+            {
+              "id": "2307.10513v2",
+              "title": "Technology in Association With Mental Health: Meta-ethnography",
+              "authors": [
+                "Hamza Mohammed"
+              ],
+              "published": "2023-07-20T01:25:08Z",
+              "summary": "This research paper presents a meta-analysis of the multifaceted role of technology in mental health. The pervasive influence of technology on daily lives necessitates a deep understanding of its impact on mental health services. This study synthesizes literature covering Behavioral Intervention Technologies (BITs), digital mental health interventions during COVID-19, young men's attitudes toward mental health technologies, technology-based interventions for university students, and the applicability of mobile health technologies for individuals with serious mental illnesses. BITs are recognized for their potential to provide evidence-based interventions for mental health conditions, especially anxiety disorders. The COVID-19 pandemic acted as a catalyst for the adoption of digital mental health services, underscoring their crucial role in providing accessible and quality care; however, their efficacy needs to be reinforced by workforce training, high-quality evidence, and digital equity. A nuanced understanding of young men's attitudes toward mental health is imperative for devising effective online services. Technology-based interventions for university students are promising, although variable in effectiveness; their deployment must be evidence-based and tailored to individual needs. Mobile health technologies, particularly activity tracking, hold promise for individuals with serious mental illnesses. Collectively, technology has immense potential to revolutionize mental health care. However, the implementation must be evidence-based, ethical, and equitable, with continued research focusing on experiences across diverse populations, ensuring accessibility and efficacy for all.",
+              "content": "sive exploration of this \n\ntopic (Torous et al., 2020). \n\nThe authors argue that the current global health crisis has underscored the potential of \n\ndigital health to enhance access to and quality of mental health services. They suggest that the \n\ncurrent need to \"flatten the curve\" of the virus spread should be paralleled by efforts to \n\n\"accelerate and bend the curve\" on digital health. They believe that increased investments in \n\ndigital health today will yield unprecedented access to high-quality mental health care in the \n\nfuture (Torous et al., 2020). \n\nThe paper discusses the success of telehealth during the COVID-19 crisis and how \n\ntechnologies like apps can play a larger role in the future. The authors highlight the need for \n\nworkforce training, high-quality evidence, and digital equity as critical factors for further \n\nbending the curve (Torous et al., 2020). The COVID-19 crisis has highlighted the role of \n\ntelehealth and digital tools like apps to provide care in times of need. Many clinicians and \n\npatients are now realizing the full potential of these digital tools as they are forced to, for the first \n\ntime, utilize them to connect at a time when in-person and face-to-face visits are impossible \n\n(Torous et al., 2020). Digital therapy programs that offer courses of evidence-based therapies \n\nalso have a role in the crisis, given their unique potential for scalability. However, issues of real-\n\nworld engagement with these programs warrant caution in ensuring that plans for encouraging \n\n\fand maintaining meaningful engagement are in place before purchasing these programs or \n\nservices (Torous et al., 2020). \n\nThe authors also discuss the role of mobile apps in augmenting and extending care. They \n\nsuggest that the most effective apps are the ones that can be customized to each patient and fit \n\nwith their personal care goals and needs, as well as apps for peer support (Torous et al., 2020). \n\nThe authors also highlight the importance of training medical professionals, trainees, and peer \n\nsupport specialists on how to use digital and mobile technologies for delivering care. They argue \n\nthat ensuring all patients, especially the most vulnerable ones, have the digital literacy and \n\ncompetency to partake in digital care is a matter of equity and social justice (Torous et al., 2020). \n\nFurthermore, the paper suggests that the COVID-19 crisis may be the defining moment \n\nfor digital mental health due to its extensive and expansive impact on . They argue that ensuring \n\nthe right use of telehealth and app tools today and investing in people and training to support \n\nthem tomorrow, can cement the future of digital mental health as simply mental health. They \n\nbelieve that bending the curve in the right direction will require funding, research, policy \n\nchanges, training, and equity, but these investments will continue to yield higher returns at every \n\nstep (Torous et al., 2020). \n\nIV. Technology-Based Interventions for Mental Health in Tertiary Students \n\nThe study \"Technology-Based Interventions for Mental Health in Tertiary Students: \n\nSystematic Review\" by Louise Farrer et al., published in the Journal of Medical Internet \n\nResearch in 2013, provides a comprehensive review of the effectiveness of technology-based \n\ninterventions for mental health in university students. The study systematically reviewed \n\n \n\fpublished randomized trials of technology-based interventions evaluated in a university setting \n\nfor disorders other than substance use and eating disorders (Farrer et al., 2013). \n\nThe study identified 27 relevant studies, most of which targeted anxiety symptoms or \n\ndisorders or stress. Of the 51 technology-based interventions employed across the studies, \n\napproximately half were associated with at least one significant positive outcome compared with \n\nthe control at post-intervention. However, 29% failed to find a significant effect. The median \n\neffect size was 0.54 for interventions targeting depression and anxiety symptoms and 0.84 for \n\ninterventions targeting anxiety symptoms and disorders (Farrer et al., 2013). \n\nInternet-based technology, typically involving cognitive behavioral therapy (CBT), was \n\nthe most commonly employed medium, being used in 16 of the 27 studies and approximately \n\nhalf of the 51 technology-based interventions. Distal and universal preventive interventions were \n\nthe most common type of intervention (Farrer et al., 2013). The findings of this review indicate \n\nthat technology-based interventions targeting certain mental health and related problems offer \n\npromise for students in university settings. However, more high-quality trials that fully report \n\nrandomization methods, outcome data, and data analysis methods are needed (Farrer et al., \n\n2013). The use of technology, particularly internet-based interventions, in addressing mental \n\nhealth issues among university students is promising. These interventions are easily accessible, \n\ncost-effective, and m"
+            },
+            {
+              "id": "1511.02281v1",
+              "title": "Robotics Technology in Mental Health Care",
+              "authors": [
+                "Laurel D. Riek"
+              ],
+              "published": "2015-11-07T01:58:51Z",
+              "summary": "This chapter discusses the existing and future use of robotics and intelligent sensing technology in mental health care. While the use of this technology is nascent in mental health care, it represents a potentially useful tool in the practitioner's toolbox. The goal of this chapter is to provide a brief overview of the field, discuss the recent use of robotics technology in mental health care practice, explore some of the design issues and ethical issues of using robots in this space, and finally to explore the potential of emerging technology.",
+              "content": "ience which \nstudies the intelligent connections between perception and actions,\u201d though in \nrecent years this has shifted outward, becoming focused on problems related \nto interacting with real people in the real world (Siciliano & Khatib, 2008). \nThis shift has been referred to in the literature as human-centered robotics, \nand an emerging area in the past decade focusing on problems in this space is \nknown as human-robot interaction (HRI). \n\nThe use of robotics technology in mental health care is nascent, but \nrepresents a potentially useful tool in the professional\u2019s toolbox. Thus, the \ngoal of this chapter is to provide a brief overview of the \ufb01eld, discuss the \nrecent use of robotics technology in mental healthcare practice, explore some \nof the design issues and ethical issues of using robots in this space, and \n\ufb01nally to explore the potential of emerging technology. \u2029\n\n\u00a9 2016 Laurel Riek. All rights reserved. \nCite as: Riek, L.D. \"Robotics Technology in Mental Healthcare\". In D. Luxton (Ed.), Arti\ufb01cial Intelligence in Behavioral Health \nand Mental Health Care. Elsevier, 2015.\n\n\f\u00002\n\nBackground \n\nHuman-Robot Interaction\n\nGoodrich and Schultz (2007) describe the HRI problem as seeking \u201cto \nunderstand and shape the interactions between one or more humans and one \nor more robots.\u201d They decompose the problem into \ufb01ve principle attributes: \n(i) the level and behavior of a robot\u2019s autonomy, (ii) the nature of information \nexchange between human and robot, (iii) the structure of the human-robot \nteam, (iv) how people and robots adapt and learn from one another, and (v) \nhow the task shapes interaction. \n\nAll of these factors play a role in how a mental healthcare professional might \nconsider the use of robotics technology in their practice. However, there are \ntwo additional factors that may be of particular importance to practitioners. \nThe \ufb01rst is the morphology, or form, of the robot itself. Robots can range in \nappearance from very mechanical-looking to very anthropomorphic in \nappearance (Riek, Rabinowitch, Chakrabarti, & Robinson, 2009). \nMorphology is a richly debated topic in the research community, with many \nstudies showing people will anthropomorphize and form attachments to \nnearly anything conveying animacy. Some researchers worry this not only \nconveys inaccurate expectations to people about a robot\u2019s capabilities, but \nmay also be unethical when treating vulnerable populations (Riek, Hartzog, \nHoward, Moon, & Calo, 2015; Riek & Howard, 2014). For example, \nindividuals with cognitive impairments or children may be more susceptible \nto deception and manipulation by robots. \n\nA second factor that can impact the HRI problem is individual differences \nbetween people. People have a wide range of existing cognitive and physical \nattributes which can greatly in\ufb02uence how they perceive, interact with, and \naccept robots (Hayes & Riek, 2014). These factors may be particularly \nimportant when considering the use of robotics technology for clients in \nmental healthcare settings, who may have further unique needs. \n\n\u00a9 2016 Laurel Riek. All rights reserved. \nCite as: Riek, L.D. \"Robotics Technology in Mental Healthcare\". In D. Luxton (Ed.), Arti\ufb01cial Intelligence in Behavioral Health \nand Mental Health Care. Elsevier, 2015.\n\n\f\u00003\n\n1\n\n5\n\n2\n\n6\n\n3\n\n7\n\n4\n\n8\n\nFigure 8.1 Robots currently used in mental healthcare vary greatly in their morphology, and \ninclude zoomorphic, mechanistic, cartoon-like, and humanoid representations. These robots have \nbeen used for helping treat people with dementia, autism, and cognitive impairments; have \nhelped provide companionship for people who were lonely; have been used to help educate \nchildren with developmental disabilities; and have been used to help improve how people with \nvisible disabilities are treated. (1) KeepOn (Kozima, Michalowski, & Nakagawa, 2009), (2) Paro \n(Shibata, 2012), (3) Kabochan (Tanaka et al., 2012), (4) Probo (Vanderborght et al., 2012), (5) \nAutom (Kidd & Breazeal, 2008), (6) NAO (Diehl et al., 2014), (7) Flobi (Damm et al., 2013), \nand (8) Charles (Riek & Robinson, 2011). \n\nRobot Morphology \n\nFigure 8.1 depicts several consumer and research robots used in mental \nhealthcare applications, many of which will be discussed in next section. The \nrobots in this \ufb01gure are representative of the state-of the-art for socially \ninteractive robots. Robots with more mechanistic appearances have been used \nin other applications, though very few in mental health care. \n\nWhile zoomorphic, anthropomorphic, and cartoon-like morphologies are the \nmost common, some robot designers have explored other unique \nrepresentations. For example, actuating \u201ceveryday objects\u201d like balls, \ndrawers, and ottomans (Michaud, Duquette, & Nadeau, 2003; Sirikin & Ju, \n\n\u00a9 2016 Laurel Riek. All rights reserved. \nCite as: Riek, L.D. \"Robotics Technology in Mental Healthcare\". In D. Luxton (Ed.), Arti\ufb01cial Intelligence in Behavioral Health \nand Mental Health Care. Elsevier, 2015.\n\n\f\u00004\n\n2014)."
+            }
+          ],
+          "tool_call_id": "call_1afbqU8HMo8i1iPmkvIaeIDJ",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:29.004380+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "1705.03691v1",
+              "title": "Visualization of Wearable Data and Biometrics for Analysis and Recommendations in Childhood Obesity",
+              "authors": [
+                "Michael Aupetit",
+                "Luis Fernandez-Luque",
+                "Meghna Singh",
+                "Jaideep Srivastava"
+              ],
+              "published": "2017-05-10T10:44:45Z",
+              "summary": "Obesity is one of the major health risk factors be- hind the rise of non-communicable conditions. Understanding the factors influencing obesity is very complex since there are many variables that can affect the health behaviors leading to it. Nowadays, multiple data sources can be used to study health behaviors, such as wearable sensors for physical activity and sleep, social media, mobile and health data. In this paper we describe the design of a dashboard for the visualization of actigraphy and biometric data from a childhood obesity camp in Qatar. This dashboard allows quantitative discoveries that can be used to guide patient behavior and orient qualitative research.",
+              "content": "Pre-print copy accepted at IEEE CMBS \u2013 30th IEEE International Symposium on Computer-Based Medical Systems, 22-24\nJune 2017, Thessaloniki, Greece \u2013 IEEE Copyright\n\nPlease cite IEEE Version\n\nVisualization of Wearable Data and Biometrics\nfor Analysis and Recommendations in Childhood Obesity\n\nMichael Aupetit, Luis Fernandez-Luque, Meghna Singh and Jaideep Srivastava\nQatar Computing Research Institute (QCRI)\nHamad Bin Khalifa University, Doha, Qatar\nmaupetit, lluque, mesingh, jsrivastava\n\n@hbku.edu.qa\n\nEmail:\n\n{\n\n}\n\nAbstract\u2014Obesity is one of the major health risk factors be-\nhind the rise of non-communicable conditions. Understanding\nthe factors in\ufb02uencing obesity is very complex since there are\nmany variables that can affect the health behaviors leading\nto it. Nowadays, multiple data sources can be used to study\nhealth behaviors, such as wearable sensors for physical activity\nand sleep, social media, mobile and health data. In this paper\nwe describe the design of a dashboard for the visualization of\nactigraphy and biometric data from a childhood obesity camp\nin Qatar. This dashboard allows quantitative discoveries that\ncan be used to guide patient behavior and orient qualitative\nresearch.\n\nI. INTRODUCTION\n\nChildhood obesity is a growing epidemic, and with tech-\nnological advancements, new tools can be used to monitor\nand analyze lifestyle factors leading to obesity, which in\nturn can help in timely health behavior modi\ufb01cations. In\nthis paper we present a tool for visualization of personal\nhealth data, which can assist healthcare professionals in\ndesigning personalized interventions for improving health.\nThe data used for the tool was collected as part of a\nresearch project called \u201dAdaptive Cognitive Behavioral Ap-\nproach to Addressing Overweight and Obesity among Qatari\nYouth\u201d (ICAN Study)[1]. The participants in the study\nwere involved in activities aimed at improving their health\nbehavior and losing weight. All participants and their par-\nents/guardians provided informed consent prior to partici-\npation. Data from various sources (social media, mobile,\nwearables and health records) were collected from subjects\nand linked using a unique subject identi\ufb01er. These datasets\nprovided what we have de\ufb01ned as a 360-degree Quanti\ufb01ed\nSelf (360QS) view of individuals [2], [3].\n\nWe have focused on the visualization of the biometrics\nand physical activity data. We discuss different visualization\ntechniques used to analyze the activity patterns of partic-\nipants in the obesity trial. Our dashboard is designed to\ncompare data across time, and among reference individuals.\n\nII. IMPLEMENTATION OF THE DASHBOARD\n\nA. Data Handling\n\nBiometric data were measured periodically and included\nheight, weight and the derived body-mass index (BMI), body\n\nfat percentage, waist circumference and blood pressure for\neach individual. Physical activity data was collected via\naccelerometers. The raw signals have been quantized into\nfour activity levels: sedentary, light, moderate and vigorous,\nusing a human activity recognition algorithm [4].\n\nB. Visualization\n\nThe objective of the dashboard is to provide an overview\nof the actigraphy data and enable primary data exploration\nby an expert user. Referring to \ufb01gure 1, the interface is made\nup of a Control Panel (left side) and a Visualization Panel\n(right side).\n\nIn the Control Panel, drop down menus enable selecting\ntwo subjects to be compared based on identi\ufb01ers and gender;\ne.g., boys number 84 (top) and 82 (bottom) are displayed.\nDuring data collection, some devices were not worn at\nall times; hence they recorded long periods of \u201dsedentary\u201d\nactivity. The user can use a slider to \ufb01lter out days with\nmore than the selected number of sedentary hours. Finally,\nthe user can use check-boxes to select the biometrics she\nwants to compare (e.g., BMI and Body Fat Percentage).\n\nThe Visualization Panel shows both subjects, one at the\ntop in a box with orange frame and the other at the bottom\nin a box with violet frame. The top and bottom boxes\nshow a bar chart indicating the hours of activity (y-axis)\nwith activity level breakdown per day through time (x-axis).\nThe color legend of the bars is shown in the control panel:\nreddish colors for moderate (light red) and vigorous (dark\nred) activity levels, and bluish colors for light (light blue)\nand sedentary (dark blue) activity levels. The user can select\na time window by brushing horizontally on the time range\nto zoom in, and double clicking the background to zoom out\nand see the entire time period. The line charts at the center\nshow the biometrics selected in the control panel, with line\ncolors corresponding to the colored frame (orange line for\nsubject displayed at the top, violet for the one at the bottom).\nThe biometrics have not been measured on a daily basis,\nwhich explains the scarce number of measurements linearly\ninterpolated here. On the right side, the average activity\nbreakdown by activity levels is displayed for weekdays (top\nand bottom) and for w"
+            },
+            {
+              "id": "1705.03691v1",
+              "title": "Visualization of Wearable Data and Biometrics for Analysis and Recommendations in Childhood Obesity",
+              "authors": [
+                "Michael Aupetit",
+                "Luis Fernandez-Luque",
+                "Meghna Singh",
+                "Jaideep Srivastava"
+              ],
+              "published": "2017-05-10T10:44:45Z",
+              "summary": "Obesity is one of the major health risk factors be- hind the rise of non-communicable conditions. Understanding the factors influencing obesity is very complex since there are many variables that can affect the health behaviors leading to it. Nowadays, multiple data sources can be used to study health behaviors, such as wearable sensors for physical activity and sleep, social media, mobile and health data. In this paper we describe the design of a dashboard for the visualization of actigraphy and biometric data from a childhood obesity camp in Qatar. This dashboard allows quantitative discoveries that can be used to guide patient behavior and orient qualitative research.",
+              "content": "alization of\nactigraphy and biometric data from a childhood obesity camp\nin Qatar. This dashboard allows quantitative discoveries that\ncan be used to guide patient behavior and orient qualitative\nresearch.\n\nI. INTRODUCTION\n\nChildhood obesity is a growing epidemic, and with tech-\nnological advancements, new tools can be used to monitor\nand analyze lifestyle factors leading to obesity, which in\nturn can help in timely health behavior modi\ufb01cations. In\nthis paper we present a tool for visualization of personal\nhealth data, which can assist healthcare professionals in\ndesigning personalized interventions for improving health.\nThe data used for the tool was collected as part of a\nresearch project called \u201dAdaptive Cognitive Behavioral Ap-\nproach to Addressing Overweight and Obesity among Qatari\nYouth\u201d (ICAN Study)[1]. The participants in the study\nwere involved in activities aimed at improving their health\nbehavior and losing weight. All participants and their par-\nents/guardians provided informed consent prior to partici-\npation. Data from various sources (social media, mobile,\nwearables and health records) were collected from subjects\nand linked using a unique subject identi\ufb01er. These datasets\nprovided what we have de\ufb01ned as a 360-degree Quanti\ufb01ed\nSelf (360QS) view of individuals [2], [3].\n\nWe have focused on the visualization of the biometrics\nand physical activity data. We discuss different visualization\ntechniques used to analyze the activity patterns of partic-\nipants in the obesity trial. Our dashboard is designed to\ncompare data across time, and among reference individuals.\n\nII. IMPLEMENTATION OF THE DASHBOARD\n\nA. Data Handling\n\nBiometric data were measured periodically and included\nheight, weight and the derived body-mass index (BMI), body\n\nfat percentage, waist circumference and blood pressure for\neach individual. Physical activity data was collected via\naccelerometers. The raw signals have been quantized into\nfour activity levels: sedentary, light, moderate and vigorous,\nusing a human activity recognition algorithm [4].\n\nB. Visualization\n\nThe objective of the dashboard is to provide an overview\nof the actigraphy data and enable primary data exploration\nby an expert user. Referring to \ufb01gure 1, the interface is made\nup of a Control Panel (left side) and a Visualization Panel\n(right side).\n\nIn the Control Panel, drop down menus enable selecting\ntwo subjects to be compared based on identi\ufb01ers and gender;\ne.g., boys number 84 (top) and 82 (bottom) are displayed.\nDuring data collection, some devices were not worn at\nall times; hence they recorded long periods of \u201dsedentary\u201d\nactivity. The user can use a slider to \ufb01lter out days with\nmore than the selected number of sedentary hours. Finally,\nthe user can use check-boxes to select the biometrics she\nwants to compare (e.g., BMI and Body Fat Percentage).\n\nThe Visualization Panel shows both subjects, one at the\ntop in a box with orange frame and the other at the bottom\nin a box with violet frame. The top and bottom boxes\nshow a bar chart indicating the hours of activity (y-axis)\nwith activity level breakdown per day through time (x-axis).\nThe color legend of the bars is shown in the control panel:\nreddish colors for moderate (light red) and vigorous (dark\nred) activity levels, and bluish colors for light (light blue)\nand sedentary (dark blue) activity levels. The user can select\na time window by brushing horizontally on the time range\nto zoom in, and double clicking the background to zoom out\nand see the entire time period. The line charts at the center\nshow the biometrics selected in the control panel, with line\ncolors corresponding to the colored frame (orange line for\nsubject displayed at the top, violet for the one at the bottom).\nThe biometrics have not been measured on a daily basis,\nwhich explains the scarce number of measurements linearly\ninterpolated here. On the right side, the average activity\nbreakdown by activity levels is displayed for weekdays (top\nand bottom) and for weekend days (middle).\n\n\fFigure 1. The visualization dashboard for actigraphy data and biometrics analysis.\n\nC. Quantitative Analysis based on Visualization\n\nReferring to \ufb01gure 1, subjects 84 (top) and 82 (bottom)\nhave similar activity level patterns through the time period\nselected. However subject 82 has a higher BMI (violet line)\nthan subject 84. Both subjects had a body fat increase over\ntime. The difference between their weights is correlated to\ntheir week and weekend activity levels: subject 84 is more\nactive during the weekend than subject 82.\n\nIII. CONCLUSIONS\n\nThis interface must be seen as a tool to give primary\noverview of the data likely to orient more detailed analysis.\nFor instance, a more in-depth study of the relation between\nsleep duration and BMI could be conducted. Another out-\ncome related to the experimental setup would consist of\nrecommending biometrics to be measured more often, or\nto \ufb01nd incentives for subjects to wear the devices more\nconsistently.\n\nThis dashboa"
+            },
+            {
+              "id": "1705.03691v1",
+              "title": "Visualization of Wearable Data and Biometrics for Analysis and Recommendations in Childhood Obesity",
+              "authors": [
+                "Michael Aupetit",
+                "Luis Fernandez-Luque",
+                "Meghna Singh",
+                "Jaideep Srivastava"
+              ],
+              "published": "2017-05-10T10:44:45Z",
+              "summary": "Obesity is one of the major health risk factors be- hind the rise of non-communicable conditions. Understanding the factors influencing obesity is very complex since there are many variables that can affect the health behaviors leading to it. Nowadays, multiple data sources can be used to study health behaviors, such as wearable sensors for physical activity and sleep, social media, mobile and health data. In this paper we describe the design of a dashboard for the visualization of actigraphy and biometric data from a childhood obesity camp in Qatar. This dashboard allows quantitative discoveries that can be used to guide patient behavior and orient qualitative research.",
+              "content": " and bottom boxes\nshow a bar chart indicating the hours of activity (y-axis)\nwith activity level breakdown per day through time (x-axis).\nThe color legend of the bars is shown in the control panel:\nreddish colors for moderate (light red) and vigorous (dark\nred) activity levels, and bluish colors for light (light blue)\nand sedentary (dark blue) activity levels. The user can select\na time window by brushing horizontally on the time range\nto zoom in, and double clicking the background to zoom out\nand see the entire time period. The line charts at the center\nshow the biometrics selected in the control panel, with line\ncolors corresponding to the colored frame (orange line for\nsubject displayed at the top, violet for the one at the bottom).\nThe biometrics have not been measured on a daily basis,\nwhich explains the scarce number of measurements linearly\ninterpolated here. On the right side, the average activity\nbreakdown by activity levels is displayed for weekdays (top\nand bottom) and for weekend days (middle).\n\n\fFigure 1. The visualization dashboard for actigraphy data and biometrics analysis.\n\nC. Quantitative Analysis based on Visualization\n\nReferring to \ufb01gure 1, subjects 84 (top) and 82 (bottom)\nhave similar activity level patterns through the time period\nselected. However subject 82 has a higher BMI (violet line)\nthan subject 84. Both subjects had a body fat increase over\ntime. The difference between their weights is correlated to\ntheir week and weekend activity levels: subject 84 is more\nactive during the weekend than subject 82.\n\nIII. CONCLUSIONS\n\nThis interface must be seen as a tool to give primary\noverview of the data likely to orient more detailed analysis.\nFor instance, a more in-depth study of the relation between\nsleep duration and BMI could be conducted. Another out-\ncome related to the experimental setup would consist of\nrecommending biometrics to be measured more often, or\nto \ufb01nd incentives for subjects to wear the devices more\nconsistently.\n\nThis dashboard could be used to assess a subject\u2019s health\nstatus against the group\u2019s instead of that of another subject.\nA health expert could also provide the subject with a target\nstatus (e.g. weight) to compare and converge to, along with\nrecommendations about the activities he/she should improve:\ne.g., go to bed earlier, wake up earlier during weekend, have\nmore vigorous activities during afternoon, etc.\n\nOther available tools, such as the Fitbit dashboard (Fitbit\nInc, USA), do not give detailed activity levels across time\nnor comparison with reference individual. Other ones [5]\nfocus on the representation of the data rather than its explo-\nration and companionship across the groups. Our next steps\n\ninclude performing qualitative evaluation of our dashboard\nand improvements based on the end users\u2019 feedback.\n\nACKNOWLEDGMENT\nWe would like to acknowledge the contributions of Dr.\nthe\nMohamed Ahmedna from Qatar University, and all\nmembers of the ICAN project, along with our colleagues\nat QCRI. The ICAN project was co-funded by the Qatar\nNational Research Fund (a member of Qatar Foundation)\nunder project number NPRP X- 036- 3- 013.\n\nREFERENCES\n\n[1] M. J. Taylor, I. Vlaev, D. Taylor, et al., \u201cA weight-management\ncamp followed by weekly after-school lifestyle education ses-\nsions as an obesity intervention for qatari children: a prospec-\ntive cohort study,\u201d The Lancet, vol. 386, p. S72, 2015.\n\n[2] H. Haddadi, F. O\ufb02i, Y. Mejova, et al., \u201c360-degree quanti\ufb01ed\nself,\u201d in Healthcare Informatics (ICHI), 2015 International\nConference on, pp. 587\u2013592, IEEE, 2015.\n\n[3] L. Fernandez-Luque, M. Singh, F. O\ufb02i, et al., \u201cImplementing\n360-degree quanti\ufb01ed self for childhood obesity: feasibility\nstudy and experiences from a weight loss camp in qatar,\u201d BMC\nMedical Informatics and Decision Making, vol. 17, no. 1, p. 37,\n2017.\n\n[4] A. Sathyanarayana, F. O\ufb02i, L. Fernandez-Luque, et al., \u201cRo-\nbust automated human activity recognition and its applica-\ntion to sleep research,\u201d in IEEE International Conference on\nData Mining Workshops, ICDM Workshops Barcelona, Spain.,\npp. 495\u2013502, 2016.\n\n[5] M. A. Badgeley, K. Shameer, B. S. Glicksberg, et al., \u201cEhdviz:\nclinical dashboard development using open-source technolo-\ngies,\u201d BMJ open, vol. 6, no. 3, p. e010579, 2016.\n\n\f"
+            }
+          ],
+          "tool_call_id": "call_18Hf8D9GYVIy9DuFTT8RRSAT",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:29.004331+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "args": "{\"title\": \"Lifestyle Disorders in Pre-adolescent and Adolescent Children\", \"summary\": \"Recent research highlights critical issues surrounding lifestyle disorders in pre-adolescent and adolescent children. Key findings include the increasing prevalence of childhood obesity, necessitating innovative solutions such as the IoT-based framework for prevention and monitoring. Studies also explore technology's role in supporting mental health, emphasizing the need for tailored interventions that consider individual child needs. The integration of wearable devices and mobile health technologies provides promising avenues for enhancing health management among young populations.\", \"references\": [{\"title\": \"WUDI: A Human Involved Self-Adaptive Framework to Prevent Childhood Obesity in Internet of Things Environment\", \"url\": \"https://arxiv.org/abs/2308.15944v1\"}, {\"title\": \"Technology in Association With Mental Health: Meta-ethnography\", \"url\": \"https://arxiv.org/abs/2307.10513v2\"}, {\"title\": \"Visualization of Wearable Data and Biometrics for Analysis and Recommendations in Childhood Obesity\", \"url\": \"https://arxiv.org/abs/1705.03691v1\"}]}",
+          "tool_call_id": "call_oWYabPf8WCNZug6HzlnA8ent",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "final_result",
+          "args": "{\"title\": \"Lifestyle Disorders in Pre-adolescent and Adolescent Children\", \"summary\": \"Recent academic studies have increasingly examined lifestyle disorders affecting pre-adolescent and adolescent children. Key research includes the development of frameworks to combat childhood obesity through IoT technologies, emphasizing human involvement. Additionally, studies showcase the effectiveness of technology in mental health interventions, suggesting that tailored, individual approaches could significantly enhance treatment and engagement. The role of wearable devices is highlighted as a crucial factor in monitoring health behaviors and providing actionable insights to improve the well-being of young populations.\", \"references\": [{\"title\": \"WUDI: A Human Involved Self-Adaptive Framework to Prevent Childhood Obesity in Internet of Things Environment\", \"url\": \"https://arxiv.org/abs/2308.15944v1\"}, {\"title\": \"Technology in Association With Mental Health: Meta-ethnography\", \"url\": \"https://arxiv.org/abs/2307.10513v2\"}, {\"title\": \"Visualization of Wearable Data and Biometrics for Analysis and Recommendations in Childhood Obesity\", \"url\": \"https://arxiv.org/abs/1705.03691v1\"}]}",
+          "tool_call_id": "call_5wZ6zyZ4H3SwRlHZ0B1j7F2O",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 20530,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 7552,
+        "output_tokens": 474,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:25:29+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7MPb73oAwhoAsaOpT9h99cpDvO7",
+      "finish_reason": "tool_call",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "content": "Final result processed.",
+          "tool_call_id": "call_oWYabPf8WCNZug6HzlnA8ent",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:37.283806+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "final_result",
+          "content": "Output tool not used - a final result was already processed.",
+          "tool_call_id": "call_5wZ6zyZ4H3SwRlHZ0B1j7F2O",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:25:37.284105+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": null,
+      "kind": "request",
+      "run_id": "dc599533-0955-4898-ae50-c15e11e5d512",
+      "metadata": null
+    }
+  ],
+  "usage": {
+    "input_tokens": 50557,
+    "cache_write_tokens": 0,
+    "cache_read_tokens": 31744,
+    "output_tokens": 930,
+    "input_audio_tokens": 0,
+    "cache_audio_read_tokens": 0,
+    "output_audio_tokens": 0,
+    "details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "requests": 7,
+    "tool_calls": 10
+  },
+  "output": {
+    "title": "Lifestyle Disorders in Pre-adolescent and Adolescent Children",
+    "summary": "Recent research highlights critical issues surrounding lifestyle disorders in pre-adolescent and adolescent children. Key findings include the increasing prevalence of childhood obesity, necessitating innovative solutions such as the IoT-based framework for prevention and monitoring. Studies also explore technology's role in supporting mental health, emphasizing the need for tailored interventions that consider individual child needs. The integration of wearable devices and mobile health technologies provides promising avenues for enhancing health management among young populations.",
+    "references": [
+      {
+        "title": "WUDI: A Human Involved Self-Adaptive Framework to Prevent Childhood Obesity in Internet of Things Environment",
+        "url": "https://arxiv.org/abs/2308.15944v1"
+      },
+      {
+        "title": "Technology in Association With Mental Health: Meta-ethnography",
+        "url": "https://arxiv.org/abs/2307.10513v2"
+      },
+      {
+        "title": "Visualization of Wearable Data and Biometrics for Analysis and Recommendations in Childhood Obesity",
+        "url": "https://arxiv.org/abs/1705.03691v1"
+      }
+    ]
+  }
+}

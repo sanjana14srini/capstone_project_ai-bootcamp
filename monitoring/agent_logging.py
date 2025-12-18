@@ -62,7 +62,7 @@ def log_run(
         agent=agent,
         messages=messages,
         usage=usage,
-        output=output
+        output=output.model_dump(mode="json")
     )
 
     return log
@@ -88,7 +88,7 @@ def save_log(entry: dict):
     ts = find_last_timestamp(entry['messages'])
     ts_str = ts.strftime("%Y%m%d_%H%M%S")
     rand_hex = secrets.token_hex(3)
-    print("DEBUG output type:", type(entry["output"]))
+    print("DEBUG output type:", type(entry["output"]), entry["output"])
     agent_name = entry['agent_name'].replace(" ", "_").lower()
 
     filename = f"{agent_name}_{ts_str}_{rand_hex}.json"

@@ -1,0 +1,839 @@
+{
+  "agent_name": "orchestrator",
+  "system_prompt": [
+    "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results."
+  ],
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "get_data_to_index",
+    "search",
+    "search_quality_check"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "\n            Answer the user's query based on the following conversation history:\n            Context: give me a summary of the latest research in LoRA? # Summary of Latest Research in LoRA\n\n## Summary \n Recent research on Low-Rank Adaptation (LoRA) focuses on enhancing its efficiency and applicability in various tasks, particularly in the context of fine-tuning large models. Here are three notable contributions:\n\n1. **LoRA-FAIR**: This paper introduces a novel method that integrates LoRA with federated learning (FL) to address the challenges of Server-Side Aggregation Bias and Client-Side Initialization Lag. By refining the aggregation process and ensuring consistent initialization across rounds, LoRA-FAIR significantly improves performance in FL settings, demonstrating effective fine-tuning on models like ViT and MLP-Mixer while maintaining computational efficiency. [Read more](https://arxiv.org/abs/2411.14961v3)\n\n2. **LoRA Done RITE**: This work addresses the lack of transformation invariance in current LoRA optimizers, which leads to inefficient learning. The authors propose LoRA-RITE, a novel adaptive matrix preconditioning method that ensures invariant weight updates regardless of how LoRA factors are scaled or rotated. Extensive experiments show that this approach yields consistent accuracy gains across various large language model tasks. [Read more](https://arxiv.org/abs/2410.20625v2)\n\n3. **PLoP**: This paper presents PLoP (Precise LoRA Placement), which focuses on the adapter placement strategy when using LoRA. By automating the identification of optimal module types for placing LoRA adapters, PLoP enhances the finetuning process for large models. The method demonstrates superior performance compared to traditional placement strategies through comprehensive testing across various tasks. [Read more](https://arxiv.org/abs/2506.20629v1) \n\n## References\n- [LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement](https://arxiv.org/abs/2411.14961v3)\n- [LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization](https://arxiv.org/abs/2410.20625v2)\n- [PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models](https://arxiv.org/abs/2506.20629v1)\n\n            Current query: explain the most important aspect of self-attention in LLMs\n        ",
+          "timestamp": "2025-12-18T12:13:24.989566+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\":\"self-attention in large language models\",\"paper_name\":\"Self-Attention in LLMs\"}",
+          "tool_call_id": "call_5lQPMASPwVMKRukMbYbgaltp",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 880,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 34,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:13:25+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7Ajlt7DDe3IjSJeCtla8eLahfhx",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_5lQPMASPwVMKRukMbYbgaltp",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:13:32.756025+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"self-attention in large language models\",\"paper_name\":\"Self-Attention in LLMs\"}",
+          "tool_call_id": "call_pPycftF7PCYCbGBdkPCRMj0Z",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 925,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 31,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:13:32+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7AqCEihVPTnaPLaIPDbCPk7helf",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2403.09676v1",
+              "title": "Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language Models",
+              "authors": [
+                "Linge Guo"
+              ],
+              "published": "2024-02-07T00:21:46Z",
+              "summary": "This research critically navigates the intricate landscape of AI deception, concentrating on deceptive behaviours of Large Language Models (LLMs). My objective is to elucidate this issue, examine the discourse surrounding it, and subsequently delve into its categorization and ramifications. The essay initiates with an evaluation of the AI Safety Summit 2023 (ASS) and introduction of LLMs, emphasising multidimensional biases that underlie their deceptive behaviours.The literature review covers four types of deception categorised: Strategic deception, Imitation, Sycophancy, and Unfaithful Reasoning, along with the social implications and risks they entail. Lastly, I take an evaluative stance on various aspects related to navigating the persistent challenges of the deceptive AI. This encompasses considerations of international collaborative governance, the reconfigured engagement of individuals with AI, proposal of practical adjustments, and specific elements of digital education.",
+              "content": "Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language \n\nModels \n\nLinge Guo | Grace | linge.guo.21@ucl.ac.uk | University College London  \n\nKeywords: AI deception, Large Language Models, ChatGPT \n\nIntroduction \n\nThis  research  critically  navigates  the  intricate  landscape  of  AI  deception,  concentrating  on \n\ndeceptive  behaviours  of  Large  Language  Models  (LLMs).  My  objective  is  to  elucidate  this \n\nissue, examine the discourse surrounding it, and subsequently delve into its categorization and \n\nramifications. The essay initiates with an evaluation of the AI Safety Summit 2023 (ASS) and \n\nintroduction  of  LLMs,  emphasising  multidimensional  biases  that  underlie  their  deceptive \n\nbehaviours.  Through  illuminating  algorithmic  bias  and  exploring  different  ways  to  define \n\n\u201cdeception\u201d,  I  argue  that  deceptive  AI  is  an  inherent  phenomenon  intertwined  with  the \n\nadvancement of LLMs and It may evolve into a self-driven intent, independent of the biassed \n\ntraining process.  \n\nThe literature review covers four types of deception categorised: Strategic deception, Imitation, \n\nSycophancy, and Unfaithful Reasoning, along with the social implications and risks they entail. \n\nThe  literature  around  deceptive  AI,  predominantly  available  on  arXiv  archives,  manifests  a \n\ndeficiency in contribution from social science. This deficiency could be ascribed to the early \n\ntesting  stages  of  AI  deception,  constraining  its  research  primarily  within  the  domain  of \n\ncomputer science. Lastly, I take an evaluative stance on various aspects related to navigating \n\nthe persistent challenges of the deceptive AI. This encompasses considerations of international \n\ncollaborative  governance,  the  reconfigured  engagement  of  individuals  with  AI,  proposal  of \n\npractical  adjustments,  and  specific  elements  of  digital  education.  Throughout  the  research, \n\nLLMs  are  examined  as  infrastructures  of  relations,  structures,  and  practices,  offering  a \n\ncomprehensive  understanding  of  \u201cinfrastructures  as  relational  arrangements  co-formative  of \n\nharm (Kallianos, Dunlap and Dalakoglou, 2022).\u201d \n\n1 \n\n \n \n\fAI Safety Summit 2023: What Does It Actually Achieve? \n\nThe  ASS,  hosted  under  the  auspices  of  the  UK  Prime  Minister,  convened  political  leaders, \n\nexperts,  and  industry  figures  to  deliberate  on  the  risks  associated  with  the  frontiers  of  AI \n\ndevelopment, specifically addressing concerns related to \u201cmisuse, loss of control, and societal \n\nharm (Leading Frontier AI Companies Publish Safety Policies, 2023).\u201d Despite five outlined \n\nobjectives, the ASS\u2019s actual impact, highlighted by news reports, remains elusive in terms of \n\nspecific  actionable measures (At UK\u2019s AI Summit,  Guterres Says Risks Outweigh Rewards \n\nwithout  Global  Oversight,  2023;  Devlin  and  Forrest,  2023;  Fullbrook,  2023;  Milmo,  2023; \n\nSample,  2023;  Seal,  2023).  AI  experts  at  Oxford  universities  provide  a  more  valid  and \n\nauthoritative assessment. \n\nThe attention garnered by the ASS in the media, emphasising the participants\u2019 authority and \n\nglobal  representation,  calls  a  pause  for  the  development  of  AI  and  adds  the  atmosphere  of \n\nunchecked fear and unfounded apprehension. While the ASS successfully signals a consensus \n\ngesture, a critical question revolves around identifying the actors responsible for maintaining \n\nthis  consensus  (McBride,  2023).  Professor  Trager\u2019s  suggestion  that  \u201cAI  technology  should \n\nhappen  within  the  academic  sector,  rather  than  being  outsourced  to  tech  companies  (Expert \n\ncomment: Oxford AI Experts Comment on the Outcomes of the UK AI Safety Summit, 2023)\u201d \n\nprompts  consideration  of  potential  vested  interests  within  academia.  Nonetheless,  both \n\nacademic and industry perspectives contribute to shaping the discourse on AI development in \n\na top-down technocratic approach. The  ASS underscores the UK\u2019s interest to align with the \n\nglobal implementation of regulations to mitigate algorithmic risks and to seek sovereignty in \n\nshaping  the  global  regulatory  framework.  Despite  the  extent  of  the  UK\u2019s  assertion  in  this \n\npursuit, the ASS thus serves as a commendable starting point, emphasising the need for greater \n\ninclusivity in these efforts. \n\nSignificance of AI Deception \n\nAcknowledging the socio-political context of the ASS, I redirect the focus from potential future \n\nharm to the present-day existential risks associated with AI use. A supporting document for the \n\nASS explicated that the challenges posed by deceptive AI becomes crucial when addressing \n\nwith the loss of control over AI, especially in the absence of a defence strategy (Frontier AI: \n\nCapabilities  and  Risks  \u2013  Discussion  Paper,  2023).  LLMs  extend  their  influence  beyond  AI \n\n2 \n\n \n \n\fchatbots  and  search  engines,  infiltrating  the  decision-making  framewo"
+            },
+            {
+              "id": "2403.09676v1",
+              "title": "Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language Models",
+              "authors": [
+                "Linge Guo"
+              ],
+              "published": "2024-02-07T00:21:46Z",
+              "summary": "This research critically navigates the intricate landscape of AI deception, concentrating on deceptive behaviours of Large Language Models (LLMs). My objective is to elucidate this issue, examine the discourse surrounding it, and subsequently delve into its categorization and ramifications. The essay initiates with an evaluation of the AI Safety Summit 2023 (ASS) and introduction of LLMs, emphasising multidimensional biases that underlie their deceptive behaviours.The literature review covers four types of deception categorised: Strategic deception, Imitation, Sycophancy, and Unfaithful Reasoning, along with the social implications and risks they entail. Lastly, I take an evaluative stance on various aspects related to navigating the persistent challenges of the deceptive AI. This encompasses considerations of international collaborative governance, the reconfigured engagement of individuals with AI, proposal of practical adjustments, and specific elements of digital education.",
+              "content": "ntent, independent of the biassed \n\ntraining process.  \n\nThe literature review covers four types of deception categorised: Strategic deception, Imitation, \n\nSycophancy, and Unfaithful Reasoning, along with the social implications and risks they entail. \n\nThe  literature  around  deceptive  AI,  predominantly  available  on  arXiv  archives,  manifests  a \n\ndeficiency in contribution from social science. This deficiency could be ascribed to the early \n\ntesting  stages  of  AI  deception,  constraining  its  research  primarily  within  the  domain  of \n\ncomputer science. Lastly, I take an evaluative stance on various aspects related to navigating \n\nthe persistent challenges of the deceptive AI. This encompasses considerations of international \n\ncollaborative  governance,  the  reconfigured  engagement  of  individuals  with  AI,  proposal  of \n\npractical  adjustments,  and  specific  elements  of  digital  education.  Throughout  the  research, \n\nLLMs  are  examined  as  infrastructures  of  relations,  structures,  and  practices,  offering  a \n\ncomprehensive  understanding  of  \u201cinfrastructures  as  relational  arrangements  co-formative  of \n\nharm (Kallianos, Dunlap and Dalakoglou, 2022).\u201d \n\n1 \n\n \n \n\fAI Safety Summit 2023: What Does It Actually Achieve? \n\nThe  ASS,  hosted  under  the  auspices  of  the  UK  Prime  Minister,  convened  political  leaders, \n\nexperts,  and  industry  figures  to  deliberate  on  the  risks  associated  with  the  frontiers  of  AI \n\ndevelopment, specifically addressing concerns related to \u201cmisuse, loss of control, and societal \n\nharm (Leading Frontier AI Companies Publish Safety Policies, 2023).\u201d Despite five outlined \n\nobjectives, the ASS\u2019s actual impact, highlighted by news reports, remains elusive in terms of \n\nspecific  actionable measures (At UK\u2019s AI Summit,  Guterres Says Risks Outweigh Rewards \n\nwithout  Global  Oversight,  2023;  Devlin  and  Forrest,  2023;  Fullbrook,  2023;  Milmo,  2023; \n\nSample,  2023;  Seal,  2023).  AI  experts  at  Oxford  universities  provide  a  more  valid  and \n\nauthoritative assessment. \n\nThe attention garnered by the ASS in the media, emphasising the participants\u2019 authority and \n\nglobal  representation,  calls  a  pause  for  the  development  of  AI  and  adds  the  atmosphere  of \n\nunchecked fear and unfounded apprehension. While the ASS successfully signals a consensus \n\ngesture, a critical question revolves around identifying the actors responsible for maintaining \n\nthis  consensus  (McBride,  2023).  Professor  Trager\u2019s  suggestion  that  \u201cAI  technology  should \n\nhappen  within  the  academic  sector,  rather  than  being  outsourced  to  tech  companies  (Expert \n\ncomment: Oxford AI Experts Comment on the Outcomes of the UK AI Safety Summit, 2023)\u201d \n\nprompts  consideration  of  potential  vested  interests  within  academia.  Nonetheless,  both \n\nacademic and industry perspectives contribute to shaping the discourse on AI development in \n\na top-down technocratic approach. The  ASS underscores the UK\u2019s interest to align with the \n\nglobal implementation of regulations to mitigate algorithmic risks and to seek sovereignty in \n\nshaping  the  global  regulatory  framework.  Despite  the  extent  of  the  UK\u2019s  assertion  in  this \n\npursuit, the ASS thus serves as a commendable starting point, emphasising the need for greater \n\ninclusivity in these efforts. \n\nSignificance of AI Deception \n\nAcknowledging the socio-political context of the ASS, I redirect the focus from potential future \n\nharm to the present-day existential risks associated with AI use. A supporting document for the \n\nASS explicated that the challenges posed by deceptive AI becomes crucial when addressing \n\nwith the loss of control over AI, especially in the absence of a defence strategy (Frontier AI: \n\nCapabilities  and  Risks  \u2013  Discussion  Paper,  2023).  LLMs  extend  their  influence  beyond  AI \n\n2 \n\n \n \n\fchatbots  and  search  engines,  infiltrating  the  decision-making  framework  of  autonomous \n\ndriving cars (Cui et al., 2023). The existential and social implications of LLM use are profound \n\nand  widespread,  encompassing  the  intentional  generation  of  deepfakes  in  images  or  videos, \n\npotential misuse in personalised disinformation campaigns, and susceptibility to cyberattacks \n\n(Ngo, Chan and Mindermann, 2023). Having underscored the importance of deceptive AI, I \n\nwill introduce LLMs, illuminating the inherent biases ingrained within these models.  \n\nLLMs & Biases in LLMs \n\nThe  Large  (trained  on  huge  text  datasets  from  the  internet),  Languages  (operated  based  on \n\nhuman  language)  Models  (used  to  make  predictions)  are  developed  through  deep  learning \n\nalgorithms. Users interact with LLMs, such as ChatGPT (GPT), using prompts, engaging in \n\ntasks  such  as  customer  service  conversations  and  content  generation.  The  multidimensional \n\ntask demonstrates LLMs\u2019 capabilities spanning summarization, comparison, analysis, a"
+            },
+            {
+              "id": "2403.09676v1",
+              "title": "Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language Models",
+              "authors": [
+                "Linge Guo"
+              ],
+              "published": "2024-02-07T00:21:46Z",
+              "summary": "This research critically navigates the intricate landscape of AI deception, concentrating on deceptive behaviours of Large Language Models (LLMs). My objective is to elucidate this issue, examine the discourse surrounding it, and subsequently delve into its categorization and ramifications. The essay initiates with an evaluation of the AI Safety Summit 2023 (ASS) and introduction of LLMs, emphasising multidimensional biases that underlie their deceptive behaviours.The literature review covers four types of deception categorised: Strategic deception, Imitation, Sycophancy, and Unfaithful Reasoning, along with the social implications and risks they entail. Lastly, I take an evaluative stance on various aspects related to navigating the persistent challenges of the deceptive AI. This encompasses considerations of international collaborative governance, the reconfigured engagement of individuals with AI, proposal of practical adjustments, and specific elements of digital education.",
+              "content": "AI  experts  at  Oxford  universities  provide  a  more  valid  and \n\nauthoritative assessment. \n\nThe attention garnered by the ASS in the media, emphasising the participants\u2019 authority and \n\nglobal  representation,  calls  a  pause  for  the  development  of  AI  and  adds  the  atmosphere  of \n\nunchecked fear and unfounded apprehension. While the ASS successfully signals a consensus \n\ngesture, a critical question revolves around identifying the actors responsible for maintaining \n\nthis  consensus  (McBride,  2023).  Professor  Trager\u2019s  suggestion  that  \u201cAI  technology  should \n\nhappen  within  the  academic  sector,  rather  than  being  outsourced  to  tech  companies  (Expert \n\ncomment: Oxford AI Experts Comment on the Outcomes of the UK AI Safety Summit, 2023)\u201d \n\nprompts  consideration  of  potential  vested  interests  within  academia.  Nonetheless,  both \n\nacademic and industry perspectives contribute to shaping the discourse on AI development in \n\na top-down technocratic approach. The  ASS underscores the UK\u2019s interest to align with the \n\nglobal implementation of regulations to mitigate algorithmic risks and to seek sovereignty in \n\nshaping  the  global  regulatory  framework.  Despite  the  extent  of  the  UK\u2019s  assertion  in  this \n\npursuit, the ASS thus serves as a commendable starting point, emphasising the need for greater \n\ninclusivity in these efforts. \n\nSignificance of AI Deception \n\nAcknowledging the socio-political context of the ASS, I redirect the focus from potential future \n\nharm to the present-day existential risks associated with AI use. A supporting document for the \n\nASS explicated that the challenges posed by deceptive AI becomes crucial when addressing \n\nwith the loss of control over AI, especially in the absence of a defence strategy (Frontier AI: \n\nCapabilities  and  Risks  \u2013  Discussion  Paper,  2023).  LLMs  extend  their  influence  beyond  AI \n\n2 \n\n \n \n\fchatbots  and  search  engines,  infiltrating  the  decision-making  framework  of  autonomous \n\ndriving cars (Cui et al., 2023). The existential and social implications of LLM use are profound \n\nand  widespread,  encompassing  the  intentional  generation  of  deepfakes  in  images  or  videos, \n\npotential misuse in personalised disinformation campaigns, and susceptibility to cyberattacks \n\n(Ngo, Chan and Mindermann, 2023). Having underscored the importance of deceptive AI, I \n\nwill introduce LLMs, illuminating the inherent biases ingrained within these models.  \n\nLLMs & Biases in LLMs \n\nThe  Large  (trained  on  huge  text  datasets  from  the  internet),  Languages  (operated  based  on \n\nhuman  language)  Models  (used  to  make  predictions)  are  developed  through  deep  learning \n\nalgorithms. Users interact with LLMs, such as ChatGPT (GPT), using prompts, engaging in \n\ntasks  such  as  customer  service  conversations  and  content  generation.  The  multidimensional \n\ntask demonstrates LLMs\u2019 capabilities spanning summarization, comparison, analysis, and text \n\nand image generation (Cui et al., 2023; Head et al., 2023; Matsuo et al., 2022). \n\nBiases in LLMs reflect societal biases ingrained in human culture and language. These biases \n\nare perpetuated through the learning, training, and execution of AI systems. Lack of diversity \n\namong  developers  and  over-representation  of  socioeconomically  advantaged  groups  in \n\ninteracting  with  AI  tools,  such  as  internet  users  and  English  native  speakers,  produce \n\nrepresentational  biases;  existing  societal  discriminations,  stereotypes  existed  in  the  datasets \n\npresent as historical biases (Collett and Dillon, 2019; Cui et al., 2023). These biases not only \n\npersist but also amplify discriminating behaviours that elude quantification or measurement in \n\neveryday life (Ntoutsi et al., 2020). Data, imbricated with layers of interpretation, represents \n\nstructural inequalities related but not limited to the intersectionality of gender, race, age and \n\nclass (Joyce et al., 2021; Singh, 2020)1.  \n\nAnalogous  to  global  power  dynamics,  extractive  data  practices  mirror  the  discourse  of  \u201cthe \n\nWest  and  the  Rest  (Hall,  1992),\u201d  where  Western  explorers  impose  a  Eurocentric  system  of \n\nrepresentations  on  indigenous  populations,  creating  a  binary  opposition  with  the  rest  of \n\n1The concepts of data imbrication appeared in Lecture 3, and Lecture 9 discussed the intersection in the \nreproduction of inequality in algorithms oppression, especially involving the intersections of gender, sexuality, \nand race. \n\n3 \n\n \n \n \n\fcivilizations without their active participation.2 In the context of LLMs development, the \u201cdata \n\nrelations (Couldry and Mejias, 2019)\u201d it created regulates disadvantaged groups by excluding \n\nthem from both the creation and benefits of their data while extracting their data for advancing \n\nalgorithms.  OpenAI,  through  outsourcing  firm  Sama,  employed  workers  in  Kenya  for  tasks \n\nrelated to enhancing the sa"
+            }
+          ],
+          "tool_call_id": "call_pPycftF7PCYCbGBdkPCRMj0Z",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:13:34.625169+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "args": "{\"params\":{\"user_query\":\"explain the most important aspect of self-attention in LLMs\",\"search_results\":[{\"title\":\"Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language Models\",\"snippet\":\"This research critically navigates the intricate landscape of AI deception, concentrating on deceptive behaviours of Large Language Models (LLMs).\",\"url\":\"https://arxiv.org/abs/2403.09676v1\"}]}}",
+          "tool_call_id": "call_Isg7ue2ABgsgdgHLt9LfYSeJ",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 5682,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 104,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:13:34+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7AshvANrV0hla687ezcLp8ex2mZ",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "content": {
+            "results_evaluation": [
+              {
+                "title": "Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language Models",
+                "url": "https://arxiv.org/abs/2403.09676v1",
+                "relevance": 0.1,
+                "completeness": 0.1,
+                "credibility": 0.8,
+                "currency": 0.5
+              }
+            ],
+            "overall_quality_score": 0.2,
+            "decision": "more data is needed",
+            "suggested_search_terms": [
+              "self-attention mechanism in LLMs",
+              "importance of self-attention in transformers",
+              "how self-attention works in large language models"
+            ]
+          },
+          "tool_call_id": "call_Isg7ue2ABgsgdgHLt9LfYSeJ",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:13:41.387074+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\":\"self-attention mechanism in large language models\",\"paper_name\":\"Self-Attention in LLMs\"}",
+          "tool_call_id": "call_QgVWUwv2sW6iNaCz94FfrcHd",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 5918,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 5760,
+        "output_tokens": 35,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:13:41+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7Az7IbS54yq04RdjOUXym7iuKvo",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_QgVWUwv2sW6iNaCz94FfrcHd",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:13:49.840558+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"self-attention mechanism in large language models\",\"paper_name\":\"Self-Attention in LLMs\"}",
+          "tool_call_id": "call_2iUBv77KwKL4Jb87oeLqWX50",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 5964,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 5888,
+        "output_tokens": 32,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:13:50+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7B8BwGRuADOts32GFTHYRJrNH2A",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2002.00741v1",
+              "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+              "authors": [
+                "Jibang Wu",
+                "Renqin Cai",
+                "Hongning Wang"
+              ],
+              "published": "2020-01-29T20:27:42Z",
+              "summary": "Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems. Most existing sequential recommendation algorithms focus on transitional structure among the sequential actions, but largely ignore the temporal and context information, when modeling the influence of a historical event to current prediction.\n  In this paper, we argue that the influence from the past events on a user's current action should vary over the course of time and under different context. Thus, we propose a Contextualized Temporal Attention Mechanism that learns to weigh historical actions' influence on not only what action it is, but also when and how the action took place. More specifically, to dynamically calibrate the relative input dependence from the self-attention mechanism, we deploy multiple parameterized kernel functions to learn various temporal dynamics, and then use the context information to determine which of these reweighing kernels to follow for each input. In empirical evaluations on two large public recommendation datasets, our model consistently outperformed an extensive set of state-of-the-art sequential recommendation methods.",
+              "content": "teraction history is lacking in boosting\nthe empirical evaluation performance on several recommendation\ndatasets, even though the position embedding technique is pro-\nposed for self-attention mechanism in its original paper [42]. In\nother words, there is no explicit ordering of input or segment of his-\ntory modeled by self-attention mechanism. Therefore, this presents\nus the opportunity to model temporal and context information as a\nmore informative and flexible order representation to complement\nexisting attention mechanism, bridging the insights from the both\nsides of work in sequential recommendation. But the challenge also\ncomes along as incorporating these information could contribute\nmore noise than signal unless properly structured by the model.\n\nWe propose the Contextualized Temporal Attention Mechanism\n(CTA), an attention based sequential neural architecture that draws\ndependencies among the historical interactions not only through\nevent correlation but also jointly on temporal and context infor-\nmation for sequential behavior modeling. In this mechanism, we\nweigh the historical influence for each historical action at current\nprediction following the three design questions:\n\n(1) What is the action? The dependency is initially based on the\naction correlation through the self-attention mechanism, i.e.,\nhow such an action is co-related to the current state in the\nsequence.\n\n(2) When did it happen? The influence is also weighed by its tem-\nporal proximity to the predicted action, since the temporal\ndynamics should also play an important role in determining\nthe strength of its connection to presence.\n\n(3) How did it happen? The temporal weighing factor is realized\nas a mixture of the output each from a distinct parameter-\nized kernel function that maps the input of time gaps onto\na specific context of temporal dynamics. And the propor-\ntion of such mixture is determined by the contextual factors,\ninferred from the surrounding actions. In this way, the influ-\nence of a historical action would follow different temporal\ndynamics under different contextual conditions.\n\nWe apply the model on both XING1 and UserBehavior2 dataset\neach with millions of interaction events including user, item and\ntimestamp records. The empirical results on both dataset show\nthat our model improves recommendation performance, compared\n\n1https://github.com/recsyschallenge/2016/blob/master/TrainingDataset.md\n2https://tianchi.aliyun.com/dataset/dataDetail?dataId=649\n\n\fD\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation\n\nWWW \u201920, April 20\u201324, 2020, Taipei, Taiwan\n\nwith a selection of state-of-the-art approaches. We also conducted\nextensive ablation studies as well as visualizations to analyze our\nmodel design to understand its advantages and limitations.\n\n2 RELATED WORK\nSeveral lines of existing research are closely related to ours in this\npaper, and their insights largely inspired our model design. In this\nsection, we briefly introduce some key work to provide the context\nof our work.\n\n2.1 Sequential Recommendation\nFor the problem of sequential recommendation, the scope was\ninitially confined to the time-based sessions. Recurrent Neural Net-\nwork (RNN) and its variants, including Long Short-Term Memory\n(LSTM) [18] and Gated Recurrent Units (GRU) [6], have become a\ncommon choice for session-based recommendations [16, 46]. Other\nmethods based on Convolutional Neural Networks (CNN) [40],\nMemory Network [5] and Attention Models [22] have also been\nexplored. The hierarchical structure generalized from RNN, Atten-\ntion or CNN based models [7, 31, 45] is used to model transitions\ninter- and intra-sessions. The recent work [45] by You et al. showed\nthat using Temporal Convolutional Network to encode and decode\nsession-level information and GRU for user-level transition is the\nmost effective hierarchical structure. Nevertheless, as many studies\nborrow sequence models from natural language modeling task di-\nrectly, their model performance is usually limited by the relatively\nsmall size and sparse pattern of user behaviors, compared to the\nnature language datasets.\n\nThe attention mechanism was first coined by Bahdanau et al. [2].\nThe original structure is constructed on the hidden states generated\nfrom RNN in order to better capture the long-term dependence\nand align the output for decoder in RNN. The Transformer model\n[42] and several follow-up work [8, 10, 32] showed that for many\nNLP tasks, the sequence-to-sequence network structure based on\nattention alone, a.k.a. self-attention mechanism, is able to outper-\nform existing RNN structures in both accuracy and computation\ncomplexity in long sequences. Motivated by this unique advan-\ntage of self-attention, several studies introduced this mechanism to\nsequential recommendation. SASRec [19], based on self-attention\nmechanism, demonstrated promising results in modeling longer\nuser sequences without the session assumption. Another work\nknown as Multi-temporal rang"
+            },
+            {
+              "id": "2002.00741v1",
+              "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+              "authors": [
+                "Jibang Wu",
+                "Renqin Cai",
+                "Hongning Wang"
+              ],
+              "published": "2020-01-29T20:27:42Z",
+              "summary": "Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems. Most existing sequential recommendation algorithms focus on transitional structure among the sequential actions, but largely ignore the temporal and context information, when modeling the influence of a historical event to current prediction.\n  In this paper, we argue that the influence from the past events on a user's current action should vary over the course of time and under different context. Thus, we propose a Contextualized Temporal Attention Mechanism that learns to weigh historical actions' influence on not only what action it is, but also when and how the action took place. More specifically, to dynamically calibrate the relative input dependence from the self-attention mechanism, we deploy multiple parameterized kernel functions to learn various temporal dynamics, and then use the context information to determine which of these reweighing kernels to follow for each input. In empirical evaluations on two large public recommendation datasets, our model consistently outperformed an extensive set of state-of-the-art sequential recommendation methods.",
+              "content": "terns could widely\ndiffer due to the subtle variance within the temporal proximity\nbetween neighboring events, associated with its changing context.\nSpecifically, the time and context of each historical event would\nsupport fine-grained interpretation and high-fidelity replay of the\nsequential behavior history for a more accurate portrait of cur-\nrent user preference. This claim is further supported by the initial\nstatistic results obtained from two large datasets later used in our\nevaluation: the mixed Gaussian shape appearing in the time inter-\nval distribution in Figure 2 indicates that a binary interpretation of\ntime gap as in- or cross- session is not accurate enough. Therefore,\nour proposed model adaptively weights the historical influences in\nregard to the user\u2019s drifting impressions from previous interactions\nover time and under its inferred contextual condition.\n\nTraditional RNN-based approaches leave little room for one to\ndynamically adjust the historical influences at current state. One\n\nearlier work, known as Time-LSTM [48], proposed several variants\nof time gate structure to model the variable time intervals as part\nof the recurrent state transition. But this assumes that the temporal\ninfluence only takes effect for once during transition and is fixed\nregardless of context or future events. Thereby, in order to model\nthe influence evolving temporally and contextually, we appeal to\nthe attention based sequence models, which emphasize dependen-\ncies directly on each sequential input rather than relying on the\nrecurrent state transition in RNN models.\n\nIn sequential recommendation, a line of work [19, 38, 39] has\nborrowed the state-of-art self-attention network structure from\nnature language modeling [10, 42]. Tang et al. [39] show that its at-\ntention component can enhance the model capacity in determining\ndependence over an extensively long sequence of history. Never-\ntheless, Kang and McAuley [19] report that the action order in\nlong sequence of user interaction history is lacking in boosting\nthe empirical evaluation performance on several recommendation\ndatasets, even though the position embedding technique is pro-\nposed for self-attention mechanism in its original paper [42]. In\nother words, there is no explicit ordering of input or segment of his-\ntory modeled by self-attention mechanism. Therefore, this presents\nus the opportunity to model temporal and context information as a\nmore informative and flexible order representation to complement\nexisting attention mechanism, bridging the insights from the both\nsides of work in sequential recommendation. But the challenge also\ncomes along as incorporating these information could contribute\nmore noise than signal unless properly structured by the model.\n\nWe propose the Contextualized Temporal Attention Mechanism\n(CTA), an attention based sequential neural architecture that draws\ndependencies among the historical interactions not only through\nevent correlation but also jointly on temporal and context infor-\nmation for sequential behavior modeling. In this mechanism, we\nweigh the historical influence for each historical action at current\nprediction following the three design questions:\n\n(1) What is the action? The dependency is initially based on the\naction correlation through the self-attention mechanism, i.e.,\nhow such an action is co-related to the current state in the\nsequence.\n\n(2) When did it happen? The influence is also weighed by its tem-\nporal proximity to the predicted action, since the temporal\ndynamics should also play an important role in determining\nthe strength of its connection to presence.\n\n(3) How did it happen? The temporal weighing factor is realized\nas a mixture of the output each from a distinct parameter-\nized kernel function that maps the input of time gaps onto\na specific context of temporal dynamics. And the propor-\ntion of such mixture is determined by the contextual factors,\ninferred from the surrounding actions. In this way, the influ-\nence of a historical action would follow different temporal\ndynamics under different contextual conditions.\n\nWe apply the model on both XING1 and UserBehavior2 dataset\neach with millions of interaction events including user, item and\ntimestamp records. The empirical results on both dataset show\nthat our model improves recommendation performance, compared\n\n1https://github.com/recsyschallenge/2016/blob/master/TrainingDataset.md\n2https://tianchi.aliyun.com/dataset/dataDetail?dataId=649\n\n\fD\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation\n\nWWW \u201920, April 20\u201324, 2020, Taipei, Taiwan\n\nwith a selection of state-of-the-art approaches. We also conducted\nextensive ablation studies as well as visualizations to analyze our\nmodel design to understand its advantages and limitations.\n\n2 RELATED WORK\nSeveral lines of existing research are closely related to ours in this\npaper, and their insights largely inspired our model design. In this\nsection, we briefly introduce som"
+            },
+            {
+              "id": "2002.00741v1",
+              "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+              "authors": [
+                "Jibang Wu",
+                "Renqin Cai",
+                "Hongning Wang"
+              ],
+              "published": "2020-01-29T20:27:42Z",
+              "summary": "Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems. Most existing sequential recommendation algorithms focus on transitional structure among the sequential actions, but largely ignore the temporal and context information, when modeling the influence of a historical event to current prediction.\n  In this paper, we argue that the influence from the past events on a user's current action should vary over the course of time and under different context. Thus, we propose a Contextualized Temporal Attention Mechanism that learns to weigh historical actions' influence on not only what action it is, but also when and how the action took place. More specifically, to dynamically calibrate the relative input dependence from the self-attention mechanism, we deploy multiple parameterized kernel functions to learn various temporal dynamics, and then use the context information to determine which of these reweighing kernels to follow for each input. In empirical evaluations on two large public recommendation datasets, our model consistently outperformed an extensive set of state-of-the-art sequential recommendation methods.",
+              "content": "t state. One\n\nearlier work, known as Time-LSTM [48], proposed several variants\nof time gate structure to model the variable time intervals as part\nof the recurrent state transition. But this assumes that the temporal\ninfluence only takes effect for once during transition and is fixed\nregardless of context or future events. Thereby, in order to model\nthe influence evolving temporally and contextually, we appeal to\nthe attention based sequence models, which emphasize dependen-\ncies directly on each sequential input rather than relying on the\nrecurrent state transition in RNN models.\n\nIn sequential recommendation, a line of work [19, 38, 39] has\nborrowed the state-of-art self-attention network structure from\nnature language modeling [10, 42]. Tang et al. [39] show that its at-\ntention component can enhance the model capacity in determining\ndependence over an extensively long sequence of history. Never-\ntheless, Kang and McAuley [19] report that the action order in\nlong sequence of user interaction history is lacking in boosting\nthe empirical evaluation performance on several recommendation\ndatasets, even though the position embedding technique is pro-\nposed for self-attention mechanism in its original paper [42]. In\nother words, there is no explicit ordering of input or segment of his-\ntory modeled by self-attention mechanism. Therefore, this presents\nus the opportunity to model temporal and context information as a\nmore informative and flexible order representation to complement\nexisting attention mechanism, bridging the insights from the both\nsides of work in sequential recommendation. But the challenge also\ncomes along as incorporating these information could contribute\nmore noise than signal unless properly structured by the model.\n\nWe propose the Contextualized Temporal Attention Mechanism\n(CTA), an attention based sequential neural architecture that draws\ndependencies among the historical interactions not only through\nevent correlation but also jointly on temporal and context infor-\nmation for sequential behavior modeling. In this mechanism, we\nweigh the historical influence for each historical action at current\nprediction following the three design questions:\n\n(1) What is the action? The dependency is initially based on the\naction correlation through the self-attention mechanism, i.e.,\nhow such an action is co-related to the current state in the\nsequence.\n\n(2) When did it happen? The influence is also weighed by its tem-\nporal proximity to the predicted action, since the temporal\ndynamics should also play an important role in determining\nthe strength of its connection to presence.\n\n(3) How did it happen? The temporal weighing factor is realized\nas a mixture of the output each from a distinct parameter-\nized kernel function that maps the input of time gaps onto\na specific context of temporal dynamics. And the propor-\ntion of such mixture is determined by the contextual factors,\ninferred from the surrounding actions. In this way, the influ-\nence of a historical action would follow different temporal\ndynamics under different contextual conditions.\n\nWe apply the model on both XING1 and UserBehavior2 dataset\neach with millions of interaction events including user, item and\ntimestamp records. The empirical results on both dataset show\nthat our model improves recommendation performance, compared\n\n1https://github.com/recsyschallenge/2016/blob/master/TrainingDataset.md\n2https://tianchi.aliyun.com/dataset/dataDetail?dataId=649\n\n\fD\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation\n\nWWW \u201920, April 20\u201324, 2020, Taipei, Taiwan\n\nwith a selection of state-of-the-art approaches. We also conducted\nextensive ablation studies as well as visualizations to analyze our\nmodel design to understand its advantages and limitations.\n\n2 RELATED WORK\nSeveral lines of existing research are closely related to ours in this\npaper, and their insights largely inspired our model design. In this\nsection, we briefly introduce some key work to provide the context\nof our work.\n\n2.1 Sequential Recommendation\nFor the problem of sequential recommendation, the scope was\ninitially confined to the time-based sessions. Recurrent Neural Net-\nwork (RNN) and its variants, including Long Short-Term Memory\n(LSTM) [18] and Gated Recurrent Units (GRU) [6], have become a\ncommon choice for session-based recommendations [16, 46]. Other\nmethods based on Convolutional Neural Networks (CNN) [40],\nMemory Network [5] and Attention Models [22] have also been\nexplored. The hierarchical structure generalized from RNN, Atten-\ntion or CNN based models [7, 31, 45] is used to model transitions\ninter- and intra-sessions. The recent work [45] by You et al. showed\nthat using Temporal Convolutional Network to encode and decode\nsession-level information and GRU for user-level transition is the\nmost effective hierarchical structure. Nevertheless, as many studies\nborrow sequence models from natural language modeling task di-\nrectly, their model pe"
+            }
+          ],
+          "tool_call_id": "call_2iUBv77KwKL4Jb87oeLqWX50",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:13:51.182336+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "args": "{\"params\":{\"user_query\":\"explain the most important aspect of self-attention in LLMs\",\"search_results\":[{\"title\":\"D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation\",\"snippet\":\"Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems.\",\"url\":\"https://arxiv.org/abs/2002.00741v1\"}]}}",
+          "tool_call_id": "call_15e3MoISFcWSps3BqOAx8ye8",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 10011,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 5888,
+        "output_tokens": 97,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:13:51+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7B9lThmynDETJm8lxG8YgEqKRjz",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "content": {
+            "results_evaluation": [
+              {
+                "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+                "url": "https://arxiv.org/abs/2002.00741v1",
+                "relevance": 0.1,
+                "completeness": 0.2,
+                "credibility": 0.8,
+                "currency": 0.5
+              }
+            ],
+            "overall_quality_score": 0.27,
+            "decision": "more data is needed",
+            "suggested_search_terms": [
+              "self-attention in large language models",
+              "importance of attention mechanism",
+              "how self-attention works in NLP"
+            ]
+          },
+          "tool_call_id": "call_15e3MoISFcWSps3BqOAx8ye8",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:13:56.846248+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"self-attention in large language models\", \"paper_name\": \"Self-Attention in LLMs\"}",
+          "tool_call_id": "call_IBl3oXzaMTWtSu6EfkYfow5u",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"importance of attention mechanism\", \"paper_name\": \"Attention Mechanism in LLMs\"}",
+          "tool_call_id": "call_swDbJs5peRrd4EaIeyC3NISD",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"how self-attention works in NLP\", \"paper_name\": \"Self-Attention Mechanism in NLP\"}",
+          "tool_call_id": "call_RwFbukB8M0WNrzoSbIwpQ8ty",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 10230,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 9984,
+        "output_tokens": 114,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:13:57+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7BFTjZBadxnaA8ScEw4EkNA5b6G",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_IBl3oXzaMTWtSu6EfkYfow5u",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:14:15.134934+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_swDbJs5peRrd4EaIeyC3NISD",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:14:15.352312+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_RwFbukB8M0WNrzoSbIwpQ8ty",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:14:15.539937+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\": \"self-attention in large language models\", \"paper_name\": \"Self-Attention in LLMs\"}",
+          "tool_call_id": "call_Zmj72KszoXLGO3YMx7Pg1nR0",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "search",
+          "args": "{\"query\": \"importance of attention mechanism\", \"paper_name\": \"Attention Mechanism in LLMs\"}",
+          "tool_call_id": "call_tDkIRuHlx0QaPn1LGEGDh0PK",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "search",
+          "args": "{\"query\": \"how self-attention works in NLP\", \"paper_name\": \"Self-Attention Mechanism in NLP\"}",
+          "tool_call_id": "call_jQDtdc5ykb8urbmNUsfByHrD",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 10361,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 10240,
+        "output_tokens": 105,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:14:16+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7BYqQXfM6TIE2e25VM883rLyrR2",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2305.19798v2",
+              "title": "Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation",
+              "authors": [
+                "Yingyi Chen",
+                "Qinghua Tao",
+                "Francesco Tonin",
+                "Johan A. K. Suykens"
+              ],
+              "published": "2023-05-31T12:38:24Z",
+              "summary": "Recently, a new line of works has emerged to understand and improve self-attention in Transformers by treating it as a kernel machine. However, existing works apply the methods for symmetric kernels to the asymmetric self-attention, resulting in a nontrivial gap between the analytical understanding and numerical implementation. In this paper, we provide a new perspective to represent and optimize self-attention through asymmetric Kernel Singular Value Decomposition (KSVD), which is also motivated by the low-rank property of self-attention normally observed in deep layers. Through asymmetric KSVD, $i$) a primal-dual representation of self-attention is formulated, where the optimization objective is cast to maximize the projection variances in the attention outputs; $ii$) a novel attention mechanism, i.e., Primal-Attention, is proposed via the primal representation of KSVD, avoiding explicit computation of the kernel matrix in the dual; $iii$) with KKT conditions, we prove that the stationary solution to the KSVD optimization in Primal-Attention yields a zero-value objective. In this manner, KSVD optimization can be implemented by simply minimizing a regularization loss, so that low-rank property is promoted without extra decomposition. Numerical experiments show state-of-the-art performance of our Primal-Attention with improved efficiency. Moreover, we demonstrate that the deployed KSVD optimization regularizes Primal-Attention with a sharper singular value decay than that of the canonical self-attention, further verifying the great potential of our method. To the best of our knowledge, this is the first work that provides a primal-dual representation for the asymmetric kernel in self-attention and successfully applies it to modeling and optimization.",
+              "content": "ost efficient baseline DT, while Flowformer shows significantly\nlower efficiency in both aspects. Recall that our Primal.+DT achieves an average reward of 77.5,\nwhich is 5.3 points higher than DT and 4.0 points higher than Flowformer.\n\nLarge-scale Experiments We evaluate the capability of our Primal.+ model with DeiT-Small/16 [7]\nas backbone on ImageNet-100 [48] and ImageNet-1K [23] for image classification task. We also\nexperiment with the language modelling task on WikiText-103 [49]. On ImageNet, we train DeiT-\nSmall/16 and our Primal.+DeiT-Small/16 from scratch following the same training protocols in [7]\nwith 4 NVIDIA Tesla V100 SXM2 32GB GPUs. Our hyper-parameters are chosen as \u03b7 = 0.05,\ns \u2208 {32, 64, 96}. On WikiText-103, we follow the setting in [50] where the sequence length is set\nas 512, the model consists of 6 decoder layers with 8 heads. We implement the causal version of\nPrimal-Attention in the last layer, i.e., Primal.+Trans with \u03b7 = 0.1, s = 30. Models are trained from\nscratch on 4 NVIDIA Tesla V100 SXM2 32GB GPUs for 150K updates after 6K-steps warm-up.\n\nTable 7(a) provides the test accuracy, training time and memory on a single V100 GPU with batch\nsize 256 on both ImageNet-100 and ImageNet-1K datasets. There is only one set of time and memory\nsince models follow the same training protocols on both datasets. Our Primal.+ achieves better\naccuracy than DeiT-Small/16 on ImageNet-100. It also achieves the same accuracy as baseline with\nless training time and memory on ImageNet-1K. On WikiText-103 in Table 7(b), our method with\ndefault setups significantly reduces the perplexity by 2.0 points than Transformer, and achieves\ncomparable performances with the well-tuned Flowformer, a latest SoTA model, with enhanced\nefficiency. Results show that using Primal-Attention in the last layer helps the overall performance.\n\nAblation Study on Using Two Projections e(x), r(x) We conduct an ablation study with (w/)\nand without (w/o) projection scores, i.e., r-scores, involving the left singular vectors, on LRA [39].\nTable 8 shows that using both projections (w/ r-scores) helps boost performances, verifying the\neffectiveness of learning with the two sides of singular vectors on an asymmetric attention kernel.\n\n9\n\n\fTable 7: Results on large-scale experiments including image classification and language modelling.\n\n(a) Test accuracy (%) and efficiency on ImageNet-100 [48] and ImageNet-1K [23].\n\nModel\n\nImageNet-100\n(Top-1 Acc.)\n\nImageNet-1K\n(Top-1 Acc.)\n\nTime\n(s/1K-steps)\n\nMemory\n(GB)\n\nDeiT-Small/16\nPrimal.+DeiT-Small/16\n\n74.2\n75.7\n\n79.8\n79.8\n\n2425.5\n2330.2\n\n14.2\n14.0\n\n(b) Results on WikiText-103 [49].\n\nModel\n\nPerplexity\n(\u2193)\n\nTime\n(s/1K-steps)\n\nMemory\n(GB)\n\nTrans. [1]\nFlow. [11]\nPrimal.+Trans.\n\n33.0\n30.8\n31.0\n\n3108.4\n3998.4\n3104.0\n\n9.0\n10.5\n8.9\n\nTable 8: Ablation on r-scores involving left singular vectors on LRA [39] with test accuracy (%).\n\nModel\n\nr-scores ListOps Text Retrieval\n\nImage\n\nPathfinder Avg. Acc\n\nPrimal.\n\nPrimal.+Trans.\n\nw/o\nw/\n\nw/o\nw/\n\n36.8\n37.3\n\n37.1\n37.3\n\n52.4\n61.2\n\n65.1\n65.4\n\n58.2\n77.8\n\n79.2\n81.0\n\n30.5\n43.0\n\n42.8\n43.9\n\n50.2\n68.3\n\n72.8\n74.3\n\n45.6\n57.5\n\n59.4\n60.4\n\n6 Related work\n\nSince the pioneering work [12], the kernel-based approaches have become popular in Transformers,\nin which the kernel interpretation on the attention matrix has been shed light on. FourierFormer [17]\ntreats the canonical self-attention as non-parametric regression with methodologies for symmetric\nkernels. [18] considers relative positional embedding with conditional positive definite kernel. [19]\ntreats self-attention operation as support vector regression without considering the asymmetry in the\ndeployed kernel methods, and the supervised regression is not applied in optimzing the attention either.\n[51] addresses the issue of asymmetry, however, it resorts to symmetrization by replacing the softmax\nattention with an approximated symmetric one, thereby still dismissing the asymmetry. These prior\nworks deploy kernel-based techniques that are originally designed for symmetric kernels and request\nto suffice Mercer conditions, which is inconsistent with the asymmetric nature in self-attention,\nresulting in a nontrivial gap between the analytical understanding and numerical implementation\ntowards revealing the rationale in Transformers. In [21], it leverages the kernel tricks from RKBS [22]\nthat allows asymmetry and formulates attention as a binary kernel learning problem via empirical\nrisk minimization. However, it is hard to find an explicit optimization accordingly in implementing\nTransformers. Nevertheless, [21] provides an analytical tool from the aspect of kernel representer\ntheorem upon RKBS that allows asymmetry.\n\nMuch literature has also devoted to improving the efficiency of the attention computation through\ndifferent approximation techniques. In the related works addressing the attention mechanism, Re-\nformer [34] uses locally-sensitive hashing for sparse approximation. Performer [14] approximates\nself-attention matrix w"
+            },
+            {
+              "id": "2305.19798v2",
+              "title": "Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation",
+              "authors": [
+                "Yingyi Chen",
+                "Qinghua Tao",
+                "Francesco Tonin",
+                "Johan A. K. Suykens"
+              ],
+              "published": "2023-05-31T12:38:24Z",
+              "summary": "Recently, a new line of works has emerged to understand and improve self-attention in Transformers by treating it as a kernel machine. However, existing works apply the methods for symmetric kernels to the asymmetric self-attention, resulting in a nontrivial gap between the analytical understanding and numerical implementation. In this paper, we provide a new perspective to represent and optimize self-attention through asymmetric Kernel Singular Value Decomposition (KSVD), which is also motivated by the low-rank property of self-attention normally observed in deep layers. Through asymmetric KSVD, $i$) a primal-dual representation of self-attention is formulated, where the optimization objective is cast to maximize the projection variances in the attention outputs; $ii$) a novel attention mechanism, i.e., Primal-Attention, is proposed via the primal representation of KSVD, avoiding explicit computation of the kernel matrix in the dual; $iii$) with KKT conditions, we prove that the stationary solution to the KSVD optimization in Primal-Attention yields a zero-value objective. In this manner, KSVD optimization can be implemented by simply minimizing a regularization loss, so that low-rank property is promoted without extra decomposition. Numerical experiments show state-of-the-art performance of our Primal-Attention with improved efficiency. Moreover, we demonstrate that the deployed KSVD optimization regularizes Primal-Attention with a sharper singular value decay than that of the canonical self-attention, further verifying the great potential of our method. To the best of our knowledge, this is the first work that provides a primal-dual representation for the asymmetric kernel in self-attention and successfully applies it to modeling and optimization.",
+              "content": "\nDT (average reward: 72.2)\nFlow. (average reward: 73.5)\nPrimal.+DT (average reward: 77.5)\n\n20.8\n54.4\n23.5\n\n0.3\n1.5\n0.3\n\n20.8\n54.4\n23.4\n\n0.3\n1.5\n0.3\n\n20.8\n54.3\n23.3\n\n0.3\n1.5\n0.3\n\nResults in Table 5 demonstrate that our Primal.+ outperforms all compared methods with a distinctly\nhigher average reward. Specifically, our Primal.+DT reaches 4.0 points higher than the state-of-\nthe-art Flowformer [11]. Compared to the baseline Decision Transformer (DT), our Primal.+ only\nreplaces the self-attention in the top layer and keeps other structures the same and manages to improve\nthe average reward by 5.3 points. This verifies the effectiveness of our Primal-Attention and the\nbenefits of our low-rank regularization of KSVD for the generality of DT in offline reinforcement\nlearning. We evaluate the efficiency with comparisons to DT and Flowformer in Table 6, which give\ndistinctively better results than other baselines in Table 5. Our Primal.+DT achieves comparable\ntime and memory efficiency as the most efficient baseline DT, while Flowformer shows significantly\nlower efficiency in both aspects. Recall that our Primal.+DT achieves an average reward of 77.5,\nwhich is 5.3 points higher than DT and 4.0 points higher than Flowformer.\n\nLarge-scale Experiments We evaluate the capability of our Primal.+ model with DeiT-Small/16 [7]\nas backbone on ImageNet-100 [48] and ImageNet-1K [23] for image classification task. We also\nexperiment with the language modelling task on WikiText-103 [49]. On ImageNet, we train DeiT-\nSmall/16 and our Primal.+DeiT-Small/16 from scratch following the same training protocols in [7]\nwith 4 NVIDIA Tesla V100 SXM2 32GB GPUs. Our hyper-parameters are chosen as \u03b7 = 0.05,\ns \u2208 {32, 64, 96}. On WikiText-103, we follow the setting in [50] where the sequence length is set\nas 512, the model consists of 6 decoder layers with 8 heads. We implement the causal version of\nPrimal-Attention in the last layer, i.e., Primal.+Trans with \u03b7 = 0.1, s = 30. Models are trained from\nscratch on 4 NVIDIA Tesla V100 SXM2 32GB GPUs for 150K updates after 6K-steps warm-up.\n\nTable 7(a) provides the test accuracy, training time and memory on a single V100 GPU with batch\nsize 256 on both ImageNet-100 and ImageNet-1K datasets. There is only one set of time and memory\nsince models follow the same training protocols on both datasets. Our Primal.+ achieves better\naccuracy than DeiT-Small/16 on ImageNet-100. It also achieves the same accuracy as baseline with\nless training time and memory on ImageNet-1K. On WikiText-103 in Table 7(b), our method with\ndefault setups significantly reduces the perplexity by 2.0 points than Transformer, and achieves\ncomparable performances with the well-tuned Flowformer, a latest SoTA model, with enhanced\nefficiency. Results show that using Primal-Attention in the last layer helps the overall performance.\n\nAblation Study on Using Two Projections e(x), r(x) We conduct an ablation study with (w/)\nand without (w/o) projection scores, i.e., r-scores, involving the left singular vectors, on LRA [39].\nTable 8 shows that using both projections (w/ r-scores) helps boost performances, verifying the\neffectiveness of learning with the two sides of singular vectors on an asymmetric attention kernel.\n\n9\n\n\fTable 7: Results on large-scale experiments including image classification and language modelling.\n\n(a) Test accuracy (%) and efficiency on ImageNet-100 [48] and ImageNet-1K [23].\n\nModel\n\nImageNet-100\n(Top-1 Acc.)\n\nImageNet-1K\n(Top-1 Acc.)\n\nTime\n(s/1K-steps)\n\nMemory\n(GB)\n\nDeiT-Small/16\nPrimal.+DeiT-Small/16\n\n74.2\n75.7\n\n79.8\n79.8\n\n2425.5\n2330.2\n\n14.2\n14.0\n\n(b) Results on WikiText-103 [49].\n\nModel\n\nPerplexity\n(\u2193)\n\nTime\n(s/1K-steps)\n\nMemory\n(GB)\n\nTrans. [1]\nFlow. [11]\nPrimal.+Trans.\n\n33.0\n30.8\n31.0\n\n3108.4\n3998.4\n3104.0\n\n9.0\n10.5\n8.9\n\nTable 8: Ablation on r-scores involving left singular vectors on LRA [39] with test accuracy (%).\n\nModel\n\nr-scores ListOps Text Retrieval\n\nImage\n\nPathfinder Avg. Acc\n\nPrimal.\n\nPrimal.+Trans.\n\nw/o\nw/\n\nw/o\nw/\n\n36.8\n37.3\n\n37.1\n37.3\n\n52.4\n61.2\n\n65.1\n65.4\n\n58.2\n77.8\n\n79.2\n81.0\n\n30.5\n43.0\n\n42.8\n43.9\n\n50.2\n68.3\n\n72.8\n74.3\n\n45.6\n57.5\n\n59.4\n60.4\n\n6 Related work\n\nSince the pioneering work [12], the kernel-based approaches have become popular in Transformers,\nin which the kernel interpretation on the attention matrix has been shed light on. FourierFormer [17]\ntreats the canonical self-attention as non-parametric regression with methodologies for symmetric\nkernels. [18] considers relative positional embedding with conditional positive definite kernel. [19]\ntreats self-attention operation as support vector regression without considering the asymmetry in the\ndeployed kernel methods, and the supervised regression is not applied in optimzing the attention either.\n[51] addresses the issue of asymmetry, however, it resorts to symmetrization by replacing the softmax\nattention with an approximated symmetric one, thereby still dismissing the asymmetry. These prior\nworks deploy kernel-based techniques that are origi"
+            },
+            {
+              "id": "2305.19798v2",
+              "title": "Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation",
+              "authors": [
+                "Yingyi Chen",
+                "Qinghua Tao",
+                "Francesco Tonin",
+                "Johan A. K. Suykens"
+              ],
+              "published": "2023-05-31T12:38:24Z",
+              "summary": "Recently, a new line of works has emerged to understand and improve self-attention in Transformers by treating it as a kernel machine. However, existing works apply the methods for symmetric kernels to the asymmetric self-attention, resulting in a nontrivial gap between the analytical understanding and numerical implementation. In this paper, we provide a new perspective to represent and optimize self-attention through asymmetric Kernel Singular Value Decomposition (KSVD), which is also motivated by the low-rank property of self-attention normally observed in deep layers. Through asymmetric KSVD, $i$) a primal-dual representation of self-attention is formulated, where the optimization objective is cast to maximize the projection variances in the attention outputs; $ii$) a novel attention mechanism, i.e., Primal-Attention, is proposed via the primal representation of KSVD, avoiding explicit computation of the kernel matrix in the dual; $iii$) with KKT conditions, we prove that the stationary solution to the KSVD optimization in Primal-Attention yields a zero-value objective. In this manner, KSVD optimization can be implemented by simply minimizing a regularization loss, so that low-rank property is promoted without extra decomposition. Numerical experiments show state-of-the-art performance of our Primal-Attention with improved efficiency. Moreover, we demonstrate that the deployed KSVD optimization regularizes Primal-Attention with a sharper singular value decay than that of the canonical self-attention, further verifying the great potential of our method. To the best of our knowledge, this is the first work that provides a primal-dual representation for the asymmetric kernel in self-attention and successfully applies it to modeling and optimization.",
+              "content": ".\n\nContemporary Mathematics, 26(189-206):2, 1984.\n\n[31] Anthony Bagnall, Hoang Anh Dau, Jason Lines, Michael Flynn, James Large, Aaron Bostrom,\nPaul Southam, and Eamonn Keogh. The uea multivariate time series classification archive, 2018.\narXiv preprint arXiv:1811.00075, 2018.\n\n[32] George Zerveas, Srideepika Jayaraman, Dhaval Patel, Anuradha Bhamidipaty, and Carsten\nEickhoff. A transformer-based framework for multivariate time series representation learning.\nIn Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery & Data Mining,\npages 2114\u20132124, 2021.\n\n[33] Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and Fran\u00e7ois Fleuret. Transformers\nare rnns: Fast autoregressive transformers with linear attention. In International Conference on\nMachine Learning, pages 5156\u20135165, 2020.\n\n[34] Nikita Kitaev, \u0141ukasz Kaiser, and Anselm Levskaya. Reformer: The efficient transformer. In\n\nInternational Conference on Learning Representations, 2020.\n\n[35] Iz Beltagy, Matthew E Peters, and Arman Cohan. Longformer: The long-document transformer.\n\narXiv preprint arXiv:2004.05150, 2020.\n\n[36] Zhanpeng Zeng, Yunyang Xiong, Sathya Ravi, Shailesh Acharya, Glenn M Fung, and Vikas\nSingh. You only sample (almost) once: Linear cost self-attention via bernoulli sampling. In\nInternational conference on machine learning, pages 12321\u201312332, 2021.\n\n[37] Zhen Qin, Weixuan Sun, Hui Deng, Dongxu Li, Yunshen Wei, Baohong Lv, Junjie Yan,\nLingpeng Kong, and Yiran Zhong. cosformer: Rethinking softmax in attention. In International\nConference on Learning Representations, 2022.\n\n[38] Jiachen Lu, Jinghan Yao, Junge Zhang, Xiatian Zhu, Hang Xu, Weiguo Gao, Chunjing Xu, Tao\nXiang, and Li Zhang. Soft: Softmax-free transformer with linear complexity. Advances in\nNeural Information Processing Systems, 34:21297\u201321309, 2021.\n\n[39] Yi Tay, Mostafa Dehghani, Samira Abnar, Yikang Shen, Dara Bahri, Philip Pham, Jinfeng Rao,\nLiu Yang, Sebastian Ruder, and Donald Metzler. Long range arena: A benchmark for efficient\ntransformers. In International Conference on Learning Representations, 2021.\n\n[40] Nikita Nangia and Samuel Bowman. Listops: A diagnostic dataset for latent tree learning. In\nProceedings of the 2018 Conference of the North American Chapter of the Association for\nComputational Linguistics: Student Research Workshop, pages 92\u201399, 2018.\n\n[41] Andrew Maas, Raymond E Daly, Peter T Pham, Dan Huang, Andrew Y Ng, and Christopher\nPotts. Learning word vectors for sentiment analysis. In Proceedings of the 49th annual meeting\nof the association for computational linguistics: Human language technologies, pages 142\u2013150,\n2011.\n\n[42] Dragomir R Radev, Pradeep Muthukrishnan, Vahed Qazvinian, and Amjad Abu-Jbara. The acl\n\nanthology network corpus. Language Resources and Evaluation, 47:919\u2013944, 2013.\n\n[43] Alex Krizhevsky, Geoffrey Hinton, et al. Learning multiple layers of features from tiny images.\n\n2009.\n\n[44] Drew Linsley, Junkyung Kim, Vijay Veerabadran, Charles Windolf, and Thomas Serre. Learning\nlong-range spatial dependencies with horizontal gated recurrent units. Advances in neural\ninformation processing systems, 31, 2018.\n\n[45] Yunyang Xiong, Zhanpeng Zeng, Rudrasis Chakraborty, Mingxing Tan, Glenn Fung, Yin Li, and\nVikas Singh. Nystr\u00f6mformer: A nystr\u00f6m-based algorithm for approximating self-attention. In\nProceedings of the AAAI Conference on Artificial Intelligence, volume 35, pages 14138\u201314148,\n2021.\n\n[46] Sinong Wang, Belinda Z Li, Madian Khabsa, Han Fang, and Hao Ma. Linformer: Self-attention\n\nwith linear complexity. arXiv preprint arXiv:2006.04768, 2020.\n\n13\n\n\f[47] Justin Fu, Aviral Kumar, Ofir Nachum, George Tucker, and Sergey Levine. D4rl: Datasets for\n\ndeep data-driven reinforcement learning. arXiv preprint arXiv:2004.07219, 2020.\n\n[48] Olga Russakovsky, Jia Deng, Hao Su, Jonathan Krause, Sanjeev Satheesh, Sean Ma, Zhiheng\nHuang, Andrej Karpathy, Aditya Khosla, Michael Bernstein, et al. Imagenet large scale visual\nrecognition challenge. International journal of computer vision, 115:211\u2013252, 2015.\n\n[49] Stephen Merity, Caiming Xiong, James Bradbury, and Richard Socher. Pointer sentinel mixture\n\nmodels. In International Conference on Learning Representations, 2016.\n\n[50] Hao Peng, Nikolaos Pappas, Dani Yogatama, Roy Schwartz, Noah Smith, and Lingpeng Kong.\nRandom feature attention. In International Conference on Learning Representations, 2021.\n\n[51] Yifan Chen, Qi Zeng, Heng Ji, and Yun Yang. Skyformer: Remodel self-attention with gaussian\nkernel and nystr\u00f6m method. In A. Beygelzimer, Y. Dauphin, P. Liang, and J. Wortman Vaughan,\neditors, Advances in Neural Information Processing Systems, 2021.\n\n[52] Rewon Child, Scott Gray, Alec Radford, and Ilya Sutskever. Generating long sequences with\n\nsparse transformers. arXiv preprint arXiv:1904.10509, 2019.\n\nAppendix\n\nIn this material, we present the proofs of all analytical results in the paper and additional comments\nin Section A. More experimental details and results are also provided in Secti"
+            }
+          ],
+          "tool_call_id": "call_Zmj72KszoXLGO3YMx7Pg1nR0",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:14:18.280940+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2002.00741v1",
+              "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+              "authors": [
+                "Jibang Wu",
+                "Renqin Cai",
+                "Hongning Wang"
+              ],
+              "published": "2020-01-29T20:27:42Z",
+              "summary": "Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems. Most existing sequential recommendation algorithms focus on transitional structure among the sequential actions, but largely ignore the temporal and context information, when modeling the influence of a historical event to current prediction.\n  In this paper, we argue that the influence from the past events on a user's current action should vary over the course of time and under different context. Thus, we propose a Contextualized Temporal Attention Mechanism that learns to weigh historical actions' influence on not only what action it is, but also when and how the action took place. More specifically, to dynamically calibrate the relative input dependence from the self-attention mechanism, we deploy multiple parameterized kernel functions to learn various temporal dynamics, and then use the context information to determine which of these reweighing kernels to follow for each input. In empirical evaluations on two large public recommendation datasets, our model consistently outperformed an extensive set of state-of-the-art sequential recommendation methods.",
+              "content": "s with the\nhighest scores rv among all v \u2208 V.\n\n3.2 Three Stage Weighing Pipeline\n3.2.1 \u03b1 stage, what is the action: The goal of \u03b1 stage is to obtain\nthe content-based importance score \u03b1 for the input sequence X .\nFollowing the promising results of prior self-attentive models, we\nadopt the self-attention mechanism to efficiently and effectively\ncapture the content correlation with long-term dependence. In\naddition, the self-attention mechanism allows us to directly define\nthe importance score over each input, in contrast to the recurrent\nnetwork structure.\n\nWe use the encoder mode of self-attention mechanism to trans-\nform the input sequence embedding X , through a stack of dl self-\nattentive encoder blocks with dh heads and da hidden units, into\nrepresentation H dl , which is the hidden state of the sequence at the\nlast layer. Due to the recursive nature of self-attention, we use the\nfollowing example to explain the multi-head attention component\nin our solution. For example, in the ith attention head of the jth self\nattention block, from the input state H j , we compute one single\nhead of the self-attended sequence representation as,\n= Attention(H jW Q\ni\n\n, H jW V\ni )\n\n, H jW K\ni\n\n,W V\ni\n\nwhere W Q\n\u2208 Rda \u00d7da /dh are the learnable parameters\ni\nspecific to ith head of jth attention block, used to project the same\nmatrix H j into the query Q, key K, and value V representation as\nthe input to the Scaled Dot-Product [42]:\n\nAttention(Q, K, V ) = softmax\n\n(cid:32)\n\nQ \u00b7 KT\n(cid:112)da /dh\n\n(cid:33)\n\nV\n\nHere the scaling factor (cid:112)da /dh is introduced to produce a softer\nattention distribution for avoiding extremely small gradients.\n\nAll the computed heads zd\ni\n1 , . . . , zd\ndh\n\nin the jth attention block is stacked\n] \u00b7 W O , where W O \u2208 Rda \u00d7da .\nand projected as Z j = [zd\nWe can then employ the residue connection [13] to compute the\noutput of this attention block as:\n(cid:16)\nH j+1 = LN\nH j + F j (Z j )\n\n(cid:17)\n\nwhere F j is a feed-forward layer specific to the jth attention block\nmapping from Rda to Rdin and LN is the Layer Normalization func-\ntion [1].\n\nzj\ni\n,W K\ni\n\nFigure 3: The architecture of our proposed Contextualized\nTemporal Attention Mechanism. Three stages are proposed\nto capture the content information at \u03b1 stage with self-\nattention, temporal information at \u03b2 stage with multiple\nkernels, and contextual information at \u03b3 stage with recur-\nrent states, for sequential recommendation.\n\nkernels and contextualized mixture, denoted as \u03b1 \u2192 \u03b2 \u2192 \u03b3 stages\nas illustrated in Figure 3, and finally into the output.\n\nThe raw input consists of the user\u2019s historical events of a window\nsize L in item and time pairs {(ti , si )}L\ni=1, as well as the timestamp at\nthe moment of recommendation tL+1. The sequence of input items\nis mapped into embedding space with the input item embeddings\nEinput \u2208 RN \u00d7din : X = [s1, . . . , sL] \u00b7 Einput \u2208 RL\u00d7din . We also trans-\nform the sequence of timestamps into the intervals between each ac-\ntion to current prediction time: T = [tL+1\u2212t1, . . . , tL+1\u2212tL] \u2208 RL\u00d71.\nMotivated by our earlier analysis, we design the three stage\nmechanism, namely M\u03b1 , M \u03b2 and M\u03b3 , on top of the processed input\nX and T , to model dependencies among the historical interactions\nrespectively on their content, temporal, and context information:\n\n\u03b1 = M\u03b1 (X ) \u2192 \u03b2 = M \u03b2 (T ) \u2192 \u03b3 = M\u03b3 (X , \u03b2, \u03b1 )\n\nIn essence, M\u03b1 weighs the influence of each input purely on con-\ntent X and outputs a scalar score as importance of each events in\nsequence \u03b1 \u2208 RL\u00d71; M \u03b2 transforms the temporal data T through\nK temporal kernels for the temporal weighing of each input \u03b2 \u2208\nRL\u00d7K ; M\u03b3 extracts the context information from X , with which it\nmixes the factors \u03b1 and \u03b2 from previous stages into the contextu-\nalized temporal importance score \u03b3 \u2208 RL\u00d71. We will later explain\ntheir individual architectures in details.\n\nIn the end, our model computes the row sum of the input item\nsequence embedding X weighted by \u03b3 (through the softmax layer,\nthe weight \u03b3 sums up to 1). This weighted sum design is borrowed\nfrom the attention mechanism in a sense of taking expectation on a\nprobability distribution, \u03b3 = [P( \u02c6xL+1 = xi |X ,T )]L\ni=0. The represen-\ntation is then projected to the output embedding space Rdout with\n\n\fD\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation\n\nWWW \u201920, April 20\u201324, 2020, Taipei, Taiwan\n\nNote that for the initial attention block, we use X to serve as the\ninput H 0; and in the end, we obtain H dl as the final output from\nself-attention blocks. In prior work [19, 38], this H dl is directly used\nfor prediction. Our usage of self-attention structure is to determine\na reliable content-based importance estimate of each input, hence\nwe compute once again the Scale Dot-Product using the last layer\nhidden states H j+1 to project as the query and the last item input\nembedding xT\n\nL to project as the key via W Q\n\n0 \u2208 Rdin\u00d7din :\n0 ,W K\n(cid:33)\n(cid:32) (H j+1W Q\n) \u00b7 (xLW K\n0 )T\n0\n\u221a\ndin\n\n\u03b1 = softmax\n\nNote tha"
+            },
+            {
+              "id": "2002.00741v1",
+              "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+              "authors": [
+                "Jibang Wu",
+                "Renqin Cai",
+                "Hongning Wang"
+              ],
+              "published": "2020-01-29T20:27:42Z",
+              "summary": "Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems. Most existing sequential recommendation algorithms focus on transitional structure among the sequential actions, but largely ignore the temporal and context information, when modeling the influence of a historical event to current prediction.\n  In this paper, we argue that the influence from the past events on a user's current action should vary over the course of time and under different context. Thus, we propose a Contextualized Temporal Attention Mechanism that learns to weigh historical actions' influence on not only what action it is, but also when and how the action took place. More specifically, to dynamically calibrate the relative input dependence from the self-attention mechanism, we deploy multiple parameterized kernel functions to learn various temporal dynamics, and then use the context information to determine which of these reweighing kernels to follow for each input. In empirical evaluations on two large public recommendation datasets, our model consistently outperformed an extensive set of state-of-the-art sequential recommendation methods.",
+              "content": "s with the\nhighest scores rv among all v \u2208 V.\n\n3.2 Three Stage Weighing Pipeline\n3.2.1 \u03b1 stage, what is the action: The goal of \u03b1 stage is to obtain\nthe content-based importance score \u03b1 for the input sequence X .\nFollowing the promising results of prior self-attentive models, we\nadopt the self-attention mechanism to efficiently and effectively\ncapture the content correlation with long-term dependence. In\naddition, the self-attention mechanism allows us to directly define\nthe importance score over each input, in contrast to the recurrent\nnetwork structure.\n\nWe use the encoder mode of self-attention mechanism to trans-\nform the input sequence embedding X , through a stack of dl self-\nattentive encoder blocks with dh heads and da hidden units, into\nrepresentation H dl , which is the hidden state of the sequence at the\nlast layer. Due to the recursive nature of self-attention, we use the\nfollowing example to explain the multi-head attention component\nin our solution. For example, in the ith attention head of the jth self\nattention block, from the input state H j , we compute one single\nhead of the self-attended sequence representation as,\n= Attention(H jW Q\ni\n\n, H jW V\ni )\n\n, H jW K\ni\n\n,W V\ni\n\nwhere W Q\n\u2208 Rda \u00d7da /dh are the learnable parameters\ni\nspecific to ith head of jth attention block, used to project the same\nmatrix H j into the query Q, key K, and value V representation as\nthe input to the Scaled Dot-Product [42]:\n\nAttention(Q, K, V ) = softmax\n\n(cid:32)\n\nQ \u00b7 KT\n(cid:112)da /dh\n\n(cid:33)\n\nV\n\nHere the scaling factor (cid:112)da /dh is introduced to produce a softer\nattention distribution for avoiding extremely small gradients.\n\nAll the computed heads zd\ni\n1 , . . . , zd\ndh\n\nin the jth attention block is stacked\n] \u00b7 W O , where W O \u2208 Rda \u00d7da .\nand projected as Z j = [zd\nWe can then employ the residue connection [13] to compute the\noutput of this attention block as:\n(cid:16)\nH j+1 = LN\nH j + F j (Z j )\n\n(cid:17)\n\nwhere F j is a feed-forward layer specific to the jth attention block\nmapping from Rda to Rdin and LN is the Layer Normalization func-\ntion [1].\n\nzj\ni\n,W K\ni\n\nFigure 3: The architecture of our proposed Contextualized\nTemporal Attention Mechanism. Three stages are proposed\nto capture the content information at \u03b1 stage with self-\nattention, temporal information at \u03b2 stage with multiple\nkernels, and contextual information at \u03b3 stage with recur-\nrent states, for sequential recommendation.\n\nkernels and contextualized mixture, denoted as \u03b1 \u2192 \u03b2 \u2192 \u03b3 stages\nas illustrated in Figure 3, and finally into the output.\n\nThe raw input consists of the user\u2019s historical events of a window\nsize L in item and time pairs {(ti , si )}L\ni=1, as well as the timestamp at\nthe moment of recommendation tL+1. The sequence of input items\nis mapped into embedding space with the input item embeddings\nEinput \u2208 RN \u00d7din : X = [s1, . . . , sL] \u00b7 Einput \u2208 RL\u00d7din . We also trans-\nform the sequence of timestamps into the intervals between each ac-\ntion to current prediction time: T = [tL+1\u2212t1, . . . , tL+1\u2212tL] \u2208 RL\u00d71.\nMotivated by our earlier analysis, we design the three stage\nmechanism, namely M\u03b1 , M \u03b2 and M\u03b3 , on top of the processed input\nX and T , to model dependencies among the historical interactions\nrespectively on their content, temporal, and context information:\n\n\u03b1 = M\u03b1 (X ) \u2192 \u03b2 = M \u03b2 (T ) \u2192 \u03b3 = M\u03b3 (X , \u03b2, \u03b1 )\n\nIn essence, M\u03b1 weighs the influence of each input purely on con-\ntent X and outputs a scalar score as importance of each events in\nsequence \u03b1 \u2208 RL\u00d71; M \u03b2 transforms the temporal data T through\nK temporal kernels for the temporal weighing of each input \u03b2 \u2208\nRL\u00d7K ; M\u03b3 extracts the context information from X , with which it\nmixes the factors \u03b1 and \u03b2 from previous stages into the contextu-\nalized temporal importance score \u03b3 \u2208 RL\u00d71. We will later explain\ntheir individual architectures in details.\n\nIn the end, our model computes the row sum of the input item\nsequence embedding X weighted by \u03b3 (through the softmax layer,\nthe weight \u03b3 sums up to 1). This weighted sum design is borrowed\nfrom the attention mechanism in a sense of taking expectation on a\nprobability distribution, \u03b3 = [P( \u02c6xL+1 = xi |X ,T )]L\ni=0. The represen-\ntation is then projected to the output embedding space Rdout with\n\n\fD\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation\n\nWWW \u201920, April 20\u201324, 2020, Taipei, Taiwan\n\nNote that for the initial attention block, we use X to serve as the\ninput H 0; and in the end, we obtain H dl as the final output from\nself-attention blocks. In prior work [19, 38], this H dl is directly used\nfor prediction. Our usage of self-attention structure is to determine\na reliable content-based importance estimate of each input, hence\nwe compute once again the Scale Dot-Product using the last layer\nhidden states H j+1 to project as the query and the last item input\nembedding xT\n\nL to project as the key via W Q\n\n0 \u2208 Rdin\u00d7din :\n0 ,W K\n(cid:33)\n(cid:32) (H j+1W Q\n) \u00b7 (xLW K\n0 )T\n0\n\u221a\ndin\n\n\u03b1 = softmax\n\nNote tha"
+            },
+            {
+              "id": "2002.00741v1",
+              "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+              "authors": [
+                "Jibang Wu",
+                "Renqin Cai",
+                "Hongning Wang"
+              ],
+              "published": "2020-01-29T20:27:42Z",
+              "summary": "Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems. Most existing sequential recommendation algorithms focus on transitional structure among the sequential actions, but largely ignore the temporal and context information, when modeling the influence of a historical event to current prediction.\n  In this paper, we argue that the influence from the past events on a user's current action should vary over the course of time and under different context. Thus, we propose a Contextualized Temporal Attention Mechanism that learns to weigh historical actions' influence on not only what action it is, but also when and how the action took place. More specifically, to dynamically calibrate the relative input dependence from the self-attention mechanism, we deploy multiple parameterized kernel functions to learn various temporal dynamics, and then use the context information to determine which of these reweighing kernels to follow for each input. In empirical evaluations on two large public recommendation datasets, our model consistently outperformed an extensive set of state-of-the-art sequential recommendation methods.",
+              "content": "oduce from a high level about each\npart of our CTA model in a bottom-up manner, from the inputs,\nthrough the three stage pipeline: content-based attention, temporal\n\n\u2264 tu\n\n\fWWW \u201920, April 20\u201324, 2020, Taipei, Taiwan\n\nJibang Wu, Renqin Cai, and Hongning Wang\n\na feed-forward layer F out :\n\n\u02c6xL+1 = F out(\u03b3T \u00b7 X ) \u2208 Rdout\u00d71\nWe consider \u02c6xL+1 as the predicted representation of recom-\nmended item. We define matrix Eoutput \u2208 RN \u00d7dout , where its ith row\nvector is the item i\u2019s representation in the output embedding space.\nThen \u2200i \u2208 I, the model can compute the similarity ri between item\ni and the predicted representation \u02c6xL+1 through inner-product (or\nany other similarity scoring function):\n\n\u02c6sL+1 = (r1, . . . , rN ) = Eoutput \u00b7 \u02c6xL+1 \u2208 RN \u00d71\nFor a given user, item similarity scores are then normalized by a\nsoftmax layer which yields a probability distribution over the item\nvocabulary. After training the model, the recommendation for a\nuser at step L + 1 is served by retrieving a list of items with the\nhighest scores rv among all v \u2208 V.\n\n3.2 Three Stage Weighing Pipeline\n3.2.1 \u03b1 stage, what is the action: The goal of \u03b1 stage is to obtain\nthe content-based importance score \u03b1 for the input sequence X .\nFollowing the promising results of prior self-attentive models, we\nadopt the self-attention mechanism to efficiently and effectively\ncapture the content correlation with long-term dependence. In\naddition, the self-attention mechanism allows us to directly define\nthe importance score over each input, in contrast to the recurrent\nnetwork structure.\n\nWe use the encoder mode of self-attention mechanism to trans-\nform the input sequence embedding X , through a stack of dl self-\nattentive encoder blocks with dh heads and da hidden units, into\nrepresentation H dl , which is the hidden state of the sequence at the\nlast layer. Due to the recursive nature of self-attention, we use the\nfollowing example to explain the multi-head attention component\nin our solution. For example, in the ith attention head of the jth self\nattention block, from the input state H j , we compute one single\nhead of the self-attended sequence representation as,\n= Attention(H jW Q\ni\n\n, H jW V\ni )\n\n, H jW K\ni\n\n,W V\ni\n\nwhere W Q\n\u2208 Rda \u00d7da /dh are the learnable parameters\ni\nspecific to ith head of jth attention block, used to project the same\nmatrix H j into the query Q, key K, and value V representation as\nthe input to the Scaled Dot-Product [42]:\n\nAttention(Q, K, V ) = softmax\n\n(cid:32)\n\nQ \u00b7 KT\n(cid:112)da /dh\n\n(cid:33)\n\nV\n\nHere the scaling factor (cid:112)da /dh is introduced to produce a softer\nattention distribution for avoiding extremely small gradients.\n\nAll the computed heads zd\ni\n1 , . . . , zd\ndh\n\nin the jth attention block is stacked\n] \u00b7 W O , where W O \u2208 Rda \u00d7da .\nand projected as Z j = [zd\nWe can then employ the residue connection [13] to compute the\noutput of this attention block as:\n(cid:16)\nH j+1 = LN\nH j + F j (Z j )\n\n(cid:17)\n\nwhere F j is a feed-forward layer specific to the jth attention block\nmapping from Rda to Rdin and LN is the Layer Normalization func-\ntion [1].\n\nzj\ni\n,W K\ni\n\nFigure 3: The architecture of our proposed Contextualized\nTemporal Attention Mechanism. Three stages are proposed\nto capture the content information at \u03b1 stage with self-\nattention, temporal information at \u03b2 stage with multiple\nkernels, and contextual information at \u03b3 stage with recur-\nrent states, for sequential recommendation.\n\nkernels and contextualized mixture, denoted as \u03b1 \u2192 \u03b2 \u2192 \u03b3 stages\nas illustrated in Figure 3, and finally into the output.\n\nThe raw input consists of the user\u2019s historical events of a window\nsize L in item and time pairs {(ti , si )}L\ni=1, as well as the timestamp at\nthe moment of recommendation tL+1. The sequence of input items\nis mapped into embedding space with the input item embeddings\nEinput \u2208 RN \u00d7din : X = [s1, . . . , sL] \u00b7 Einput \u2208 RL\u00d7din . We also trans-\nform the sequence of timestamps into the intervals between each ac-\ntion to current prediction time: T = [tL+1\u2212t1, . . . , tL+1\u2212tL] \u2208 RL\u00d71.\nMotivated by our earlier analysis, we design the three stage\nmechanism, namely M\u03b1 , M \u03b2 and M\u03b3 , on top of the processed input\nX and T , to model dependencies among the historical interactions\nrespectively on their content, temporal, and context information:\n\n\u03b1 = M\u03b1 (X ) \u2192 \u03b2 = M \u03b2 (T ) \u2192 \u03b3 = M\u03b3 (X , \u03b2, \u03b1 )\n\nIn essence, M\u03b1 weighs the influence of each input purely on con-\ntent X and outputs a scalar score as importance of each events in\nsequence \u03b1 \u2208 RL\u00d71; M \u03b2 transforms the temporal data T through\nK temporal kernels for the temporal weighing of each input \u03b2 \u2208\nRL\u00d7K ; M\u03b3 extracts the context information from X , with which it\nmixes the factors \u03b1 and \u03b2 from previous stages into the contextu-\nalized temporal importance score \u03b3 \u2208 RL\u00d71. We will later explain\ntheir individual architectures in details.\n\nIn the end, our model computes the row sum of the input item\nsequence embedding X weighted by \u03b3 (through the softmax layer,\nthe weight \u03b3 sums up to 1"
+            }
+          ],
+          "tool_call_id": "call_tDkIRuHlx0QaPn1LGEGDh0PK",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:14:18.281810+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2305.19798v2",
+              "title": "Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation",
+              "authors": [
+                "Yingyi Chen",
+                "Qinghua Tao",
+                "Francesco Tonin",
+                "Johan A. K. Suykens"
+              ],
+              "published": "2023-05-31T12:38:24Z",
+              "summary": "Recently, a new line of works has emerged to understand and improve self-attention in Transformers by treating it as a kernel machine. However, existing works apply the methods for symmetric kernels to the asymmetric self-attention, resulting in a nontrivial gap between the analytical understanding and numerical implementation. In this paper, we provide a new perspective to represent and optimize self-attention through asymmetric Kernel Singular Value Decomposition (KSVD), which is also motivated by the low-rank property of self-attention normally observed in deep layers. Through asymmetric KSVD, $i$) a primal-dual representation of self-attention is formulated, where the optimization objective is cast to maximize the projection variances in the attention outputs; $ii$) a novel attention mechanism, i.e., Primal-Attention, is proposed via the primal representation of KSVD, avoiding explicit computation of the kernel matrix in the dual; $iii$) with KKT conditions, we prove that the stationary solution to the KSVD optimization in Primal-Attention yields a zero-value objective. In this manner, KSVD optimization can be implemented by simply minimizing a regularization loss, so that low-rank property is promoted without extra decomposition. Numerical experiments show state-of-the-art performance of our Primal-Attention with improved efficiency. Moreover, we demonstrate that the deployed KSVD optimization regularizes Primal-Attention with a sharper singular value decay than that of the canonical self-attention, further verifying the great potential of our method. To the best of our knowledge, this is the first work that provides a primal-dual representation for the asymmetric kernel in self-attention and successfully applies it to modeling and optimization.",
+              "content": "37.3\n\n37.1\n37.3\n\n52.4\n61.2\n\n65.1\n65.4\n\n58.2\n77.8\n\n79.2\n81.0\n\n30.5\n43.0\n\n42.8\n43.9\n\n50.2\n68.3\n\n72.8\n74.3\n\n45.6\n57.5\n\n59.4\n60.4\n\n6 Related work\n\nSince the pioneering work [12], the kernel-based approaches have become popular in Transformers,\nin which the kernel interpretation on the attention matrix has been shed light on. FourierFormer [17]\ntreats the canonical self-attention as non-parametric regression with methodologies for symmetric\nkernels. [18] considers relative positional embedding with conditional positive definite kernel. [19]\ntreats self-attention operation as support vector regression without considering the asymmetry in the\ndeployed kernel methods, and the supervised regression is not applied in optimzing the attention either.\n[51] addresses the issue of asymmetry, however, it resorts to symmetrization by replacing the softmax\nattention with an approximated symmetric one, thereby still dismissing the asymmetry. These prior\nworks deploy kernel-based techniques that are originally designed for symmetric kernels and request\nto suffice Mercer conditions, which is inconsistent with the asymmetric nature in self-attention,\nresulting in a nontrivial gap between the analytical understanding and numerical implementation\ntowards revealing the rationale in Transformers. In [21], it leverages the kernel tricks from RKBS [22]\nthat allows asymmetry and formulates attention as a binary kernel learning problem via empirical\nrisk minimization. However, it is hard to find an explicit optimization accordingly in implementing\nTransformers. Nevertheless, [21] provides an analytical tool from the aspect of kernel representer\ntheorem upon RKBS that allows asymmetry.\n\nMuch literature has also devoted to improving the efficiency of the attention computation through\ndifferent approximation techniques. In the related works addressing the attention mechanism, Re-\nformer [34] uses locally-sensitive hashing for sparse approximation. Performer [14] approximates\nself-attention matrix with random features. Linformer [46] considers low-rank approximation with\nthe help of random projections. Nystr\u00f6mformer [45] utilizes the Nystr\u00f6m method by down sampling\nthe queries and keys in the attention matrix. [52] incorporates sparsity prior on attention. These\nworks pose the focus on reducing the computation of the attention kernel matrix from the canonical\nself-attention. Hence, these works all address how to solve the problem in the dual form involving\nthe kernel matrix, while we work in a significantly different way, that is, in the primal form.\n\n7 Conclusion\n\nIn this paper, we interpret the self-attention in Transformers with asymmetric kernels and construct a\nlearning framework with SVD on asymmetric kernels (KSVD) under the setups of LSSVM. Within\nthe context of KSVD, a primal-dual model representation is formulated for self-attention and a\nnovel attention mechanism (Primal-Attention) is proposed accordingly by leveraging the primal\nrepresentation. It is quite significant that with Primal-Attention, not only the computation of the\nattention kernel matrix in the dual can be avoided, but also the cast unsupervised KSVD optimization\ncan be efficiently incorporated into the training through an additional regularization loss for more\ninformative low-rank property. The analytical derivations and numerical evaluations demonstrate our\ngreat potentials in bridging explicit model interpretability and state-of-the-art performances. Future\nworks can include developing different variants with the low-rank property, e.g., robust Transformers,\ninvestigating more general applications of Primal-Attention to a wide range of architectures and tasks.\n\n10\n\n\fAcknowledgements\n\nThis work is jointly supported by the European Research Council under the European Union\u2019s\nHorizon 2020 research and innovation program/ERC Advanced Grant E-DUALITY (787960), iBOF\nproject Tensor Tools for Taming the Curse (3E221427), Research Council KU Leuven: Optimization\nframework for deep kernel machines C14/18/068, KU Leuven Grant CoE PFV/10/002, The Research\nFoundation\u2013Flanders (FWO) projects: GOA4917N (Deep Restricted kernel Machines: Methods\nand Foundations), Ph.D./Postdoctoral grant, the Flemish Government (AI Research Program), EU\nH2020 ICT-48 Network TAILOR (Foundations of Trustworthy AI-Integrating Reasoning, Learning\nand Optimization), Leuven.AI Institute.\n\nReferences\n\n[1] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez,\n\u0141ukasz Kaiser, and Illia Polosukhin. Attention is all you need. Advances in neural information\nprocessing systems, 30, 2017.\n\n[2] Jacob Devlin Ming-Wei Chang Kenton and Lee Kristina Toutanova. BERT: Pre-training of\ndeep bidirectional transformers for language understanding. In Proceedings of NAACL-HLT,\npages 4171\u20134186, 2019.\n\n[3] Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal,\nArvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al. Language models are\nfew-sho"
+            },
+            {
+              "id": "2305.19798v2",
+              "title": "Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation",
+              "authors": [
+                "Yingyi Chen",
+                "Qinghua Tao",
+                "Francesco Tonin",
+                "Johan A. K. Suykens"
+              ],
+              "published": "2023-05-31T12:38:24Z",
+              "summary": "Recently, a new line of works has emerged to understand and improve self-attention in Transformers by treating it as a kernel machine. However, existing works apply the methods for symmetric kernels to the asymmetric self-attention, resulting in a nontrivial gap between the analytical understanding and numerical implementation. In this paper, we provide a new perspective to represent and optimize self-attention through asymmetric Kernel Singular Value Decomposition (KSVD), which is also motivated by the low-rank property of self-attention normally observed in deep layers. Through asymmetric KSVD, $i$) a primal-dual representation of self-attention is formulated, where the optimization objective is cast to maximize the projection variances in the attention outputs; $ii$) a novel attention mechanism, i.e., Primal-Attention, is proposed via the primal representation of KSVD, avoiding explicit computation of the kernel matrix in the dual; $iii$) with KKT conditions, we prove that the stationary solution to the KSVD optimization in Primal-Attention yields a zero-value objective. In this manner, KSVD optimization can be implemented by simply minimizing a regularization loss, so that low-rank property is promoted without extra decomposition. Numerical experiments show state-of-the-art performance of our Primal-Attention with improved efficiency. Moreover, we demonstrate that the deployed KSVD optimization regularizes Primal-Attention with a sharper singular value decay than that of the canonical self-attention, further verifying the great potential of our method. To the best of our knowledge, this is the first work that provides a primal-dual representation for the asymmetric kernel in self-attention and successfully applies it to modeling and optimization.",
+              "content": "volving the left singular vectors, on LRA [39].\nTable 8 shows that using both projections (w/ r-scores) helps boost performances, verifying the\neffectiveness of learning with the two sides of singular vectors on an asymmetric attention kernel.\n\n9\n\n\fTable 7: Results on large-scale experiments including image classification and language modelling.\n\n(a) Test accuracy (%) and efficiency on ImageNet-100 [48] and ImageNet-1K [23].\n\nModel\n\nImageNet-100\n(Top-1 Acc.)\n\nImageNet-1K\n(Top-1 Acc.)\n\nTime\n(s/1K-steps)\n\nMemory\n(GB)\n\nDeiT-Small/16\nPrimal.+DeiT-Small/16\n\n74.2\n75.7\n\n79.8\n79.8\n\n2425.5\n2330.2\n\n14.2\n14.0\n\n(b) Results on WikiText-103 [49].\n\nModel\n\nPerplexity\n(\u2193)\n\nTime\n(s/1K-steps)\n\nMemory\n(GB)\n\nTrans. [1]\nFlow. [11]\nPrimal.+Trans.\n\n33.0\n30.8\n31.0\n\n3108.4\n3998.4\n3104.0\n\n9.0\n10.5\n8.9\n\nTable 8: Ablation on r-scores involving left singular vectors on LRA [39] with test accuracy (%).\n\nModel\n\nr-scores ListOps Text Retrieval\n\nImage\n\nPathfinder Avg. Acc\n\nPrimal.\n\nPrimal.+Trans.\n\nw/o\nw/\n\nw/o\nw/\n\n36.8\n37.3\n\n37.1\n37.3\n\n52.4\n61.2\n\n65.1\n65.4\n\n58.2\n77.8\n\n79.2\n81.0\n\n30.5\n43.0\n\n42.8\n43.9\n\n50.2\n68.3\n\n72.8\n74.3\n\n45.6\n57.5\n\n59.4\n60.4\n\n6 Related work\n\nSince the pioneering work [12], the kernel-based approaches have become popular in Transformers,\nin which the kernel interpretation on the attention matrix has been shed light on. FourierFormer [17]\ntreats the canonical self-attention as non-parametric regression with methodologies for symmetric\nkernels. [18] considers relative positional embedding with conditional positive definite kernel. [19]\ntreats self-attention operation as support vector regression without considering the asymmetry in the\ndeployed kernel methods, and the supervised regression is not applied in optimzing the attention either.\n[51] addresses the issue of asymmetry, however, it resorts to symmetrization by replacing the softmax\nattention with an approximated symmetric one, thereby still dismissing the asymmetry. These prior\nworks deploy kernel-based techniques that are originally designed for symmetric kernels and request\nto suffice Mercer conditions, which is inconsistent with the asymmetric nature in self-attention,\nresulting in a nontrivial gap between the analytical understanding and numerical implementation\ntowards revealing the rationale in Transformers. In [21], it leverages the kernel tricks from RKBS [22]\nthat allows asymmetry and formulates attention as a binary kernel learning problem via empirical\nrisk minimization. However, it is hard to find an explicit optimization accordingly in implementing\nTransformers. Nevertheless, [21] provides an analytical tool from the aspect of kernel representer\ntheorem upon RKBS that allows asymmetry.\n\nMuch literature has also devoted to improving the efficiency of the attention computation through\ndifferent approximation techniques. In the related works addressing the attention mechanism, Re-\nformer [34] uses locally-sensitive hashing for sparse approximation. Performer [14] approximates\nself-attention matrix with random features. Linformer [46] considers low-rank approximation with\nthe help of random projections. Nystr\u00f6mformer [45] utilizes the Nystr\u00f6m method by down sampling\nthe queries and keys in the attention matrix. [52] incorporates sparsity prior on attention. These\nworks pose the focus on reducing the computation of the attention kernel matrix from the canonical\nself-attention. Hence, these works all address how to solve the problem in the dual form involving\nthe kernel matrix, while we work in a significantly different way, that is, in the primal form.\n\n7 Conclusion\n\nIn this paper, we interpret the self-attention in Transformers with asymmetric kernels and construct a\nlearning framework with SVD on asymmetric kernels (KSVD) under the setups of LSSVM. Within\nthe context of KSVD, a primal-dual model representation is formulated for self-attention and a\nnovel attention mechanism (Primal-Attention) is proposed accordingly by leveraging the primal\nrepresentation. It is quite significant that with Primal-Attention, not only the computation of the\nattention kernel matrix in the dual can be avoided, but also the cast unsupervised KSVD optimization\ncan be efficiently incorporated into the training through an additional regularization loss for more\ninformative low-rank property. The analytical derivations and numerical evaluations demonstrate our\ngreat potentials in bridging explicit model interpretability and state-of-the-art performances. Future\nworks can include developing different variants with the low-rank property, e.g., robust Transformers,\ninvestigating more general applications of Primal-Attention to a wide range of architectures and tasks.\n\n10\n\n\fAcknowledgements\n\nThis work is jointly supported by the European Research Council under the European Union\u2019s\nHorizon 2020 research and innovation program/ERC Advanced Grant E-DUALITY (787960), iBOF\nproject Tensor Tools for Taming the Curse (3E221427), Research Council KU Leuven: Optimization\nframework for deep kernel ma"
+            },
+            {
+              "id": "2305.19798v2",
+              "title": "Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation",
+              "authors": [
+                "Yingyi Chen",
+                "Qinghua Tao",
+                "Francesco Tonin",
+                "Johan A. K. Suykens"
+              ],
+              "published": "2023-05-31T12:38:24Z",
+              "summary": "Recently, a new line of works has emerged to understand and improve self-attention in Transformers by treating it as a kernel machine. However, existing works apply the methods for symmetric kernels to the asymmetric self-attention, resulting in a nontrivial gap between the analytical understanding and numerical implementation. In this paper, we provide a new perspective to represent and optimize self-attention through asymmetric Kernel Singular Value Decomposition (KSVD), which is also motivated by the low-rank property of self-attention normally observed in deep layers. Through asymmetric KSVD, $i$) a primal-dual representation of self-attention is formulated, where the optimization objective is cast to maximize the projection variances in the attention outputs; $ii$) a novel attention mechanism, i.e., Primal-Attention, is proposed via the primal representation of KSVD, avoiding explicit computation of the kernel matrix in the dual; $iii$) with KKT conditions, we prove that the stationary solution to the KSVD optimization in Primal-Attention yields a zero-value objective. In this manner, KSVD optimization can be implemented by simply minimizing a regularization loss, so that low-rank property is promoted without extra decomposition. Numerical experiments show state-of-the-art performance of our Primal-Attention with improved efficiency. Moreover, we demonstrate that the deployed KSVD optimization regularizes Primal-Attention with a sharper singular value decay than that of the canonical self-attention, further verifying the great potential of our method. To the best of our knowledge, this is the first work that provides a primal-dual representation for the asymmetric kernel in self-attention and successfully applies it to modeling and optimization.",
+              "content": "nally designed for symmetric kernels and request\nto suffice Mercer conditions, which is inconsistent with the asymmetric nature in self-attention,\nresulting in a nontrivial gap between the analytical understanding and numerical implementation\ntowards revealing the rationale in Transformers. In [21], it leverages the kernel tricks from RKBS [22]\nthat allows asymmetry and formulates attention as a binary kernel learning problem via empirical\nrisk minimization. However, it is hard to find an explicit optimization accordingly in implementing\nTransformers. Nevertheless, [21] provides an analytical tool from the aspect of kernel representer\ntheorem upon RKBS that allows asymmetry.\n\nMuch literature has also devoted to improving the efficiency of the attention computation through\ndifferent approximation techniques. In the related works addressing the attention mechanism, Re-\nformer [34] uses locally-sensitive hashing for sparse approximation. Performer [14] approximates\nself-attention matrix with random features. Linformer [46] considers low-rank approximation with\nthe help of random projections. Nystr\u00f6mformer [45] utilizes the Nystr\u00f6m method by down sampling\nthe queries and keys in the attention matrix. [52] incorporates sparsity prior on attention. These\nworks pose the focus on reducing the computation of the attention kernel matrix from the canonical\nself-attention. Hence, these works all address how to solve the problem in the dual form involving\nthe kernel matrix, while we work in a significantly different way, that is, in the primal form.\n\n7 Conclusion\n\nIn this paper, we interpret the self-attention in Transformers with asymmetric kernels and construct a\nlearning framework with SVD on asymmetric kernels (KSVD) under the setups of LSSVM. Within\nthe context of KSVD, a primal-dual model representation is formulated for self-attention and a\nnovel attention mechanism (Primal-Attention) is proposed accordingly by leveraging the primal\nrepresentation. It is quite significant that with Primal-Attention, not only the computation of the\nattention kernel matrix in the dual can be avoided, but also the cast unsupervised KSVD optimization\ncan be efficiently incorporated into the training through an additional regularization loss for more\ninformative low-rank property. The analytical derivations and numerical evaluations demonstrate our\ngreat potentials in bridging explicit model interpretability and state-of-the-art performances. Future\nworks can include developing different variants with the low-rank property, e.g., robust Transformers,\ninvestigating more general applications of Primal-Attention to a wide range of architectures and tasks.\n\n10\n\n\fAcknowledgements\n\nThis work is jointly supported by the European Research Council under the European Union\u2019s\nHorizon 2020 research and innovation program/ERC Advanced Grant E-DUALITY (787960), iBOF\nproject Tensor Tools for Taming the Curse (3E221427), Research Council KU Leuven: Optimization\nframework for deep kernel machines C14/18/068, KU Leuven Grant CoE PFV/10/002, The Research\nFoundation\u2013Flanders (FWO) projects: GOA4917N (Deep Restricted kernel Machines: Methods\nand Foundations), Ph.D./Postdoctoral grant, the Flemish Government (AI Research Program), EU\nH2020 ICT-48 Network TAILOR (Foundations of Trustworthy AI-Integrating Reasoning, Learning\nand Optimization), Leuven.AI Institute.\n\nReferences\n\n[1] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez,\n\u0141ukasz Kaiser, and Illia Polosukhin. Attention is all you need. Advances in neural information\nprocessing systems, 30, 2017.\n\n[2] Jacob Devlin Ming-Wei Chang Kenton and Lee Kristina Toutanova. BERT: Pre-training of\ndeep bidirectional transformers for language understanding. In Proceedings of NAACL-HLT,\npages 4171\u20134186, 2019.\n\n[3] Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal,\nArvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al. Language models are\nfew-shot learners. Advances in neural information processing systems, 33:1877\u20131901, 2020.\n\n[4] Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena,\nYanqi Zhou, Wei Li, and Peter J Liu. Exploring the limits of transfer learning with a unified\ntext-to-text transformer. Journal of Machine Learning Research, 21(1):5485\u20135551, 2020.\n\n[5] Haoqi Fan, Bo Xiong, Karttikeya Mangalam, Yanghao Li, Zhicheng Yan, Jitendra Malik, and\nChristoph Feichtenhofer. Multiscale vision transformers. In Proceedings of the IEEE/CVF\nInternational Conference on Computer Vision, pages 6824\u20136835, 2021.\n\n[6] Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and Baining\nGuo. Swin transformer: Hierarchical vision transformer using shifted windows. In Proceedings\nof the IEEE/CVF international conference on computer vision, pages 10012\u201310022, 2021.\n\n[7] Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre Sablayrolles, and\nHerv\u00e9 J\u00e9gou. Training data-e"
+            }
+          ],
+          "tool_call_id": "call_jQDtdc5ykb8urbmNUsfByHrD",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:14:18.280990+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "args": "{\"title\":\"Key Aspects of Self-Attention in Large Language Models\",\"summary\":\"Self-attention is fundamental to the operation of transformer models, particularly in large language models (LLMs). Its most important aspects include:\\n\\n1. **Dynamic Attention Weighing**: Self-attention mechanisms weigh input tokens' influence on each other dynamically, based on their contextual embeddings. This adaptability enhances the model's ability to focus on relevant parts of the input sequence, which is crucial for capturing dependencies over long contexts.\\n\\n2. **Representation of Long-Distance Dependencies**: Self-attention effectively models long-range relationships in sequential data, which is vital for understanding context in natural language processing. This capability has been shown to significantly outperform traditional recurrent neural networks (RNNs), especially in handling complex sequences.\\n\\n3. **Primal Attention Mechanism**: Recent advancements propose adopting a primal representation in self-attention using Kernel Singular Value Decomposition (KSVD). This approach optimizes the self-attention process by enhancing efficiency and regularizing attention outputs, resulting in improved performance without the need for extensive computational resources.\\n\\nUnderstanding these components enhances the design and application of transformer-based models, especially as they are deployed in increasingly complex NLP tasks.\",\"references\":[{\"title\":\"Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation\",\"url\":\"https://arxiv.org/abs/2305.19798v2\"},{\"title\":\"D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation\",\"url\":\"https://arxiv.org/abs/2002.00741v1\"}]}",
+          "tool_call_id": "call_cJvs1jjDx7n4Ayx3wUaBe5sD",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 26930,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 10368,
+        "output_tokens": 341,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:14:18+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7Bahb5JLUkyO0T3ZTbOWTWTF6Cm",
+      "finish_reason": "tool_call",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "content": "Final result processed.",
+          "tool_call_id": "call_cJvs1jjDx7n4Ayx3wUaBe5sD",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:14:24.205779+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": null,
+      "kind": "request",
+      "run_id": "01098aca-dc57-406b-8596-6e5d5952a2f3",
+      "metadata": null
+    }
+  ],
+  "usage": {
+    "input_tokens": 76901,
+    "cache_write_tokens": 0,
+    "cache_read_tokens": 48128,
+    "output_tokens": 893,
+    "input_audio_tokens": 0,
+    "cache_audio_read_tokens": 0,
+    "output_audio_tokens": 0,
+    "details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "requests": 9,
+    "tool_calls": 12
+  },
+  "output": {
+    "title": "Key Aspects of Self-Attention in Large Language Models",
+    "summary": "Self-attention is fundamental to the operation of transformer models, particularly in large language models (LLMs). Its most important aspects include:\n\n1. **Dynamic Attention Weighing**: Self-attention mechanisms weigh input tokens' influence on each other dynamically, based on their contextual embeddings. This adaptability enhances the model's ability to focus on relevant parts of the input sequence, which is crucial for capturing dependencies over long contexts.\n\n2. **Representation of Long-Distance Dependencies**: Self-attention effectively models long-range relationships in sequential data, which is vital for understanding context in natural language processing. This capability has been shown to significantly outperform traditional recurrent neural networks (RNNs), especially in handling complex sequences.\n\n3. **Primal Attention Mechanism**: Recent advancements propose adopting a primal representation in self-attention using Kernel Singular Value Decomposition (KSVD). This approach optimizes the self-attention process by enhancing efficiency and regularizing attention outputs, resulting in improved performance without the need for extensive computational resources.\n\nUnderstanding these components enhances the design and application of transformer-based models, especially as they are deployed in increasingly complex NLP tasks.",
+    "references": [
+      {
+        "title": "Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation",
+        "url": "https://arxiv.org/abs/2305.19798v2"
+      },
+      {
+        "title": "D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+        "url": "https://arxiv.org/abs/2002.00741v1"
+      }
+    ]
+  }
+}

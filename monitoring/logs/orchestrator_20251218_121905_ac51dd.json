@@ -1,0 +1,509 @@
+{
+  "agent_name": "orchestrator",
+  "system_prompt": [
+    "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results."
+  ],
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "get_data_to_index",
+    "search",
+    "search_quality_check"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "\n            Answer the user's query based on the following conversation history:\n            Context: give me a summary of the latest research in LoRA? # Summary of Latest Research in LoRA\n\n## Summary \n Recent research on Low-Rank Adaptation (LoRA) focuses on enhancing its efficiency and applicability in various tasks, particularly in the context of fine-tuning large models. Here are three notable contributions:\n\n1. **LoRA-FAIR**: This paper introduces a novel method that integrates LoRA with federated learning (FL) to address the challenges of Server-Side Aggregation Bias and Client-Side Initialization Lag. By refining the aggregation process and ensuring consistent initialization across rounds, LoRA-FAIR significantly improves performance in FL settings, demonstrating effective fine-tuning on models like ViT and MLP-Mixer while maintaining computational efficiency. [Read more](https://arxiv.org/abs/2411.14961v3)\n\n2. **LoRA Done RITE**: This work addresses the lack of transformation invariance in current LoRA optimizers, which leads to inefficient learning. The authors propose LoRA-RITE, a novel adaptive matrix preconditioning method that ensures invariant weight updates regardless of how LoRA factors are scaled or rotated. Extensive experiments show that this approach yields consistent accuracy gains across various large language model tasks. [Read more](https://arxiv.org/abs/2410.20625v2)\n\n3. **PLoP**: This paper presents PLoP (Precise LoRA Placement), which focuses on the adapter placement strategy when using LoRA. By automating the identification of optimal module types for placing LoRA adapters, PLoP enhances the finetuning process for large models. The method demonstrates superior performance compared to traditional placement strategies through comprehensive testing across various tasks. [Read more](https://arxiv.org/abs/2506.20629v1) \n\n## References\n- [LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement](https://arxiv.org/abs/2411.14961v3)\n- [LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization](https://arxiv.org/abs/2410.20625v2)\n- [PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models](https://arxiv.org/abs/2506.20629v1)\n explain the most important aspect of self-attention in LLMs # Key Aspects of Self-Attention in Large Language Models\n\n## Summary \n Self-attention is fundamental to the operation of transformer models, particularly in large language models (LLMs). Its most important aspects include:\n\n1. **Dynamic Attention Weighing**: Self-attention mechanisms weigh input tokens' influence on each other dynamically, based on their contextual embeddings. This adaptability enhances the model's ability to focus on relevant parts of the input sequence, which is crucial for capturing dependencies over long contexts.\n\n2. **Representation of Long-Distance Dependencies**: Self-attention effectively models long-range relationships in sequential data, which is vital for understanding context in natural language processing. This capability has been shown to significantly outperform traditional recurrent neural networks (RNNs), especially in handling complex sequences.\n\n3. **Primal Attention Mechanism**: Recent advancements propose adopting a primal representation in self-attention using Kernel Singular Value Decomposition (KSVD). This approach optimizes the self-attention process by enhancing efficiency and regularizing attention outputs, resulting in improved performance without the need for extensive computational resources.\n\nUnderstanding these components enhances the design and application of transformer-based models, especially as they are deployed in increasingly complex NLP tasks. \n\n## References\n- [Primal-Attention: Self-attention through Asymmetric Kernel SVD in Primal Representation](https://arxiv.org/abs/2305.19798v2)\n- [D\u00e9j\u00e0 vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation](https://arxiv.org/abs/2002.00741v1)\n what is the framework behind model context protocol # MCP4EDA: LLM-Powered Model Context Protocol\n\n## Summary \n MCP4EDA introduces the Model Context Protocol, a framework enabling Large Language Models (LLMs) to control and optimize the RTL-to-GDSII design flow through natural language interfaces. This system integrates multiple EDA tools, allowing designers to execute complex workflows conversationally. Key features include a backend-aware synthesis optimization methodology that utilizes real performance data from post-layout results to refine synthesis processes, enabling significant improvements in timing closure and area reduction. The structured framework consists of an MCP Server and Clients that facilitate dynamic tool orchestration and stateful workflow management, making it adaptable to design needs. \n\n## References\n- [MCP4EDA: LLM-Powered Model Context Protocol RTL-to-GDSII Automation with Backend Aware Synthesis Optimization](https://arxiv.org/abs/2507.19570v1)\n\n            Current query: when is sub-game perfect equilibria also a nash equilibria in an infinite game?\n        ",
+          "timestamp": "2025-12-18T12:16:25.714856+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\":\"sub-game perfect equilibria nash equilibria infinite game\",\"paper_name\":\"Sub-game Perfect Equilibria in Infinite Games\"}",
+          "tool_call_id": "call_xxEmGU9S2xnuLKqWlAn2lKNb",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1403,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 39,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:16:25+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7DdW4HiP8pTmoMHnqT0ZNxKd1fa",
+      "finish_reason": "tool_call",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_xxEmGU9S2xnuLKqWlAn2lKNb",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:16:47.979068+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"sub-game perfect equilibria nash equilibria infinite game\",\"paper_name\":\"Sub-game Perfect Equilibria in Infinite Games\"}",
+          "tool_call_id": "call_N7lqtU66eluqiR4In46NxehY",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1453,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 1408,
+        "output_tokens": 36,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:16:48+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7E0v9kVoT9Hcp1Fgjo6LSaqaLNs",
+      "finish_reason": "tool_call",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2310.16236v3",
+              "title": "Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game",
+              "authors": [
+                "Arnab Maiti",
+                "Ross Boczar",
+                "Kevin Jamieson",
+                "Lillian J. Ratliff"
+              ],
+              "published": "2023-10-24T23:13:58Z",
+              "summary": "We study the query complexity of finding the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ in two-player zero-sum matrix games. Fearnley and Savani (2016) showed that for any randomized algorithm, there exists an $n \\times n$ input matrix where it needs to query $\u03a9(n^2)$ entries in expectation to compute a single Nash equilibrium. On the other hand, Bienstock et al. (1991) showed that there is a special class of matrices for which one can query $O(n)$ entries and compute its set of all Nash equilibria. However, these results do not fully characterize the query complexity of finding the set of all Nash equilibria in two-player zero-sum matrix games.\n  In this work, we characterize the query complexity of finding the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ in terms of the number of rows $n$ of the input matrix $A \\in \\mathbb{R}^{n \\times n}$, row support size $k_1 := |\\bigcup_{x \\in \\mathcal X_\\star} \\text{supp}(x)|$, and column support size $k_2 := |\\bigcup_{y \\in \\mathcal Y_\\star} \\text{supp}(y)|$. We design a simple yet non-trivial randomized algorithm that, with probability $1 - \u03b4$, returns the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ by querying at most $O(nk^5 \\cdot \\text{polylog}(n / \u03b4))$ entries of the input matrix $A \\in \\mathbb{R}^{n \\times n}$, where $k := \\max\\{k_1, k_2\\}$. This upper bound is tight up to a factor of $\\text{poly}(k)$, as we show that for any randomized algorithm, there exists an $n \\times n$ input matrix with $\\min\\{k_1, k_2\\} = 1$, for which it needs to query $\u03a9(nk)$ entries in expectation in order to find the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$.",
+              "content": " determining the set of all Nash equilibria X\u22c6 \u00d7 Y\u22c6,\nwhich further highlights why k1 and k2 are appropriate notions of the solution size.\n\n1.2 Our contributions and innovative techniques\nLet k := max{k1, k2}, where k1 := | (cid:83)\nx\u2208X\u22c6\ncontribution in this paper is the following upper bound result.\n\nsupp(x)| and k2 := | (cid:83)\ny\u2208Y\u22c6\n\nsupp(y)|. Our main technical\n\nTheorem 1. There exists a randomized algorithm that, with probability at least 1 \u2212 \u03b4, queries\n\u03b4 )) entries of the input matrix A \u2208 Rn\u00d7n and returns the set of all Nash equilibria\nO(nk5 \u00b7 log n \u00b7 log( n\nX\u22c6 \u00d7 Y\u22c6.\n\nWe outline the innovative techniques used to achieve the result above. As discussed in the\nprevious section, the results of Bohnenblust et al. [7] suggest a separation between the sub-matrix\nwith row indices (cid:83)\nsupp(y) (which we will refer to as the optimal\nx\u2208X\u22c6\n\nsupp(x) and column indices (cid:83)\ny\u2208Y\u22c6\n\nsub-matrix) and the rest of the matrix. Our goal is to formalize this separation and therefore leverage\nit to identify the set of all Nash equilibria while minimizing the number of queries required. In the\nspecific case of strict Pure Strategy Nash Equilibrium (strict PSNE), this separation is inherently\npresent, as a strict PSNE is uniquely the least in its row and uniquely the highest in its column.\nTherefore, one possible approach involves constructing a large matrix with (cid:0) n\n(cid:1)\n(cid:1) rows and (cid:0) n\nk1\nk2\ncolumns, where each entry is bijectively mapped to a k1 \u00d7 k2 sub-matrix of A. The values of these\nentries are determined by their corresponding sub-matrices in A, and this large matrix possesses a\nstrict PSNE that maps to the optimal sub-matrix of A.\n\nAssuming we can construct such a matrix, it remains unclear how to query the entries of this\nlarge matrix without significantly increasing the query complexity of our algorithm. The algorithm\nproposed by Bienstock et al. [5] is inadequate for this purpose because it queries entries diagonally.\nIf we applied a similar diagonal querying strategy to our large matrix, we would end up querying\nall entries of the original matrix A. Instead, we propose a randomized algorithm for finding strict\nPSNE that operates differently from the one described by Bienstock et al. [5]. Specifically, if we\n\n3\n\n\fhave access to query oracles where a single call returns either the entire row or the entire column,\nour algorithm can identify the strict PSNE by making O(log2(r)) oracle calls, where r is the total\nnumber of rows and columns in the input matrix with a strict PSNE. We can also design a query\noracle for the larger matrix that returns a row or column by querying at most O(nk) entries of A.\nHence, the query complexity of finding the strict PSNE of the large matrix will be nearly n \u00b7 poly(k).\nOne approach to creating such a large matrix is to compute the value of the game on the sub-\nmatrix mapped to each entry and use that as the entry\u2019s value. While this method ensures that\nthe entry in the resulting matrix that maps to the optimal sub-matrix is a Pure Strategy Nash\nEquilibrium (PSNE)\u2014an entry that is the smallest in its row and the largest in its column\u2014it\nmay not necessarily be a strict PSNE. However, if we are given a set of values V that includes the\nvalue of the game V \u22c6\n, we can modify the previously constructed matrix to ensure that the PSNE\nA\nbecomes a strict PSNE. Our randomized algorithm for finding the strict PSNE has the additional\nadvantage that, whenever the matrix contains a PSNE, it will, with high probability, compute a set\nthat includes the value of the game V \u22c6\nA\n\nNow, we describe how to make the PSNE that maps to the optimal sub-matrix (which we will\nrefer to as the optimal PSNE) a strict PSNE. Consider an entry that is in the column of the optimal\nPSNE and has a value equal to V \u22c6\n. If this entry is not the optimal PSNE, using Lemma 1, we\nA\ncan show that the sub-matrix it maps to lacks a Nash equilibrium with all the rows in its support,\nalthough it does have a Nash equilibrium with all the columns in its support. Therefore, if we devise\na method to decrease the values of all such entries by a very small amount \u03b5, the optimal PSNE\nwill become strictly greater than all the entries in its column.\n\n.\n\nAlthough we do not know which column contains the optimal PSNE, we can decrease the values\n, and the\nof entries by a very small amount \u03b5 if the entry value is in the set V, which includes V \u22c6\nA\nsub-matrix it maps to lacks a Nash equilibrium with all the rows in its support, but does have a\nNash equilibrium with all the columns in its support. The values of entries corresponding to the\noptimal sub-matrix remain unchanged, as there exists a Nash equilibrium strategy with all rows\nand columns in its support. By modifying the entries in this way, we can ensure that the optimal\nPSNE is strictly larger than all other entries in its column. Similarly, we can make this PSNE\nstrictly smaller than all other entries in its row. Note that while we modify other entries whose\nrema"
+            },
+            {
+              "id": "2310.16236v3",
+              "title": "Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game",
+              "authors": [
+                "Arnab Maiti",
+                "Ross Boczar",
+                "Kevin Jamieson",
+                "Lillian J. Ratliff"
+              ],
+              "published": "2023-10-24T23:13:58Z",
+              "summary": "We study the query complexity of finding the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ in two-player zero-sum matrix games. Fearnley and Savani (2016) showed that for any randomized algorithm, there exists an $n \\times n$ input matrix where it needs to query $\u03a9(n^2)$ entries in expectation to compute a single Nash equilibrium. On the other hand, Bienstock et al. (1991) showed that there is a special class of matrices for which one can query $O(n)$ entries and compute its set of all Nash equilibria. However, these results do not fully characterize the query complexity of finding the set of all Nash equilibria in two-player zero-sum matrix games.\n  In this work, we characterize the query complexity of finding the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ in terms of the number of rows $n$ of the input matrix $A \\in \\mathbb{R}^{n \\times n}$, row support size $k_1 := |\\bigcup_{x \\in \\mathcal X_\\star} \\text{supp}(x)|$, and column support size $k_2 := |\\bigcup_{y \\in \\mathcal Y_\\star} \\text{supp}(y)|$. We design a simple yet non-trivial randomized algorithm that, with probability $1 - \u03b4$, returns the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ by querying at most $O(nk^5 \\cdot \\text{polylog}(n / \u03b4))$ entries of the input matrix $A \\in \\mathbb{R}^{n \\times n}$, where $k := \\max\\{k_1, k_2\\}$. This upper bound is tight up to a factor of $\\text{poly}(k)$, as we show that for any randomized algorithm, there exists an $n \\times n$ input matrix with $\\min\\{k_1, k_2\\} = 1$, for which it needs to query $\u03a9(nk)$ entries in expectation in order to find the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$.",
+              "content": "o identify the set of all Nash equilibria while minimizing the number of queries required. In the\nspecific case of strict Pure Strategy Nash Equilibrium (strict PSNE), this separation is inherently\npresent, as a strict PSNE is uniquely the least in its row and uniquely the highest in its column.\nTherefore, one possible approach involves constructing a large matrix with (cid:0) n\n(cid:1)\n(cid:1) rows and (cid:0) n\nk1\nk2\ncolumns, where each entry is bijectively mapped to a k1 \u00d7 k2 sub-matrix of A. The values of these\nentries are determined by their corresponding sub-matrices in A, and this large matrix possesses a\nstrict PSNE that maps to the optimal sub-matrix of A.\n\nAssuming we can construct such a matrix, it remains unclear how to query the entries of this\nlarge matrix without significantly increasing the query complexity of our algorithm. The algorithm\nproposed by Bienstock et al. [5] is inadequate for this purpose because it queries entries diagonally.\nIf we applied a similar diagonal querying strategy to our large matrix, we would end up querying\nall entries of the original matrix A. Instead, we propose a randomized algorithm for finding strict\nPSNE that operates differently from the one described by Bienstock et al. [5]. Specifically, if we\n\n3\n\n\fhave access to query oracles where a single call returns either the entire row or the entire column,\nour algorithm can identify the strict PSNE by making O(log2(r)) oracle calls, where r is the total\nnumber of rows and columns in the input matrix with a strict PSNE. We can also design a query\noracle for the larger matrix that returns a row or column by querying at most O(nk) entries of A.\nHence, the query complexity of finding the strict PSNE of the large matrix will be nearly n \u00b7 poly(k).\nOne approach to creating such a large matrix is to compute the value of the game on the sub-\nmatrix mapped to each entry and use that as the entry\u2019s value. While this method ensures that\nthe entry in the resulting matrix that maps to the optimal sub-matrix is a Pure Strategy Nash\nEquilibrium (PSNE)\u2014an entry that is the smallest in its row and the largest in its column\u2014it\nmay not necessarily be a strict PSNE. However, if we are given a set of values V that includes the\nvalue of the game V \u22c6\n, we can modify the previously constructed matrix to ensure that the PSNE\nA\nbecomes a strict PSNE. Our randomized algorithm for finding the strict PSNE has the additional\nadvantage that, whenever the matrix contains a PSNE, it will, with high probability, compute a set\nthat includes the value of the game V \u22c6\nA\n\nNow, we describe how to make the PSNE that maps to the optimal sub-matrix (which we will\nrefer to as the optimal PSNE) a strict PSNE. Consider an entry that is in the column of the optimal\nPSNE and has a value equal to V \u22c6\n. If this entry is not the optimal PSNE, using Lemma 1, we\nA\ncan show that the sub-matrix it maps to lacks a Nash equilibrium with all the rows in its support,\nalthough it does have a Nash equilibrium with all the columns in its support. Therefore, if we devise\na method to decrease the values of all such entries by a very small amount \u03b5, the optimal PSNE\nwill become strictly greater than all the entries in its column.\n\n.\n\nAlthough we do not know which column contains the optimal PSNE, we can decrease the values\n, and the\nof entries by a very small amount \u03b5 if the entry value is in the set V, which includes V \u22c6\nA\nsub-matrix it maps to lacks a Nash equilibrium with all the rows in its support, but does have a\nNash equilibrium with all the columns in its support. The values of entries corresponding to the\noptimal sub-matrix remain unchanged, as there exists a Nash equilibrium strategy with all rows\nand columns in its support. By modifying the entries in this way, we can ensure that the optimal\nPSNE is strictly larger than all other entries in its column. Similarly, we can make this PSNE\nstrictly smaller than all other entries in its row. Note that while we modify other entries whose\nremains unchanged.\nvalue is not equal to V \u22c6\nA\nConsequently, we implicitly construct a large matrix with a strict PSNE that maps to the optimal\nsub-matrix, and we can find this strict PSNE by querying nearly n \u00b7 poly(k) entries of A.\n\n, we ensure that the relative ordering with respect to V \u22c6\nA\n\nIn summary, our main innovative technique is to reduce the problem of finding the set of all\nNash equilibria to finding a strict PSNE in a large matrix, and then to locate this strict PSNE in\na query-efficient manner.\n\nWe also provide a simple lower bound to demonstrate that k = max{k1, k2} accurately captures\n\nthe query complexity of the problem.\n\nTheorem 2. Let A be any randomized algorithm that correctly computes the set of all Nash equilibria\nX\u22c6 \u00d7 Y\u22c6. Let \u03c4 (M ) denote the number of entries queried from the matrix M by A. Then, there\nexists an input matrix A \u2208 Rn\u00d7n with max{k1, k2} = k and min{k1, k2} = 1 such that E[\u03c4 (A)] \u2265\n(n\u22121)(k+1)\n2\nThis result is not surprising, as changing the elements "
+            },
+            {
+              "id": "2310.16236v3",
+              "title": "Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game",
+              "authors": [
+                "Arnab Maiti",
+                "Ross Boczar",
+                "Kevin Jamieson",
+                "Lillian J. Ratliff"
+              ],
+              "published": "2023-10-24T23:13:58Z",
+              "summary": "We study the query complexity of finding the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ in two-player zero-sum matrix games. Fearnley and Savani (2016) showed that for any randomized algorithm, there exists an $n \\times n$ input matrix where it needs to query $\u03a9(n^2)$ entries in expectation to compute a single Nash equilibrium. On the other hand, Bienstock et al. (1991) showed that there is a special class of matrices for which one can query $O(n)$ entries and compute its set of all Nash equilibria. However, these results do not fully characterize the query complexity of finding the set of all Nash equilibria in two-player zero-sum matrix games.\n  In this work, we characterize the query complexity of finding the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ in terms of the number of rows $n$ of the input matrix $A \\in \\mathbb{R}^{n \\times n}$, row support size $k_1 := |\\bigcup_{x \\in \\mathcal X_\\star} \\text{supp}(x)|$, and column support size $k_2 := |\\bigcup_{y \\in \\mathcal Y_\\star} \\text{supp}(y)|$. We design a simple yet non-trivial randomized algorithm that, with probability $1 - \u03b4$, returns the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$ by querying at most $O(nk^5 \\cdot \\text{polylog}(n / \u03b4))$ entries of the input matrix $A \\in \\mathbb{R}^{n \\times n}$, where $k := \\max\\{k_1, k_2\\}$. This upper bound is tight up to a factor of $\\text{poly}(k)$, as we show that for any randomized algorithm, there exists an $n \\times n$ input matrix with $\\min\\{k_1, k_2\\} = 1$, for which it needs to query $\u03a9(nk)$ entries in expectation in order to find the set of all Nash equilibria $\\mathcal X_\\star \\times \\mathcal Y_\\star$.",
+              "content": "the\nfollowing:\n\n(cid:91)\n\nsupp(x) =\n\nIy\n\nand\n\n(cid:92)\n\n(cid:91)\n\nsupp(y) =\n\n(cid:92)\n\nIx\n\nx\u2208X\u22c6\n\ny\u2208Y\u22c6\n\ny\u2208Y\u22c6\n\nx\u2208X\u22c6\n\nThe above lemma suggests that rows not in (cid:83)\nx\u2208X\u22c6\n\nsupp(x) are strictly worse than the rows in\n\n(cid:83)\nsupp(x). This is because for all y\u2217 \u2208 Y \u22c6 and i \u2208 (cid:83)\nx\u2208X\u22c6\nx\u2208X\u22c6\ncontrast, there exists a \u02c6y \u2208 Y \u22c6 such that for all i /\u2208 (cid:83)\nx\u2208X\u22c6\nnumber of optimal rows | (cid:83)\nx\u2208X\u22c6\nplayer. Using similar logic, we can justify that the number of optimal columns | (cid:83)\ny\u2208Y\u22c6\n\nA = \u27e8ei, Ay\u2217\u27e9. In\nA > \u27e8ei, A\u02c6y\u27e9. Hence, the\nsupp(x)| is an appropriate measure of the solution size for the row\n\nsupp(x), we have V \u22c6\n\nsupp(y)| is an\n\nsupp(x), V \u22c6\n\nappropriate measure of the solution size for the column player.\n\nMoreover, it is easy to observe that changing the value of the entries (i, j) where i /\u2208 (cid:83)\nx\u2208X\u22c6\n\nsupp(x)\n\nsupp(y) does not affect the set of all Nash equilibria X\u22c6 \u00d7 Y\u22c6. This implies that only\n\nand j /\u2208 (cid:83)\ny\u2208Y\u22c6\n\nO(n \u00b7 max{k1, k2}) elements are important in determining the set of all Nash equilibria X\u22c6 \u00d7 Y\u22c6,\nwhich further highlights why k1 and k2 are appropriate notions of the solution size.\n\n1.2 Our contributions and innovative techniques\nLet k := max{k1, k2}, where k1 := | (cid:83)\nx\u2208X\u22c6\ncontribution in this paper is the following upper bound result.\n\nsupp(x)| and k2 := | (cid:83)\ny\u2208Y\u22c6\n\nsupp(y)|. Our main technical\n\nTheorem 1. There exists a randomized algorithm that, with probability at least 1 \u2212 \u03b4, queries\n\u03b4 )) entries of the input matrix A \u2208 Rn\u00d7n and returns the set of all Nash equilibria\nO(nk5 \u00b7 log n \u00b7 log( n\nX\u22c6 \u00d7 Y\u22c6.\n\nWe outline the innovative techniques used to achieve the result above. As discussed in the\nprevious section, the results of Bohnenblust et al. [7] suggest a separation between the sub-matrix\nwith row indices (cid:83)\nsupp(y) (which we will refer to as the optimal\nx\u2208X\u22c6\n\nsupp(x) and column indices (cid:83)\ny\u2208Y\u22c6\n\nsub-matrix) and the rest of the matrix. Our goal is to formalize this separation and therefore leverage\nit to identify the set of all Nash equilibria while minimizing the number of queries required. In the\nspecific case of strict Pure Strategy Nash Equilibrium (strict PSNE), this separation is inherently\npresent, as a strict PSNE is uniquely the least in its row and uniquely the highest in its column.\nTherefore, one possible approach involves constructing a large matrix with (cid:0) n\n(cid:1)\n(cid:1) rows and (cid:0) n\nk1\nk2\ncolumns, where each entry is bijectively mapped to a k1 \u00d7 k2 sub-matrix of A. The values of these\nentries are determined by their corresponding sub-matrices in A, and this large matrix possesses a\nstrict PSNE that maps to the optimal sub-matrix of A.\n\nAssuming we can construct such a matrix, it remains unclear how to query the entries of this\nlarge matrix without significantly increasing the query complexity of our algorithm. The algorithm\nproposed by Bienstock et al. [5] is inadequate for this purpose because it queries entries diagonally.\nIf we applied a similar diagonal querying strategy to our large matrix, we would end up querying\nall entries of the original matrix A. Instead, we propose a randomized algorithm for finding strict\nPSNE that operates differently from the one described by Bienstock et al. [5]. Specifically, if we\n\n3\n\n\fhave access to query oracles where a single call returns either the entire row or the entire column,\nour algorithm can identify the strict PSNE by making O(log2(r)) oracle calls, where r is the total\nnumber of rows and columns in the input matrix with a strict PSNE. We can also design a query\noracle for the larger matrix that returns a row or column by querying at most O(nk) entries of A.\nHence, the query complexity of finding the strict PSNE of the large matrix will be nearly n \u00b7 poly(k).\nOne approach to creating such a large matrix is to compute the value of the game on the sub-\nmatrix mapped to each entry and use that as the entry\u2019s value. While this method ensures that\nthe entry in the resulting matrix that maps to the optimal sub-matrix is a Pure Strategy Nash\nEquilibrium (PSNE)\u2014an entry that is the smallest in its row and the largest in its column\u2014it\nmay not necessarily be a strict PSNE. However, if we are given a set of values V that includes the\nvalue of the game V \u22c6\n, we can modify the previously constructed matrix to ensure that the PSNE\nA\nbecomes a strict PSNE. Our randomized algorithm for finding the strict PSNE has the additional\nadvantage that, whenever the matrix contains a PSNE, it will, with high probability, compute a set\nthat includes the value of the game V \u22c6\nA\n\nNow, we describe how to make the PSNE that maps to the optimal sub-matrix (which we will\nrefer to as the optimal PSNE) a strict PSNE. Consider an entry that is in the column of the optimal\nPSNE and has a value equal to V \u22c6\n. If this entry is not the optimal PSNE, using Lemma 1, we\nA\ncan show that the sub-matrix it maps to lacks a Nash equilibrium with all the rows in its support,\nalthough it does have a Nash equilibrium wi"
+            }
+          ],
+          "tool_call_id": "call_N7lqtU66eluqiR4In46NxehY",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:16:49.216758+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "args": "{\"params\":{\"user_query\":\"when is sub-game perfect equilibria also a nash equilibria in an infinite game?\",\"search_results\":[{\"title\":\"Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game\",\"snippet\":\"We study the query complexity of finding the set of all Nash equilibria \\\\mathcal X_\\\\star \\\\times \\\\mathcal Y_\\\\star in two-player zero-sum matrix games.\",\"url\":\"https://arxiv.org/abs/2310.16236v3\"}]}}",
+          "tool_call_id": "call_IX0OqbIFFSou40DpTG5oQhwW",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 7186,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 1408,
+        "output_tokens": 124,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:16:49+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7E1jCGkH5K9fbZBcWLXIUFq44Z4",
+      "finish_reason": "tool_call",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search_quality_check",
+          "content": {
+            "results_evaluation": [
+              {
+                "title": "Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game",
+                "url": "https://arxiv.org/abs/2310.16236v3",
+                "relevance": 0.3,
+                "completeness": 0.2,
+                "credibility": 0.8,
+                "currency": 1.0
+              }
+            ],
+            "overall_quality_score": 0.45,
+            "decision": "more data is needed",
+            "suggested_search_terms": [
+              "sub-game perfect equilibria in infinite games",
+              "Nash equilibria in infinite games",
+              "sub-game perfection and Nash equilibria"
+            ]
+          },
+          "tool_call_id": "call_IX0OqbIFFSou40DpTG5oQhwW",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:16:53.836542+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"sub-game perfect equilibria in infinite games\", \"paper_name\": \"Sub-game Perfect Equilibria in Infinite Games\"}",
+          "tool_call_id": "call_uxD3SWNkPN7YGxUkFrJkUmvd",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"Nash equilibria in infinite games\", \"paper_name\": \"Nash Equilibria in Infinite Games\"}",
+          "tool_call_id": "call_R0k6Gr1q11hIdwQPHQgpQxKz",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "args": "{\"query\": \"sub-game perfection and Nash equilibria\", \"paper_name\": \"Sub-game Perfection and Nash Equilibria\"}",
+          "tool_call_id": "call_o8FCDnZf308i51p7QZw4sXpL",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 7442,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 7168,
+        "output_tokens": 121,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:16:54+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7E6HR2cLytN1TYDF2iis8JfkUiO",
+      "finish_reason": "tool_call",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_uxD3SWNkPN7YGxUkFrJkUmvd",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:19:04.138674+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_R0k6Gr1q11hIdwQPHQgpQxKz",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:17:21.288618+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "get_data_to_index",
+          "content": null,
+          "tool_call_id": "call_o8FCDnZf308i51p7QZw4sXpL",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:18:57.762724+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"sub-game perfect equilibria in infinite games\",\"paper_name\":\"Sub-game Perfect Equilibria in Infinite Games\"}",
+          "tool_call_id": "call_UsUsfOBOjquw9aDlxXvzulbn",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 7580,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 7424,
+        "output_tokens": 33,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:19:04+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7GCTn1tMRNAihbqtCepdRyAfrWi",
+      "finish_reason": "tool_call",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "2512.08745v1",
+              "title": "Variance strikes back: sub-game--perfect Nash equilibria in time-inconsistent $N$-player games, and their mean-field sequel",
+              "authors": [
+                "Dylan Possama\u00ef",
+                "Chiara Rossato"
+              ],
+              "published": "2025-12-09T15:53:41Z",
+              "summary": "We investigate a time-inconsistent, non-Markovian finite-player game in continuous time, where each player's objective functional depends non-linearly on the expected value of the state process. As a result, the classical Bellman optimality principle no longer applies. To address this, we adopt a two-layer game-theoretic framework and seek sub-game--perfect Nash equilibria both at the intra-personal level, which accounts for time inconsistency, and at the inter-personal level, which captures strategic interactions among players. We first characterise sub-game--perfect Nash equilibria and the corresponding value processes of all players through a system of coupled backward stochastic differential equations. We then analyse the mean-field counterpart and its sub-game--perfect mean-field equilibria, described by a system of McKean-Vlasov backward stochastic differential equations. Building on this representation, we finally prove the convergence of sub-game--perfect Nash equilibria and their corresponding value processes in the $N$-player game to their mean-field counterparts.",
+              "content": "s is equivalent\nto the uniqueness of the solution to the mean-field BSDE system, as established in Propositions 4.4 and 4.6. In the\nproof, we rely on the uniqueness of the solution to the mean-field system; without it, we could only show that the\nN -player BSDE system converges to some solution of the mean-field BSDE system, which would not necessarily\ncoincide with the value process of the mean-field game. It is in any case an expected assumption when one wants\nto prove full convergence of equilibria;\n\n(iii) comparing Assumption 5.1.(v) with [57, Assumption 2.9.(vi)], we note that our assumption is stronger. This is\nrequired for the Yamada\u2013Watanabe result in (5.44), since its proof relies on lifting the solutions of (5.11) and\n(5.43) to a common probability space and applying pathwise uniqueness to construct a strong solution, which in\nturn ensures the law equality stated in (5.44);\n\n(iv) the P\u2013i.i.d. assumption on the initial conditions (X i\n\n0)i\u2208N\u22c6 in Assumption 5.1.(xi) ensures that the processes them-\nselves (X i)i\u2208N\u22c6 are P\u2013i.i.d., which is necessary both to apply the strong law of large numbers and to construct\nindependent copies of the mean-field game used in the estimates of Section 5.2.3.\n\nTheorem 5.3. Let Assumption 5.1 hold. In addition, assume that K\u03c3b \u2265 \u03b4, where \u03b4 > 0 is a constant depending on \u2113b,\n\u2113\u03c3, \u2113\u03c3b, \u2113f , \u2113\u03c61, \u2113\u03c62, \u2113g+G,\u03c61,\u03c62 , \u2113\u2202 2G, \u2113\u039b and T . Let (\u02c6\u03b11,N )N \u2208N\u22c6 be a sequence of sub-game\u2013perfect Nash equilibria for the\nmulti-player game, and let (V 1,N )N \u2208N\u22c6 denote the associated value processes. Then, (V 1,N )N \u2208N\u22c6 converges to the value\nprocess V 1 of the mean-field game. More precisely, there exist a constant C > 0 and a function \u03b7 : \u2126 \u00d7 [0, T ] \u00d7 N\u22c6 \u2212\u2192 R\u22c6\nsuch that, for any N \u2208 N\u22c6, for any u \u2208 [0, T ],\n\n+\n\n(cid:12)\n(cid:12)V 1,N\nu\n\n(\u03c9) \u2212 V 1\n\nu (\u03c9)(cid:12)\n(cid:12)\n\n2\n\n\u2264 C(cid:0)\u03b7(\u03c9, u, N ) + \u03b3(\u03c9, u, N )(cid:1), P\u2013a.e. \u03c9 \u2208 \u2126,\n\n(5.1)\n\nwhere\n\n\u03b7(\u03c9, u, N ) := \u03b7(cid:0)RN , (\u2225X i\n\nu(\u03c9)\u2225)i\u2208{1,...,N }\n\n\u03b3(\u03c9, u, N ) := sup\n\nt\u2208[u,T ]\n\nEP \u02c6\u03b1,N ,u\n\n\u03c9\n\nh\n\nW 2\n2\n\n(cid:0)LN (cid:0)XN\n\n\u00b7\u2227t\n\n(cid:1), (\u03c9, u, N ) \u2208 \u2126 \u00d7 [0, T ] \u00d7 N\u22c6, with lim\n(cid:0)LN (\u02c6\u03b1t), L \u02c6\u03b1(\u02c6\u03b1t)(cid:1)i\n\n(cid:1), L \u02c6\u03b1(X\u00b7\u2227t)(cid:1) + W 2\n\nN\u2192\u221e\n\n2\n\n\u03b7(\u03c9, u, N ) = 0, P\u2013a.e. \u03c9 \u2208 \u2126,\n\n, (\u03c9, u, N ) \u2208 \u2126 \u00d7 [0, T ] \u00d7 N\u22c6.\n\nHere, LN (\u02c6\u03b1) denotes the empirical measure of the AN -valued process (\u02c6\u03b11, . . . , \u02c6\u03b1N ), where each \u02c6\u03b1i is the unique sub-\ngame\u2013perfect mean-field equilibrium for the mean-field game driven by the state process X i, i \u2208 {1, . . . , N }. Moreover,\nthe sequence of sub-game\u2013perfect Nash equilibria (\u02c6\u03b11,N )N \u2208N\u22c6 converges to the sub-game\u2013perfect mean-field equilibrium \u02c6\u03b1\nin the sense that there exists a constant C > 0 such that, for any N \u2208 N\u22c6, for any u \u2208 [0, T ],\n\nZ T\n\nu\n\nW 2\n2\n\n(cid:0)P \u02c6\u03b1N ,N ,u\n\n\u03c9\n\n\u25e6 (\u02c6\u03b11,N\nt\n\n)\u22121, P \u02c6\u03b1,N ,u\n\u03c9\n\n\u25e6 (\u02c6\u03b1t)\u22121(cid:1)dt \u2264 C(cid:0)\u03b7(\u03c9, u, N ) + \u03b3(\u03c9, u, N )(cid:1), P\u2013a.e. \u03c9 \u2208 \u2126.\n\n(5.2)\n\n20\n\n\fRemark 5.4.\n\n(i) To the best of our knowledge, Theorem 5.3 is the first convergence result for time-inconsistent games\nin the literature. The only other work addressing a convergence problem is [2], which studies a time-inconsistent\nmean-field Markov decision game in discrete time and shows that the mean-field equilibrium provides an approximate\noptimal strategy when applied to the corresponding N -player game, but only in a precommitment sense. This\nresult does not contradict ours because it considers time-inconsistency arising from non-exponential discounting,\nwhereas we focus on mean\u2013variance type preferences. We show that, under the assumption of uniqueness of the\nsub-game\u2013perfect mean-field equilibrium, the BSDE system describing the N -player game converges to the McKean\u2013\nVlasov BSDE associated with the mean-field game. In this context, the existence and uniqueness of the sub-game\u2013\nperfect mean-field equilibrium is equivalent to the well-posedness of the McKean\u2013Vlasov BSDE described in (4.3), or\nequivalently (4.4). Given the nature of this BSDE, in which both the driving Brownian motion and the underlying\nprobability measure are part of the solution, together with quadratic growth, proving existence and uniqueness is\nchallenging in general. However, in the mean\u2013variance setting, the system is finite-dimensional, which makes it\nmore tractable. In contrast, non-exponential discounting leads to an infinite-dimensional BSDE system, as shown\nin [36, Theorem 3.10 and Theorem 3.12], where well-posedness is expected to be extremely difficult to obtain. We\nbelieve this may be one of the fundamental reasons for the potential convergence failure highlighted by [2];\n\n(ii) from the bounds in (5.1) and (5.2) for the value processes and for the sub-game\u2013perfect equilibria, respectively, we\ncan additionally derive quantitative convergence rates. The key observation is that the constants C appearing in\nboth estimates depend only on the parameters of the game and are independent of N . Consequently, the convergence\nrates are entirely determined by the behaviour of the functions \u03b7 and \u03b3. More precisely, the function \u03b7 or"
+            },
+            {
+              "id": "2512.08745v1",
+              "title": "Variance strikes back: sub-game--perfect Nash equilibria in time-inconsistent $N$-player games, and their mean-field sequel",
+              "authors": [
+                "Dylan Possama\u00ef",
+                "Chiara Rossato"
+              ],
+              "published": "2025-12-09T15:53:41Z",
+              "summary": "We investigate a time-inconsistent, non-Markovian finite-player game in continuous time, where each player's objective functional depends non-linearly on the expected value of the state process. As a result, the classical Bellman optimality principle no longer applies. To address this, we adopt a two-layer game-theoretic framework and seek sub-game--perfect Nash equilibria both at the intra-personal level, which accounts for time inconsistency, and at the inter-personal level, which captures strategic interactions among players. We first characterise sub-game--perfect Nash equilibria and the corresponding value processes of all players through a system of coupled backward stochastic differential equations. We then analyse the mean-field counterpart and its sub-game--perfect mean-field equilibria, described by a system of McKean-Vlasov backward stochastic differential equations. Building on this representation, we finally prove the convergence of sub-game--perfect Nash equilibria and their corresponding value processes in the $N$-player game to their mean-field counterparts.",
+              "content": "s is equivalent\nto the uniqueness of the solution to the mean-field BSDE system, as established in Propositions 4.4 and 4.6. In the\nproof, we rely on the uniqueness of the solution to the mean-field system; without it, we could only show that the\nN -player BSDE system converges to some solution of the mean-field BSDE system, which would not necessarily\ncoincide with the value process of the mean-field game. It is in any case an expected assumption when one wants\nto prove full convergence of equilibria;\n\n(iii) comparing Assumption 5.1.(v) with [57, Assumption 2.9.(vi)], we note that our assumption is stronger. This is\nrequired for the Yamada\u2013Watanabe result in (5.44), since its proof relies on lifting the solutions of (5.11) and\n(5.43) to a common probability space and applying pathwise uniqueness to construct a strong solution, which in\nturn ensures the law equality stated in (5.44);\n\n(iv) the P\u2013i.i.d. assumption on the initial conditions (X i\n\n0)i\u2208N\u22c6 in Assumption 5.1.(xi) ensures that the processes them-\nselves (X i)i\u2208N\u22c6 are P\u2013i.i.d., which is necessary both to apply the strong law of large numbers and to construct\nindependent copies of the mean-field game used in the estimates of Section 5.2.3.\n\nTheorem 5.3. Let Assumption 5.1 hold. In addition, assume that K\u03c3b \u2265 \u03b4, where \u03b4 > 0 is a constant depending on \u2113b,\n\u2113\u03c3, \u2113\u03c3b, \u2113f , \u2113\u03c61, \u2113\u03c62, \u2113g+G,\u03c61,\u03c62 , \u2113\u2202 2G, \u2113\u039b and T . Let (\u02c6\u03b11,N )N \u2208N\u22c6 be a sequence of sub-game\u2013perfect Nash equilibria for the\nmulti-player game, and let (V 1,N )N \u2208N\u22c6 denote the associated value processes. Then, (V 1,N )N \u2208N\u22c6 converges to the value\nprocess V 1 of the mean-field game. More precisely, there exist a constant C > 0 and a function \u03b7 : \u2126 \u00d7 [0, T ] \u00d7 N\u22c6 \u2212\u2192 R\u22c6\nsuch that, for any N \u2208 N\u22c6, for any u \u2208 [0, T ],\n\n+\n\n(cid:12)\n(cid:12)V 1,N\nu\n\n(\u03c9) \u2212 V 1\n\nu (\u03c9)(cid:12)\n(cid:12)\n\n2\n\n\u2264 C(cid:0)\u03b7(\u03c9, u, N ) + \u03b3(\u03c9, u, N )(cid:1), P\u2013a.e. \u03c9 \u2208 \u2126,\n\n(5.1)\n\nwhere\n\n\u03b7(\u03c9, u, N ) := \u03b7(cid:0)RN , (\u2225X i\n\nu(\u03c9)\u2225)i\u2208{1,...,N }\n\n\u03b3(\u03c9, u, N ) := sup\n\nt\u2208[u,T ]\n\nEP \u02c6\u03b1,N ,u\n\n\u03c9\n\nh\n\nW 2\n2\n\n(cid:0)LN (cid:0)XN\n\n\u00b7\u2227t\n\n(cid:1), (\u03c9, u, N ) \u2208 \u2126 \u00d7 [0, T ] \u00d7 N\u22c6, with lim\n(cid:0)LN (\u02c6\u03b1t), L \u02c6\u03b1(\u02c6\u03b1t)(cid:1)i\n\n(cid:1), L \u02c6\u03b1(X\u00b7\u2227t)(cid:1) + W 2\n\nN\u2192\u221e\n\n2\n\n\u03b7(\u03c9, u, N ) = 0, P\u2013a.e. \u03c9 \u2208 \u2126,\n\n, (\u03c9, u, N ) \u2208 \u2126 \u00d7 [0, T ] \u00d7 N\u22c6.\n\nHere, LN (\u02c6\u03b1) denotes the empirical measure of the AN -valued process (\u02c6\u03b11, . . . , \u02c6\u03b1N ), where each \u02c6\u03b1i is the unique sub-\ngame\u2013perfect mean-field equilibrium for the mean-field game driven by the state process X i, i \u2208 {1, . . . , N }. Moreover,\nthe sequence of sub-game\u2013perfect Nash equilibria (\u02c6\u03b11,N )N \u2208N\u22c6 converges to the sub-game\u2013perfect mean-field equilibrium \u02c6\u03b1\nin the sense that there exists a constant C > 0 such that, for any N \u2208 N\u22c6, for any u \u2208 [0, T ],\n\nZ T\n\nu\n\nW 2\n2\n\n(cid:0)P \u02c6\u03b1N ,N ,u\n\n\u03c9\n\n\u25e6 (\u02c6\u03b11,N\nt\n\n)\u22121, P \u02c6\u03b1,N ,u\n\u03c9\n\n\u25e6 (\u02c6\u03b1t)\u22121(cid:1)dt \u2264 C(cid:0)\u03b7(\u03c9, u, N ) + \u03b3(\u03c9, u, N )(cid:1), P\u2013a.e. \u03c9 \u2208 \u2126.\n\n(5.2)\n\n20\n\n\fRemark 5.4.\n\n(i) To the best of our knowledge, Theorem 5.3 is the first convergence result for time-inconsistent games\nin the literature. The only other work addressing a convergence problem is [2], which studies a time-inconsistent\nmean-field Markov decision game in discrete time and shows that the mean-field equilibrium provides an approximate\noptimal strategy when applied to the corresponding N -player game, but only in a precommitment sense. This\nresult does not contradict ours because it considers time-inconsistency arising from non-exponential discounting,\nwhereas we focus on mean\u2013variance type preferences. We show that, under the assumption of uniqueness of the\nsub-game\u2013perfect mean-field equilibrium, the BSDE system describing the N -player game converges to the McKean\u2013\nVlasov BSDE associated with the mean-field game. In this context, the existence and uniqueness of the sub-game\u2013\nperfect mean-field equilibrium is equivalent to the well-posedness of the McKean\u2013Vlasov BSDE described in (4.3), or\nequivalently (4.4). Given the nature of this BSDE, in which both the driving Brownian motion and the underlying\nprobability measure are part of the solution, together with quadratic growth, proving existence and uniqueness is\nchallenging in general. However, in the mean\u2013variance setting, the system is finite-dimensional, which makes it\nmore tractable. In contrast, non-exponential discounting leads to an infinite-dimensional BSDE system, as shown\nin [36, Theorem 3.10 and Theorem 3.12], where well-posedness is expected to be extremely difficult to obtain. We\nbelieve this may be one of the fundamental reasons for the potential convergence failure highlighted by [2];\n\n(ii) from the bounds in (5.1) and (5.2) for the value processes and for the sub-game\u2013perfect equilibria, respectively, we\ncan additionally derive quantitative convergence rates. The key observation is that the constants C appearing in\nboth estimates depend only on the parameters of the game and are independent of N . Consequently, the convergence\nrates are entirely determined by the behaviour of the functions \u03b7 and \u03b3. More precisely, the function \u03b7 or"
+            },
+            {
+              "id": "2512.08745v1",
+              "title": "Variance strikes back: sub-game--perfect Nash equilibria in time-inconsistent $N$-player games, and their mean-field sequel",
+              "authors": [
+                "Dylan Possama\u00ef",
+                "Chiara Rossato"
+              ],
+              "published": "2025-12-09T15:53:41Z",
+              "summary": "We investigate a time-inconsistent, non-Markovian finite-player game in continuous time, where each player's objective functional depends non-linearly on the expected value of the state process. As a result, the classical Bellman optimality principle no longer applies. To address this, we adopt a two-layer game-theoretic framework and seek sub-game--perfect Nash equilibria both at the intra-personal level, which accounts for time inconsistency, and at the inter-personal level, which captures strategic interactions among players. We first characterise sub-game--perfect Nash equilibria and the corresponding value processes of all players through a system of coupled backward stochastic differential equations. We then analyse the mean-field counterpart and its sub-game--perfect mean-field equilibria, described by a system of McKean-Vlasov backward stochastic differential equations. Building on this representation, we finally prove the convergence of sub-game--perfect Nash equilibria and their corresponding value processes in the $N$-player game to their mean-field counterparts.",
+              "content": "t the processes them-\nselves (X i)i\u2208N\u22c6 are P\u2013i.i.d., which is necessary both to apply the strong law of large numbers and to construct\nindependent copies of the mean-field game used in the estimates of Section 5.2.3.\n\nTheorem 5.3. Let Assumption 5.1 hold. In addition, assume that K\u03c3b \u2265 \u03b4, where \u03b4 > 0 is a constant depending on \u2113b,\n\u2113\u03c3, \u2113\u03c3b, \u2113f , \u2113\u03c61, \u2113\u03c62, \u2113g+G,\u03c61,\u03c62 , \u2113\u2202 2G, \u2113\u039b and T . Let (\u02c6\u03b11,N )N \u2208N\u22c6 be a sequence of sub-game\u2013perfect Nash equilibria for the\nmulti-player game, and let (V 1,N )N \u2208N\u22c6 denote the associated value processes. Then, (V 1,N )N \u2208N\u22c6 converges to the value\nprocess V 1 of the mean-field game. More precisely, there exist a constant C > 0 and a function \u03b7 : \u2126 \u00d7 [0, T ] \u00d7 N\u22c6 \u2212\u2192 R\u22c6\nsuch that, for any N \u2208 N\u22c6, for any u \u2208 [0, T ],\n\n+\n\n(cid:12)\n(cid:12)V 1,N\nu\n\n(\u03c9) \u2212 V 1\n\nu (\u03c9)(cid:12)\n(cid:12)\n\n2\n\n\u2264 C(cid:0)\u03b7(\u03c9, u, N ) + \u03b3(\u03c9, u, N )(cid:1), P\u2013a.e. \u03c9 \u2208 \u2126,\n\n(5.1)\n\nwhere\n\n\u03b7(\u03c9, u, N ) := \u03b7(cid:0)RN , (\u2225X i\n\nu(\u03c9)\u2225)i\u2208{1,...,N }\n\n\u03b3(\u03c9, u, N ) := sup\n\nt\u2208[u,T ]\n\nEP \u02c6\u03b1,N ,u\n\n\u03c9\n\nh\n\nW 2\n2\n\n(cid:0)LN (cid:0)XN\n\n\u00b7\u2227t\n\n(cid:1), (\u03c9, u, N ) \u2208 \u2126 \u00d7 [0, T ] \u00d7 N\u22c6, with lim\n(cid:0)LN (\u02c6\u03b1t), L \u02c6\u03b1(\u02c6\u03b1t)(cid:1)i\n\n(cid:1), L \u02c6\u03b1(X\u00b7\u2227t)(cid:1) + W 2\n\nN\u2192\u221e\n\n2\n\n\u03b7(\u03c9, u, N ) = 0, P\u2013a.e. \u03c9 \u2208 \u2126,\n\n, (\u03c9, u, N ) \u2208 \u2126 \u00d7 [0, T ] \u00d7 N\u22c6.\n\nHere, LN (\u02c6\u03b1) denotes the empirical measure of the AN -valued process (\u02c6\u03b11, . . . , \u02c6\u03b1N ), where each \u02c6\u03b1i is the unique sub-\ngame\u2013perfect mean-field equilibrium for the mean-field game driven by the state process X i, i \u2208 {1, . . . , N }. Moreover,\nthe sequence of sub-game\u2013perfect Nash equilibria (\u02c6\u03b11,N )N \u2208N\u22c6 converges to the sub-game\u2013perfect mean-field equilibrium \u02c6\u03b1\nin the sense that there exists a constant C > 0 such that, for any N \u2208 N\u22c6, for any u \u2208 [0, T ],\n\nZ T\n\nu\n\nW 2\n2\n\n(cid:0)P \u02c6\u03b1N ,N ,u\n\n\u03c9\n\n\u25e6 (\u02c6\u03b11,N\nt\n\n)\u22121, P \u02c6\u03b1,N ,u\n\u03c9\n\n\u25e6 (\u02c6\u03b1t)\u22121(cid:1)dt \u2264 C(cid:0)\u03b7(\u03c9, u, N ) + \u03b3(\u03c9, u, N )(cid:1), P\u2013a.e. \u03c9 \u2208 \u2126.\n\n(5.2)\n\n20\n\n\fRemark 5.4.\n\n(i) To the best of our knowledge, Theorem 5.3 is the first convergence result for time-inconsistent games\nin the literature. The only other work addressing a convergence problem is [2], which studies a time-inconsistent\nmean-field Markov decision game in discrete time and shows that the mean-field equilibrium provides an approximate\noptimal strategy when applied to the corresponding N -player game, but only in a precommitment sense. This\nresult does not contradict ours because it considers time-inconsistency arising from non-exponential discounting,\nwhereas we focus on mean\u2013variance type preferences. We show that, under the assumption of uniqueness of the\nsub-game\u2013perfect mean-field equilibrium, the BSDE system describing the N -player game converges to the McKean\u2013\nVlasov BSDE associated with the mean-field game. In this context, the existence and uniqueness of the sub-game\u2013\nperfect mean-field equilibrium is equivalent to the well-posedness of the McKean\u2013Vlasov BSDE described in (4.3), or\nequivalently (4.4). Given the nature of this BSDE, in which both the driving Brownian motion and the underlying\nprobability measure are part of the solution, together with quadratic growth, proving existence and uniqueness is\nchallenging in general. However, in the mean\u2013variance setting, the system is finite-dimensional, which makes it\nmore tractable. In contrast, non-exponential discounting leads to an infinite-dimensional BSDE system, as shown\nin [36, Theorem 3.10 and Theorem 3.12], where well-posedness is expected to be extremely difficult to obtain. We\nbelieve this may be one of the fundamental reasons for the potential convergence failure highlighted by [2];\n\n(ii) from the bounds in (5.1) and (5.2) for the value processes and for the sub-game\u2013perfect equilibria, respectively, we\ncan additionally derive quantitative convergence rates. The key observation is that the constants C appearing in\nboth estimates depend only on the parameters of the game and are independent of N . Consequently, the convergence\nrates are entirely determined by the behaviour of the functions \u03b7 and \u03b3. More precisely, the function \u03b7 originates\nfrom the estimates in (5.40) and takes the form\n\n\u03b7(\u03c9, u, N ) := R2\nN\n\n1 + \u2225X 1\n\nu(\u03c9)\u22252 +\n\n1\nN\n\nN\nX\n\n\u2113=1\n\n!\n\n\u2225X \u2113\n\nu(\u03c9)\u22252\n\n+ CN R2\nN\n\n1 + \u2225X 1\n\nu(\u03c9)\u22252 \u00afp +\n\n!\n\n\u2225X \u2113\n\nu(\u03c9)\u22252 \u00afp\n\n1\nN\n\nN\nX\n\n\u2113=1\n\n+ N R4\nN\n\n1 +\n\n1\nN\n\nN\nX\n\n\u2113=1\n\n!\n\n\u2225X \u2113\n\nu(\u03c9)\u22252\n\n(1 + N ), (\u03c9, u, N ) \u2208 \u2126 \u00d7 [0, T ] \u00d7 N\u22c6,\n\nwhere \u00afp is introduced in Assumption 5.1.(xi). If there is no interaction through the strategies, then, as already\ndiscussed in Theorem 5.2.(i), the function RN vanishes, and consequently so does \u03b7. In the presence of interaction,\nas already noted in (5.41) (equivalently, in (5.42)), Assumption 5.1.(iii) and the strong law of large numbers yield\n\nlim\nN\u2192\u221e\n\n\u03b7(\u03c9, u, N ) = 0, P\u2013a.e. \u03c9 \u2208 \u2126, for any u \u2208 [0, T ].\n\nMoreover, the rate of this convergence is determined jointly by the convergence rate of the sequence (RN )N \u2208N\u22c6\nintroduced in Assumption 5.1.(iii) and by the convergence rate provided by the strong law of large numbers, for\nwhich the literature provides explicit rates, see for instance the seminal w"
+            }
+          ],
+          "tool_call_id": "call_UsUsfOBOjquw9aDlxXvzulbn",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:19:05.216960+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
+      "kind": "request",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "args": "{\"title\":\"Sub-game Perfect Equilibria and Nash Equilibria in Infinite Games\",\"summary\":\"In infinite games, sub-game perfect equilibria can also be Nash equilibria under certain conditions related to time-inconsistency and player preferences. Recent research explores these aspects by investigating time-inconsistent, non-Markovian finite-player games, proposing that sub-game perfect equilibria maintain their properties through convergence to mean-field counterparts in large player settings. This ensures that players' strategies remain optimal even as the game evolves over time, capturing both intra-personal and inter-personal strategic dynamics effectively through specialized mathematical frameworks including backward stochastic differential equations. The convergence of these equilibria illustrates the maintainability of Nash properties over infinite games, suggesting foundational implications in game theory and strategy development.\",\"references\":[{\"title\":\"Variance strikes back: sub-game--perfect Nash equilibria in time-inconsistent $N$-player games, and their mean-field sequel\",\"url\":\"https://arxiv.org/abs/2512.08745v1\"}]}",
+          "tool_call_id": "call_phM4zszGZxYm7kfzwpvSrLBE",
+          "id": null,
+          "provider_details": null,
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 13596,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 7552,
+        "output_tokens": 214,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-12-18T12:19:05+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_url": "https://api.openai.com/v1/",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-Co7GDkCAeNxmPPVIOaKefCBUGQRUI",
+      "finish_reason": "tool_call",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "final_result",
+          "content": "Final result processed.",
+          "tool_call_id": "call_phM4zszGZxYm7kfzwpvSrLBE",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:19:09.337801+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": null,
+      "kind": "request",
+      "run_id": "1a5db216-b359-4d74-ae73-0c04724a801c",
+      "metadata": null
+    }
+  ],
+  "usage": {
+    "input_tokens": 38660,
+    "cache_write_tokens": 0,
+    "cache_read_tokens": 24960,
+    "output_tokens": 567,
+    "input_audio_tokens": 0,
+    "cache_audio_read_tokens": 0,
+    "output_audio_tokens": 0,
+    "details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "requests": 6,
+    "tool_calls": 7
+  },
+  "output": {
+    "title": "Sub-game Perfect Equilibria and Nash Equilibria in Infinite Games",
+    "summary": "In infinite games, sub-game perfect equilibria can also be Nash equilibria under certain conditions related to time-inconsistency and player preferences. Recent research explores these aspects by investigating time-inconsistent, non-Markovian finite-player games, proposing that sub-game perfect equilibria maintain their properties through convergence to mean-field counterparts in large player settings. This ensures that players' strategies remain optimal even as the game evolves over time, capturing both intra-personal and inter-personal strategic dynamics effectively through specialized mathematical frameworks including backward stochastic differential equations. The convergence of these equilibria illustrates the maintainability of Nash properties over infinite games, suggesting foundational implications in game theory and strategy development.",
+    "references": [
+      {
+        "title": "Variance strikes back: sub-game--perfect Nash equilibria in time-inconsistent $N$-player games, and their mean-field sequel",
+        "url": "https://arxiv.org/abs/2512.08745v1"
+      }
+    ]
+  }
+}

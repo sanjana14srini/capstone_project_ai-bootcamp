@@ -15,21 +15,21 @@
       "parts": [
         {
           "content": "\n            Answer the user's query based on the following conversation history:\n            Context: \n            Current query: give me a summary of the latest research in LoRA?\n        ",
-          "timestamp": "2025-12-17T17:19:01.014999+00:00",
+          "timestamp": "2025-12-18T12:11:28.481542+00:00",
           "part_kind": "user-prompt"
         }
       ],
       "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
       "kind": "request",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
       "parts": [
         {
           "tool_name": "search",
-          "args": "{\"query\":\"latest research in LoRA\",\"paper_name\":\"LoRA research summary\"}",
-          "tool_call_id": "call_AKuBE0k2URH3tIPbz9ulbxAQ",
+          "args": "{\"query\":\"LoRA\",\"paper_name\":\"latest research in LoRA\"}",
+          "tool_call_id": "call_ReoHqCMhEAwRg0ySBEzxiFyC",
           "id": null,
           "provider_details": null,
           "part_kind": "tool-call"
@@ -39,7 +39,7 @@
         "input_tokens": 393,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
-        "output_tokens": 25,
+        "output_tokens": 23,
         "input_audio_tokens": 0,
         "cache_audio_read_tokens": 0,
         "output_audio_tokens": 0,
@@ -51,16 +51,16 @@
         }
       },
       "model_name": "gpt-4o-mini-2024-07-18",
-      "timestamp": "2025-12-17T17:19:02+00:00",
+      "timestamp": "2025-12-18T12:11:28+00:00",
       "kind": "response",
       "provider_name": "openai",
       "provider_url": "https://api.openai.com/v1/",
       "provider_details": {
         "finish_reason": "tool_calls"
       },
-      "provider_response_id": "chatcmpl-CnpSwDzhzPnAaN0tgMxWGxvXZ6V54",
+      "provider_response_id": "chatcmpl-Co78qVCFxwDficovxhRwvadAFMJoJ",
       "finish_reason": "tool_call",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
@@ -68,33 +68,33 @@
         {
           "tool_name": "search",
           "content": [],
-          "tool_call_id": "call_AKuBE0k2URH3tIPbz9ulbxAQ",
+          "tool_call_id": "call_ReoHqCMhEAwRg0ySBEzxiFyC",
           "metadata": null,
-          "timestamp": "2025-12-17T17:19:04.458144+00:00",
+          "timestamp": "2025-12-18T12:11:29.735137+00:00",
           "part_kind": "tool-return"
         }
       ],
       "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
       "kind": "request",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
       "parts": [
         {
           "tool_name": "get_data_to_index",
-          "args": "{\"query\":\"latest research in LoRA\",\"paper_name\":\"LoRA research summary\"}",
-          "tool_call_id": "call_Qk8t2LjxMdUrmYnS2InbwNuO",
+          "args": "{\"query\":\"LoRA\",\"paper_name\":\"latest research in LoRA\"}",
+          "tool_call_id": "call_QcjlekBe2C4CMteP3vPoH2Ug",
           "id": null,
           "provider_details": null,
           "part_kind": "tool-call"
         }
       ],
       "usage": {
-        "input_tokens": 426,
+        "input_tokens": 424,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
-        "output_tokens": 28,
+        "output_tokens": 26,
         "input_audio_tokens": 0,
         "cache_audio_read_tokens": 0,
         "output_audio_tokens": 0,
@@ -106,16 +106,16 @@
         }
       },
       "model_name": "gpt-4o-mini-2024-07-18",
-      "timestamp": "2025-12-17T17:19:06+00:00",
+      "timestamp": "2025-12-18T12:11:30+00:00",
       "kind": "response",
       "provider_name": "openai",
       "provider_url": "https://api.openai.com/v1/",
       "provider_details": {
         "finish_reason": "tool_calls"
       },
-      "provider_response_id": "chatcmpl-CnpT0J3bH7XHEZqHhY549myaFQM9a",
+      "provider_response_id": "chatcmpl-Co78sP5lwaaXpVEkRpPNBuIoIKawa",
       "finish_reason": "tool_call",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
@@ -123,33 +123,33 @@
         {
           "tool_name": "get_data_to_index",
           "content": null,
-          "tool_call_id": "call_Qk8t2LjxMdUrmYnS2InbwNuO",
+          "tool_call_id": "call_QcjlekBe2C4CMteP3vPoH2Ug",
           "metadata": null,
-          "timestamp": "2025-12-17T17:19:21.097191+00:00",
+          "timestamp": "2025-12-18T12:11:41.455395+00:00",
           "part_kind": "tool-return"
         }
       ],
       "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
       "kind": "request",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
       "parts": [
         {
           "tool_name": "search",
-          "args": "{\"query\":\"LoRA\",\"paper_name\":\"LoRA research summary\"}",
-          "tool_call_id": "call_K2MfZ14X57Z50jgTjXivvGQh",
+          "args": "{\"query\":\"LoRA\",\"paper_name\":\"latest research in LoRA\"}",
+          "tool_call_id": "call_ND4vINgPTSImoINlqEsdOKC9",
           "id": null,
           "provider_details": null,
           "part_kind": "tool-call"
         }
       ],
       "usage": {
-        "input_tokens": 465,
+        "input_tokens": 461,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
-        "output_tokens": 22,
+        "output_tokens": 23,
         "input_audio_tokens": 0,
         "cache_audio_read_tokens": 0,
         "output_audio_tokens": 0,
@@ -161,16 +161,16 @@
         }
       },
       "model_name": "gpt-4o-mini-2024-07-18",
-      "timestamp": "2025-12-17T17:19:23+00:00",
+      "timestamp": "2025-12-18T12:11:41+00:00",
       "kind": "response",
       "provider_name": "openai",
       "provider_url": "https://api.openai.com/v1/",
       "provider_details": {
         "finish_reason": "tool_calls"
       },
-      "provider_response_id": "chatcmpl-CnpTHgSdpuWYyTsQhl8louSFd7WCl",
+      "provider_response_id": "chatcmpl-Co793u6t6dUyisEFBUvQ9KV1UyT8y",
       "finish_reason": "tool_call",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
@@ -221,33 +221,33 @@
               "content": "5\n2\n0\n2\n\nn\nu\nJ\n\n5\n2\n\n]\n\nG\nL\n.\ns\nc\n[\n\n1\nv\n9\n2\n6\n0\n2\n.\n6\n0\n5\n2\n:\nv\ni\nX\nr\na\n\nPLoP: Precise LoRA Placement for Efficient\nFinetuning of Large Models\n\nSoufiane Hayou\u2217\nSimons Institute\nUC Berkeley\n\nNikhil Ghosh\nFlatiron Institute\n\nBin Yu\nDept of Statistics\nUC Berkeley\n\nAbstract\n\nLow-Rank Adaptation (LoRA) is a widely used finetuning method for\nlarge models. Its small memory footprint allows practitioners to adapt\nlarge models to specific tasks at a fraction of the cost of full finetuning.\nDifferent modifications have been proposed to enhance its efficiency by,\nfor example, setting the learning rate, the rank, and the initialization. An-\nother improvement axis is adapter placement strategy: when using LoRA,\npractitioners usually pick module types to adapt with LoRA, such as Query\nand Key modules. Few works have studied the problem of adapter place-\nment, with nonconclusive results: original LoRA paper suggested placing\nadapters in attention modules, while other works suggested placing them\nin the MLP modules. Through an intuitive theoretical analysis, we intro-\nduce PLoP (Precise LoRA Placement), a lightweight method that allows\nautomatic identification of module types where LoRA adapters should be\nplaced, given a pretrained model and a finetuning task. We demonstrate\nthat PLoP consistently outperforms, and in the worst case competes, with\ncommonly used placement strategies through comprehensive experiments\non supervised finetuning and reinforcement learning for reasoning.\n\n\u2217\n\nCorresponding author: hayou@berkeley.edu\n\n \n \n \n \n \n \n\f1\n\nIntroduction\n\nLow-Rank Adaptation (LoRA) is a widely adopted parameter-efficient fine-tuning (PEFT)\nmethods for large language and vision models. Introduced by [1], LoRA significantly\nreduces the computational and memory requirements of finetuning by freezing the pre-\ntrained model weights and inserting low-rank matrices into the model. This approach has\nenabled the adaptation of production-scale models on limited hardware resources while\nachieving performance comparable to full finetuning.\n\nLoRA improvements. Several works have considered improving LoRA performance by\ne.g. using different learning rates for LoRA modules [2], using normalized updates [3],\nsetting adaptive LoRA rank [4, 5], improving initialization [6], and many other variants,\ne.g. [7, 8, 9, 10, 11, 12].\n\nA critical aspect of LoRA is module selection - deciding which specific components of the\nmodel should receive the low-rank adaptation. In practice, instead of selecting individual\nmodules, one selects module types such as \u201cq_proj\u201d (Query modules), \u201cv_proj\u201d (Value\nmodules), etc. In [1], the authors suggested that inserting LoRA in attention modules\n(Query, Key, and Value) generally yields the best performance among other possible\nplacements. However, in a recent note [13], the same authors further explained the\ndifficulty encountered in LoRA adapter placement, and mentioned that optimal placement\ndepends on pretrained model and the finetuning task. Another work [14] found that for\nsome models, placing LoRA adapters in MLP modules gives better performance. Faced\nwith this confusion, practitioners generally follow one of these guidelines or insert LoRA\nadapters in all modules which comes at a higher finetuning cost. Therefore, it is natural to\nask:\n\nGiven a model and a task, how can we select target module types for LoRA at a reasonable cost?\n\nMemory footprint of LoRA.\nIn practice, LoRA is used to finetune large models with\nrelatively low cost. Consider Llama3.2-3B [15], processing sequences of 2048 tokens with\na batch size of 8. With full finetuning, the memory requirements are substantial. The\nmodel parameters require 12GB in float32, while the Adam optimizer states add another\n24GB. The activations for a single forward pass consume approximately 48GB of memory.\nThis brings the total memory requirement to approximately 84GB necessitating high-end\nGPUs. This becomes more problematic with larger, production-scale models. With LoRA,\nthe computational cost changes dramatically. Using rank-16 adapters on query and value\nmodules introduces only 10 million trainable parameters (0.33% of the model). Notably,\nsince gradients are only computed for the adapter weights, the memory overhead for\ngradient computation is reduced by over 99%. This enables finetuning on a single 24GB\nGPU with the same batch size and sequence length. These low memory footprint is what\nmakes LoRA attractive for finetuning.\n\nAnatomy of a practical module selection method for LoRA finetuning. Based on the\ncomputational constraints outlined above, any practical module selection method for LoRA\nadapter placement must operate within these resource limitations. We identify three main\npillars of a practical method: (i) the method cannot require computing gradients with\nrespect to the full model parameters, as this would defeat the primary purpose of using\nLoRA, (ii) the selection process should not necessitate multiple forward passes through\ndifferent model con"
             }
           ],
-          "tool_call_id": "call_K2MfZ14X57Z50jgTjXivvGQh",
+          "tool_call_id": "call_ND4vINgPTSImoINlqEsdOKC9",
           "metadata": null,
-          "timestamp": "2025-12-17T17:19:24.421139+00:00",
+          "timestamp": "2025-12-18T12:11:42.441974+00:00",
           "part_kind": "tool-return"
         }
       ],
       "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
       "kind": "request",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
       "parts": [
         {
           "tool_name": "search_quality_check",
-          "args": "{\"user_query\":\"give me a summary of the latest research in LoRA\",\"search_results\":[{\"title\":\"LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement\",\"snippet\":\"We propose LoRA-FAIR, a novel method that tackles both issues by introducing a correction term on the server, enhancing aggregation efficiency and accuracy.\",\"url\":\"https://arxiv.org/abs/2411.14961v3\"},{\"title\":\"LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization\",\"snippet\":\"This paper introduces LoRA-RITE, a novel adaptive matrix preconditioning method for LoRA optimization, which can achieve transformation invariance and remain computationally efficient.\",\"url\":\"https://arxiv.org/abs/2410.20625v2\"},{\"title\":\"PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models\",\"snippet\":\"We introduce PLoP (Precise LoRA Placement), a lightweight method that allows automatic identification of module types where LoRA adapters should be placed.\",\"url\":\"https://arxiv.org/abs/2506.20629v1\"}]}",
-          "tool_call_id": "call_9nIvkKxB4bD1g5jimDL4N8jN",
+          "args": "{\"params\":{\"user_query\":\"give me a summary of the latest research in LoRA?\",\"search_results\":[{\"title\":\"LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement\",\"snippet\":\"Foundation models (FMs) achieve strong performance across diverse tasks with task-specific fine-tuning, yet full parameter fine-tuning is often computationally prohibitive for large models.\",\"url\":\"https://arxiv.org/abs/2411.14961v3\"},{\"title\":\"LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization\",\"snippet\":\"Low-rank adaption (LoRA) is a widely used parameter-efficient finetuning method for LLM that reduces memory requirements.\",\"url\":\"https://arxiv.org/abs/2410.20625v2\"},{\"title\":\"PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models\",\"snippet\":\"Low-Rank Adaptation (LoRA) is a widely used finetuning method for large models. Its small memory footprint allows practitioners to adapt large models to specific tasks at a fraction of the cost of full finetuning.\",\"url\":\"https://arxiv.org/abs/2506.20629v1\"}]} }",
+          "tool_call_id": "call_jvaaqvaF7Ax4Up86it5FqGSx",
           "id": null,
           "provider_details": null,
           "part_kind": "tool-call"
         }
       ],
       "usage": {
-        "input_tokens": 5167,
+        "input_tokens": 5164,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0,
-        "output_tokens": 246,
+        "output_tokens": 266,
         "input_audio_tokens": 0,
         "cache_audio_read_tokens": 0,
         "output_audio_tokens": 0,
@@ -259,82 +259,80 @@
         }
       },
       "model_name": "gpt-4o-mini-2024-07-18",
-      "timestamp": "2025-12-17T17:19:26+00:00",
+      "timestamp": "2025-12-18T12:11:42+00:00",
       "kind": "response",
       "provider_name": "openai",
       "provider_url": "https://api.openai.com/v1/",
       "provider_details": {
         "finish_reason": "tool_calls"
       },
-      "provider_response_id": "chatcmpl-CnpTKa55N0efFlWmCr52A523EuhH5",
+      "provider_response_id": "chatcmpl-Co794aOzU4V1Vzyg1ijNdrivMVcr6",
       "finish_reason": "tool_call",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
       "parts": [
         {
-          "content": [
-            {
-              "type": "extra_forbidden",
-              "loc": [
-                "user_query"
-              ],
-              "msg": "Extra inputs are not permitted",
-              "input": "give me a summary of the latest research in LoRA"
-            },
-            {
-              "type": "extra_forbidden",
-              "loc": [
-                "search_results"
-              ],
-              "msg": "Extra inputs are not permitted",
-              "input": [
-                {
-                  "title": "LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement",
-                  "snippet": "We propose LoRA-FAIR, a novel method that tackles both issues by introducing a correction term on the server, enhancing aggregation efficiency and accuracy.",
-                  "url": "https://arxiv.org/abs/2411.14961v3"
-                },
-                {
-                  "title": "LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization",
-                  "snippet": "This paper introduces LoRA-RITE, a novel adaptive matrix preconditioning method for LoRA optimization, which can achieve transformation invariance and remain computationally efficient.",
-                  "url": "https://arxiv.org/abs/2410.20625v2"
-                },
-                {
-                  "title": "PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models",
-                  "snippet": "We introduce PLoP (Precise LoRA Placement), a lightweight method that allows automatic identification of module types where LoRA adapters should be placed.",
-                  "url": "https://arxiv.org/abs/2506.20629v1"
-                }
-              ]
-            }
-          ],
           "tool_name": "search_quality_check",
-          "tool_call_id": "call_9nIvkKxB4bD1g5jimDL4N8jN",
-          "timestamp": "2025-12-17T17:19:31.701145+00:00",
-          "part_kind": "retry-prompt"
+          "content": {
+            "results_evaluation": [
+              {
+                "title": "LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement",
+                "url": "https://arxiv.org/abs/2411.14961v3",
+                "relevance": 0.9,
+                "completeness": 0.8,
+                "credibility": 0.9,
+                "currency": 0.9
+              },
+              {
+                "title": "LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization",
+                "url": "https://arxiv.org/abs/2410.20625v2",
+                "relevance": 0.85,
+                "completeness": 0.8,
+                "credibility": 0.85,
+                "currency": 0.9
+              },
+              {
+                "title": "PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models",
+                "url": "https://arxiv.org/abs/2506.20629v1",
+                "relevance": 0.85,
+                "completeness": 0.8,
+                "credibility": 0.85,
+                "currency": 0.9
+              }
+            ],
+            "overall_quality_score": 0.8783333333333334,
+            "decision": "Good enough",
+            "suggested_search_terms": []
+          },
+          "tool_call_id": "call_jvaaqvaF7Ax4Up86it5FqGSx",
+          "metadata": null,
+          "timestamp": "2025-12-18T12:11:53.896661+00:00",
+          "part_kind": "tool-return"
         }
       ],
       "instructions": "You are a helpful assistant that answers user questions only based on arxiv research articles.\n\n        When a user asks a query, you always summarize the query using the generate_summary tool.\n        Then you search the index to find relevant results. \n        If you cannot find anything relevant, then you fetch the relevant articles from arxiv using the get_data_to_index tool.\n        Then you perfrom a search using the search tool again.\n\n        You always call the search_quality_check tool after searching the index to evaluate the quality of the retrieved search results.\n        If the search_quality_check tool indicates \"More data is needed\", then you may perform additional search using the suggested_search_terms.\n\n        You provide a complete and correct answer to the user's question by summarizing all these search results. Do not spend too much time searching.\n        You always provide at least 3 relevant and appropriate references to all artciles you use when summarizing search results.",
       "kind": "request",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
       "parts": [
         {
           "tool_name": "final_result",
-          "args": "{\"title\":\"Recent Advances in Low-Rank Adaptation (LoRA)\",\"summary\":\"Recent research in Low-Rank Adaptation (LoRA) has focused on enhancing the efficiency and effectiveness of fine-tuning large models. Key contributions include: 1. **LoRA-FAIR**: This method introduces a correction term for server-side aggregation in federated learning settings, addressing key challenges such as Server-Side Aggregation Bias and Client-Side Initialization Lag. It maintains high performance while ensuring computational efficiency (arXiv:2411.14961). 2. **LoRA-RITE**: A novel optimizer that enforces transformation invariance, dominating the optimization process. It shows consistent improvements over existing methods by stabilizing updates while remaining computationally efficient (arXiv:2410.20625). 3. **PLoP**: This lightweight method allows for automatic identification of the most effective module types for LoRA adapter placement, optimizing the fine-tuning process across various tasks (arXiv:2506.20629). Together, these studies represent significant strides in utilizing LoRA for efficient model training and adaptation.\",\"references\":[{\"title\":\"LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement\",\"url\":\"https://arxiv.org/abs/2411.14961v3\"},{\"title\":\"LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization\",\"url\":\"https://arxiv.org/abs/2410.20625v2\"},{\"title\":\"PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models\",\"url\":\"https://arxiv.org/abs/2506.20629v1\"}]}",
-          "tool_call_id": "call_IlSbTkwocIQE5xkp2Ebvym5S",
+          "args": "{\"title\":\"Summary of Latest Research in LoRA\",\"summary\":\"Recent research on Low-Rank Adaptation (LoRA) focuses on enhancing its efficiency and applicability in various tasks, particularly in the context of fine-tuning large models. Here are three notable contributions:\\n\\n1. **LoRA-FAIR**: This paper introduces a novel method that integrates LoRA with federated learning (FL) to address the challenges of Server-Side Aggregation Bias and Client-Side Initialization Lag. By refining the aggregation process and ensuring consistent initialization across rounds, LoRA-FAIR significantly improves performance in FL settings, demonstrating effective fine-tuning on models like ViT and MLP-Mixer while maintaining computational efficiency. [Read more](https://arxiv.org/abs/2411.14961v3)\\n\\n2. **LoRA Done RITE**: This work addresses the lack of transformation invariance in current LoRA optimizers, which leads to inefficient learning. The authors propose LoRA-RITE, a novel adaptive matrix preconditioning method that ensures invariant weight updates regardless of how LoRA factors are scaled or rotated. Extensive experiments show that this approach yields consistent accuracy gains across various large language model tasks. [Read more](https://arxiv.org/abs/2410.20625v2)\\n\\n3. **PLoP**: This paper presents PLoP (Precise LoRA Placement), which focuses on the adapter placement strategy when using LoRA. By automating the identification of optimal module types for placing LoRA adapters, PLoP enhances the finetuning process for large models. The method demonstrates superior performance compared to traditional placement strategies through comprehensive testing across various tasks. [Read more](https://arxiv.org/abs/2506.20629v1)\",\"references\":[{\"title\":\"LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement\",\"url\":\"https://arxiv.org/abs/2411.14961v3\"},{\"title\":\"LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization\",\"url\":\"https://arxiv.org/abs/2410.20625v2\"},{\"title\":\"PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models\",\"url\":\"https://arxiv.org/abs/2506.20629v1\"}]}",
+          "tool_call_id": "call_4KExfEhCY4Z6FoA5Fewu7SRA",
           "id": null,
           "provider_details": null,
           "part_kind": "tool-call"
         }
       ],
       "usage": {
-        "input_tokens": 5790,
+        "input_tokens": 5671,
         "cache_write_tokens": 0,
         "cache_read_tokens": 5376,
-        "output_tokens": 361,
+        "output_tokens": 497,
         "input_audio_tokens": 0,
         "cache_audio_read_tokens": 0,
         "output_audio_tokens": 0,
@@ -346,16 +344,16 @@
         }
       },
       "model_name": "gpt-4o-mini-2024-07-18",
-      "timestamp": "2025-12-17T17:19:32+00:00",
+      "timestamp": "2025-12-18T12:11:54+00:00",
       "kind": "response",
       "provider_name": "openai",
       "provider_url": "https://api.openai.com/v1/",
       "provider_details": {
         "finish_reason": "tool_calls"
       },
-      "provider_response_id": "chatcmpl-CnpTQGU4BROHu0nxOYoGMUBGusYIM",
+      "provider_response_id": "chatcmpl-Co79Gz7Tcm9sfZDBq8SYRWZlIirOx",
       "finish_reason": "tool_call",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     },
     {
@@ -363,23 +361,23 @@
         {
           "tool_name": "final_result",
           "content": "Final result processed.",
-          "tool_call_id": "call_IlSbTkwocIQE5xkp2Ebvym5S",
+          "tool_call_id": "call_4KExfEhCY4Z6FoA5Fewu7SRA",
           "metadata": null,
-          "timestamp": "2025-12-17T17:19:39.909539+00:00",
+          "timestamp": "2025-12-18T12:12:05.092102+00:00",
           "part_kind": "tool-return"
         }
       ],
       "instructions": null,
       "kind": "request",
-      "run_id": "6cd98966-b947-46bd-a3b0-bc7cf8936142",
+      "run_id": "8fab3553-3de1-44d8-b30f-813a242d0b78",
       "metadata": null
     }
   ],
   "usage": {
-    "input_tokens": 12241,
+    "input_tokens": 12113,
     "cache_write_tokens": 0,
     "cache_read_tokens": 5376,
-    "output_tokens": 682,
+    "output_tokens": 835,
     "input_audio_tokens": 0,
     "cache_audio_read_tokens": 0,
     "output_audio_tokens": 0,
@@ -390,7 +388,24 @@
       "rejected_prediction_tokens": 0
     },
     "requests": 5,
-    "tool_calls": 3
+    "tool_calls": 4
   },
-  "output": "{\"title\":\"Recent Advances in Low-Rank Adaptation (LoRA)\",\"summary\":\"Recent research in Low-Rank Adaptation (LoRA) has focused on enhancing the efficiency and effectiveness of fine-tuning large models. Key contributions include: 1. **LoRA-FAIR**: This method introduces a correction term for server-side aggregation in federated learning settings, addressing key challenges such as Server-Side Aggregation Bias and Client-Side Initialization Lag. It maintains high performance while ensuring computational efficiency (arXiv:2411.14961). 2. **LoRA-RITE**: A novel optimizer that enforces transformation invariance, dominating the optimization process. It shows consistent improvements over existing methods by stabilizing updates while remaining computationally efficient (arXiv:2410.20625). 3. **PLoP**: This lightweight method allows for automatic identification of the most effective module types for LoRA adapter placement, optimizing the fine-tuning process across various tasks (arXiv:2506.20629). Together, these studies represent significant strides in utilizing LoRA for efficient model training and adaptation.\",\"references\":[{\"title\":\"LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement\",\"url\":\"https://arxiv.org/abs/2411.14961v3\"},{\"title\":\"LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization\",\"url\":\"https://arxiv.org/abs/2410.20625v2\"},{\"title\":\"PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models\",\"url\":\"https://arxiv.org/abs/2506.20629v1\"}]}"
+  "output": {
+    "title": "Summary of Latest Research in LoRA",
+    "summary": "Recent research on Low-Rank Adaptation (LoRA) focuses on enhancing its efficiency and applicability in various tasks, particularly in the context of fine-tuning large models. Here are three notable contributions:\n\n1. **LoRA-FAIR**: This paper introduces a novel method that integrates LoRA with federated learning (FL) to address the challenges of Server-Side Aggregation Bias and Client-Side Initialization Lag. By refining the aggregation process and ensuring consistent initialization across rounds, LoRA-FAIR significantly improves performance in FL settings, demonstrating effective fine-tuning on models like ViT and MLP-Mixer while maintaining computational efficiency. [Read more](https://arxiv.org/abs/2411.14961v3)\n\n2. **LoRA Done RITE**: This work addresses the lack of transformation invariance in current LoRA optimizers, which leads to inefficient learning. The authors propose LoRA-RITE, a novel adaptive matrix preconditioning method that ensures invariant weight updates regardless of how LoRA factors are scaled or rotated. Extensive experiments show that this approach yields consistent accuracy gains across various large language model tasks. [Read more](https://arxiv.org/abs/2410.20625v2)\n\n3. **PLoP**: This paper presents PLoP (Precise LoRA Placement), which focuses on the adapter placement strategy when using LoRA. By automating the identification of optimal module types for placing LoRA adapters, PLoP enhances the finetuning process for large models. The method demonstrates superior performance compared to traditional placement strategies through comprehensive testing across various tasks. [Read more](https://arxiv.org/abs/2506.20629v1)",
+    "references": [
+      {
+        "title": "LoRA-FAIR: Federated LoRA Fine-Tuning with Aggregation and Initialization Refinement",
+        "url": "https://arxiv.org/abs/2411.14961v3"
+      },
+      {
+        "title": "LoRA Done RITE: Robust Invariant Transformation Equilibration for LoRA Optimization",
+        "url": "https://arxiv.org/abs/2410.20625v2"
+      },
+      {
+        "title": "PLoP: Precise LoRA Placement for Efficient Finetuning of Large Models",
+        "url": "https://arxiv.org/abs/2506.20629v1"
+      }
+    ]
+  }
 }
