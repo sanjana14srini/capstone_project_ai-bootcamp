@@ -117,9 +117,10 @@ def format_prompt(file):
 
 async def main():
     all_results = []
-    directory_path = 'evals/eval_logs/'
+    #TODO: specify correct directory location of logs
+    directory_path = 'evals/latest_evals/eval_logs/'
     for file_name in os.listdir(directory_path):
-        full_file_name = os.path.join('evals/eval_logs/', file_name)
+        full_file_name = os.path.join('evals/latest_evals/eval_logs/', file_name)
         with open(full_file_name, 'r') as file:
             file_data = json.load(file)
 
@@ -145,11 +146,14 @@ async def main():
     eval_columns = [check_name.value for check_name in CheckName]
       
 
- 
-    all_metrics = pd.DataFrame(df_eval[eval_columns].mean(), columns=['metric', 'score'])
-    all_metrics.to_csv("all_metrics.csv")
+    print("evaluations complete. now saving results.")
+    all_metrics = pd.DataFrame({
+    'metric': df_eval[eval_columns].mean().index,
+    'score': df_eval[eval_columns].mean().values
+        })
+    all_metrics.to_csv("evals/latest_evals/all_metrics.csv")
     
-    df_eval.to_csv("evals.csv")
+    df_eval.to_csv("evals/latest_evals/evals.csv")
     
 
 
