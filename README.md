@@ -167,4 +167,4 @@ Further improvements that can be considered for the furture could be:
 
 
 ## Demo 
-<video controls src="capstone_project_demo.mov" title="Title"></video>
+<video controls src="output.mp4" title="Title"></video>
