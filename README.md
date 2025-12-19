@@ -68,7 +68,9 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 ### Follow the below noted steps to run this application locally
 
-1. Make sure you have an openai account with an api key set up and accessible for this code. This project has access to openai credentials through git hub codespace secrets. You can attempt to do the same. (elaborate on how this can be achieved, through a link to a page that explains it well)
+1. Make sure you have an openai account with an api key set up and accessible for this code. This project has access to openai credentials through git hub codespace secrets. You can attempt to do the same. 
+- Creating openai API key: https://www.youtube.com/watch?v=Lj43aSwNpog
+- Adding api key to github codespaces: https://www.youtube.com/watch?v=Ekkn7y3QPIY
 2. Install python 3.12 or higher
 3. Install docker https://docs.docker.com/desktop/
 4. Install uv, set up the virtual environment and activate it
