@@ -68,16 +68,17 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 ### Follow the below noted steps to run this application locally
 
-### 1. Make sure you have an openai account with an api key set up and accessible for this code. This project has access to openai credentials through git hub codespace secrets. You can attempt to do the same. (elaborate on how this can be achieved, through a link to a page that explains it well)
-### 2. Install python 3.12 or higher
-### 3. Install docker https://docs.docker.com/desktop/
-### 4. Install uv, set up the virtual environment and activate it
+1. Make sure you have an openai account with an api key set up and accessible for this code. This project has access to openai credentials through git hub codespace secrets. You can attempt to do the same. (elaborate on how this can be achieved, through a link to a page that explains it well)
+2. Install python 3.12 or higher
+3. Install docker https://docs.docker.com/desktop/
+4. Install uv, set up the virtual environment and activate it
 - `python3 -m pip install uv`
 - ```uv init```
 - ```uv add openai messages pydantic pydantic_ai toyaikit jaxn elasticsearch streamlit feedparser```
 - ```source .venv/bin/activate (MacOS)```
 
-### 5. To run elasticsearch
+5. To run elasticsearch
+
 ```
 docker run -it \
 --rm \
@@ -95,14 +96,14 @@ docker.elastic.co/elasticsearch/elasticsearch:9.1.1
 ### To delete the arxiv_chunks search index (in case you want to reset the index and start fresh)
 ```curl -X DELETE "http://localhost:9200/arxiv_chunks"```
 
-### 6. To run the backend
+6. To run the backend
 ```uvicorn backend.app:app --reload --port 8001```
 
 ### Testing the fastapi
 ```curl -X POST http://localhost:8001/chat      -H "Content-Type: application/json"      -d '{"messages":[{"role":"user","content":"pre-puberty associated stress disorders"}]}'```
 
 
-### 6. To run the streamlit frontend
+7. To run the streamlit frontend
  ```streamlit run ui/app.py```
 
 ## Testing Agents
@@ -119,7 +120,7 @@ All interactions with the tool are automatically monitored. The logs are stored 
 This is done within the evals.py script built on top of the groud truth data present in `questions_dataset.csv`
 The results can be found in `evals.csv` and `metrics. csv` under latest_evals or ground_truth folders.
 
-- How you can run your own evaluations:
+### How you can run your own evaluations:
 To run your own evaluations, you can do as follows:
 - Run elasticsearch, backend and the streamlit frontend
 - Have conversations with the chat interface. These conversations will be logged as json files inside `monitoring/logs` folder
