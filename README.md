@@ -167,4 +167,4 @@ Further improvements that can be considered for the furture could be:
 
 
 ## Demo 
-<video controls src="output.mp4" title="Title"></video>
+"https://github.com/sanjana14srini/capstone_project_ai-bootcamp/blob/main/output.mp4"
