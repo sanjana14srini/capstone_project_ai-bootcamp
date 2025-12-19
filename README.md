@@ -93,13 +93,13 @@ docker.elastic.co/elasticsearch/elasticsearch:9.1.1
 ```
 
 
-### To delete the arxiv_chunks search index (in case you want to reset the index and start fresh)
+- To delete the arxiv_chunks search index (in case you want to reset the index and start fresh)
 ```curl -X DELETE "http://localhost:9200/arxiv_chunks"```
 
 6. To run the backend
 ```uvicorn backend.app:app --reload --port 8001```
 
-### Testing the fastapi
+- Testing the fastapi
 ```curl -X POST http://localhost:8001/chat      -H "Content-Type: application/json"      -d '{"messages":[{"role":"user","content":"pre-puberty associated stress disorders"}]}'```
 
 
