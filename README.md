@@ -58,8 +58,8 @@ This capstone project is a **full-stack AI appllication** built as a part of the
         ├── tools
         ├── helper_functions
         ├── main
-        ├── requirements.txt
         ├── evals
+        ├── monitoring
 
 
 </details>
@@ -68,7 +68,7 @@ This capstone project is a **full-stack AI appllication** built as a part of the
 
 ### Follow the below noted steps to run this application locally
 
-### 1. Make sure you have an openai account with an api key set up and accessible for this code. This project has access to openai credentials through git hub codespace secrets. You can attempt to do the same. 
+### 1. Make sure you have an openai account with an api key set up and accessible for this code. This project has access to openai credentials through git hub codespace secrets. You can attempt to do the same. (elaborate on how this can be achieved, through a link to a page that explains it well)
 ### 2. Install python 3.12 or higher
 ### 3. Install docker https://docs.docker.com/desktop/
 ### 4. Install uv, set up the virtual environment and activate it
@@ -166,3 +166,5 @@ Further improvements that can be considered for the furture could be:
 | tool_call_search | 1.0 |
 
 
+## Demo 
+<video controls src="capstone_project_demo.mov" title="Title"></video>
