@@ -168,6 +168,6 @@ Further improvements that can be considered for the furture could be:
 
 
 ## Demo 
-Watch the demo here: "https://github.com/sanjana14srini/capstone_project_ai-bootcamp/blob/main/output.mp4"
+Watch the demo here: https://github.com/sanjana14srini/capstone_project_ai-bootcamp/blob/main/output.mp4
 
 ![alt text](demo.gif)
